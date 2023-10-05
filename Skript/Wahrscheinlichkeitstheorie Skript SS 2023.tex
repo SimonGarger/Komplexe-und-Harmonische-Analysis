@@ -1,0 +1,288 @@
+\documentclass[a4paper, 12pt]{article}          % Paper and font size % Language setting
+% Set margins
+\usepackage[top=2.5cm,bottom=2.5cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+% Load useful packages
+\usepackage{graphicx}                           % Graphics
+\usepackage{amsmath}                            % Math
+\usepackage{xcolor}                             % Link color
+\definecolor{custom-blue}{RGB}{0,99,166}
+\usepackage[T1]{fontenc}                        % Special characters
+\usepackage{fancyhdr}                           % Load header, footer package
+\usepackage[ngerman]{babel}                     % Sprache
+
+
+\PassOptionsToPackage{dvipsnames}{xcolor}       % Packages Anton
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{marvosym}
+\usepackage{mathtools}
+\usepackage{empheq}
+\usepackage{cancel}
+\usepackage{harpoon}
+\usetikzlibrary{graphs,tikzmark,calc,arrows,arrows.meta,angles,math,decorations.markings}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{framed}
+\usepackage[hyperref,amsmath,thmmarks,framed]{ntheorem}
+\usepackage[colorlinks=true, linkcolor=magenta, psdextra, pdfencoding=auto]{hyperref}
+\usepackage[capitalize,nameinlink]{cleveref}
+\usepackage{tcolorbox}
+\usepackage{lmodern}
+\usepackage{faktor}
+\usepackage{mathpunctspace}
+
+
+\usepackage{lastpage}                           % Footer note
+\usepackage{lipsum}
+\usepackage{amsfonts}
+
+\pagestyle{myheadings}                          % Own header
+\pagestyle{fancy}                               % Own style
+\fancyhf{}                                      % Clear header, footer
+
+\setlength{\headheight}{30pt}                   % Set header hight
+\renewcommand{\headrulewidth}{0.5pt}            % Top line
+\renewcommand{\footrulewidth}{0.5pt}            % Bottom line
+\setlength{\headsep}{1cm}
+
+\fancyhead[L]{\includegraphics[width=3cm]{Uni_Logo_2016.jpg}} % Header left
+\fancyhead[C]{}                                 % Header center
+\fancyhead[R]{Komplexe und Harmonische Analysis}       % Header right
+\fancyfoot[L]{}                                 % Footer left
+\fancyfoot[C]{}                                 % Footer center
+\fancyfoot[R]{\thepage/\pageref{LastPage}}      % Footer right
+
+% Environments
+% \newtheorem*{proof}{\textit{Beweis:}}
+\DeclareRobustCommand{\qed}{%
+    \ifmmode % if math mode, assume display: omit penalty etc.
+    \else \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+    \fi
+    \quad\hbox{\qedsymbol}}
+\newcommand{\openbox}{\leavevmode
+\hbox to.77778em{%
+    \hfil\vrule
+    \vbox to.675em{\hrule width.6em\vfil\hrule}%
+    \vrule\hfil}}
+\newcommand{\qedsymbol}{\openbox}
+\newenvironment{proof}[1][\proofname]{\par
+\normalfont\trivlist
+\item[\hskip\labelsep\itshape
+    #1.]\ignorespaces
+}{%
+\qed\endtrivlist
+}
+
+\newenvironment{bemerkung}[1][\textit{Bemerkung}]{\par
+\normalfont\trivlist
+\item[\hskip\labelsep\itshape
+    #1.]\ignorespaces
+}{%
+\qed\endtrivlist
+}
+
+\newenvironment{beispiel}[1][\textit{Beispiel}]{\par
+\normalfont\trivlist
+\item[\hskip\labelsep\itshape
+    #1.]\ignorespaces
+}{%
+    \qed\endtrivlist
+}
+
+\newcommand{\proofname}{Proof}
+\makeatother
+
+\definecolor{blau}{HTML}{29b0c2}
+\definecolor{rosa}{HTML}{c48494}
+\definecolor{weiss}{HTML}{FFFFFF}
+
+\theoremstyle{break}
+\theoremseparator{:\smallskip}
+\theoremindent=1em
+\theoremheaderfont{\kern-1em\normalfont\bfseries}
+\theorembodyfont{\normalfont}
+\theoreminframepreskip{0em}
+\theoreminframepostskip{0em}
+\theoremsymbol{}
+\newtcbox{\theoremBox}{colback=rosa!17,colframe=rosa!87,boxsep=0pt,left=7pt,right=7pt,top=7pt,bottom=7pt}
+\def\theoremframecommand{\theoremBox}
+
+\newshadedtheorem{theo}{Theorem}[section]
+
+\newshadedtheorem{satz}[theo]{Satz}
+\newcommand{\satzautorefname}{Satz}
+\theoremstyle{nonumberbreak}
+\newshadedtheorem{nonumbersatz}{Satz}
+\theoremstyle{break}
+\newshadedtheorem{lemma}[theo]{Lemma}
+\newcommand{\lemmaautorefname}{Lemma}
+\newshadedtheorem{korollar}[theo]{Korollar}
+\newcommand{\korollarautorefname}{Korollar}
+\newshadedtheorem{folgerung}[theo]{Folgerung}
+\newcommand{\folgerungautorefname}{Folgerung}
+\newshadedtheorem{proposition}[theo]{Proposition}
+\newcommand{\propositionautorefname}{Proposition}
+\newtcbox{\definBox}{colback=blau!17,colframe=blau!94,boxsep=0pt,left=7pt,right=7pt,top=7pt,bottom=7pt}
+\def\theoremframecommand{\definBox}
+\newshadedtheorem{definition}[theo]{Definition}
+\newcommand{\definautorefname}{Definition}
+\newtcbox{\miscBox}{colback=gray!17,colframe=gray!80}
+
+\def\theoremframecommand{\miscBox}
+\newshadedtheorem{bemerkung}[theo]{Bemerkung}
+\newcommand{\bemerkungautorefname}{Bemerkung}
+\newshadedtheorem{beispiel}[theo]{Beispiel}
+
+\newtcbox{\warnBox}{colback=red!17,colframe=red!80}
+\def\theoremframecommand{\warnBox}
+\theoremstyle{nonumberbreak}
+
+\hypersetup{colorlinks=true, allcolors=custom-black}
+
+
+
+\newcommand{\chapter}[1]{\pagebreak \huge\textbf{\vskip 2cm #1} \normalsize}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{Ce}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+%%% Begin document %%%
+\begin{document}
+\begin{figure}                                  % Include Logo
+    \flushleft
+\includegraphics[width=0.6\textwidth]{Uni_Logo_2016.jpg}
+\end{figure}
+
+% Set title, author, date
+\title{Komplexe und Harmonische Analysis WS2023}
+\author{Simon Garger - simon.garger@gmail.com}
+\date{\today{}, Wien}
+
+\maketitle
+\thispagestyle{empty}
+\pagebreak% Include contents
+\tableofcontents
+\pagebreak
+
+
+\chapter{Komplexe Analysis}
+\\\\
+    \begin{bemerkung}
+        Im Folgenden wird immer $z_k=x_k+iy_k=r_k\cdot e^{i\theta_k}$ gelten. Außerdem wird im Allgemeinen
+        $\Omega$ eine Teilmenge von $\C$ sein.
+    \end{bemerkung}
+
+\section{Grundlagen}
+
+    \begin{definition}[Komplexe Zahlen]
+        Wir definieren den komplexen Zahlenkörper als die Menge
+        $$\C:= \{z=x+iy|x,y\in \R\}$$
+        Dabei bezeichnet $i$ die komplexe Einheit mit $i^2=-1$.
+        Man nennt $x=\Re(z)$ den Realteil und $y=\Im(z)$ den Imaginärteil.
+        Der Betrag einer komplexen Zahl wird geschrieben durch $|z| = \sqrt{x^2+y^2}$.
+        Wir definieren $\bar{z}:= x-iy$ als das komplex Konjugierte von $z$.
+    \end{definition}
+
+    \begin{proposition}
+        Die komplexen Zahlen erfüllen folgende Rechenregeln:
+        \begin{enumerate}
+            \item $z_1+z_2 = (x_1+x_2)+i(y_1+y_2)$ \\(Interpretation: Vektoraddition)
+            \item $z_{1}z_2 = (x_1x_2-y_1y_2)+i(x_1y_2+x_2y_1)=r_{1}r_2\cdot e^{i(\theta_1 +\theta_2)}$
+            \\(Interpretation: Streckung und Drehung)
+            \item $|z_1+z_2|\leq |z_1|+|z_2|$
+            \item $|z|^2=z\bar{z}\Rightarrow \dfrac{1}{z} = \dfrac{\bar{z}}{|z|^2}$
+        \end{enumerate}
+    \end{proposition}
+
+    \begin{definition}
+        Da $\C\cong\R^2$ gilt, können wir die topologischen Eigenschaften von $\R^2$ in $\C$ übertragen
+        und werden auch im Weiteren öfter die komplexen Zahlen mit der zweidimensionalen Zahlenebene
+        identifizieren. Weiter werden wir eine Teilmenge von $\C$ meist mit $\Omega$ bezeichnen.
+        Wir erhalten damit:
+        \begin{enumerate}
+            \item Die komplexen Zahlen sind vollständig, es konvergiert also jede Cauchy-Folge.
+            \item Eine Folge konvergiert in $\C$ genau dann, wenn Real- und Imaginärteil konvergieren und genau
+            dann, wenn es eine Cauchy-Folge ist.
+            \item Das Innere von $\Omega$ ist $\Omega^\circ := \{a|\exists B_r: a\in B_r\subset \Omega\}$
+            \item Wir nennen $\Omega$ kompakt, sofern die Menge beschränkt und abgeschlossen ist.
+            \item Wir nennen $\Omega$ offen (abgeschlossen) zusammenhängend, wenn für $\Omega_1,\Omega_2$ offen
+            (abgeschlossen) gilt:
+            $$\Omega =\Omega_1\cup\Omega_2\quad\land\quad \emptyset = \Omega_1\cap \Omega_2\quad\Rightarrow
+            \quad \Omega_1 = \emptyset\quad\lor \quad \Omega_2=\emptyset$$
+            \item Wir nennen eine Funktion stetig, wenn gilt:
+            $$\lim_{n\to \infty} z_n = z\quad \Rightarrow \quad \lim_{n\to \infty} f(z_n) = f(z)$$
+        \end{enumerate}
+    \end{definition}
+
+
+\section{Holomorphie}
+
+    \begin{definition}
+        Sei $z_0\in \Omega$, dann nennen wir $f$ holomorph ("komplex differenzierbar") in $z_0$ falls
+        $$\lim_{h\to 0}\dfrac{f(z_0+h)-f(z)}{h}=f'(z_0)\in \C$$
+        existiert. \\\\
+        Eine Funktion heißt auf $\Omega$ holomorph, wenn sie in jedem Punkt $z\in \Omega$ holomorph ist oder
+        einfach "ganz", falls sie für alle $z\in \C$ holomorph ist.
+    \end{definition}
+
+    \begin{beispiel}
+        Beispiele für holomorphe Funktionen sind:
+        \begin{itemize}
+            \item Konstante Funktionen
+            \item Potenzfunktionen
+            \item Polynomfunktionen
+            \item Potenzreihen
+        \end{itemize}
+    \end{beispiel}
+
+    \begin{proposition}[Cauchy-Riemann Gleichungen]
+        Sei $f$ eine auf $\Omega$ holomorphe Funktion. Identifizieren wir nun $f(z) = u(z)+iv(z)$, wobei
+        $u,v:\C\cong\R^2\to \R$ sind, so gelten folgende Beziehungen:
+        $$\begin{aligned}
+              \dfrac{\partial u}{\partial x}(x,y) &= \dfrac{\partial v}{\partial y}(x,y)\\
+              \dfrac{\partial u}{\partial y}(x,y) &= -\dfrac{\partial v}{\partial x}(x,y)
+        \end{aligned}$$
+    \end{proposition}
+
+    \begin{proof}
+        Wir definieren für ein beliebiges $x+iy=z_0\in \Omega$:
+        $$\lim_{h\to 0}\dfrac{f(z_0+h)-f(z)}{h}=f'(z_0)=: a+ib$$
+        Nun differenzieren wir nur partiell (der obige Limes beschreibt ja eine beliebige Nullfolge, also
+        können wir auch die entlang der Achsen betrachten), indem wir die obige $u,v$ Identifikation und
+        $h=(h_1,h_2)$ verwenden:
+        $$\begin{aligned}
+              a+ib &= \lim_{h_1 \to 0}\dfrac{f(z_0+h_1)-f(z)}{h_1} \\
+              &=\lim_{h_1 \to 0}\dfrac{u(z_0+h_1)+iv(z_0+h_1)-u(z_0)-iv(z_0)}{h_1}\\
+              &=\lim_{h_1 \to 0}\dfrac{u(z_0+h_1)-u(z_0)}{h_1} +\lim_{h_1 \to 0}\dfrac{i(v(z_0+h_1)-iv(z_0))}{h_1}\\
+              &=\dfrac{\partial u}{\partial x}(x,y) +i\dfrac{\partial v}{\partial x}(x,y)
+        \end{aligned}$$
+        Genauso finden wir:
+        $$\begin{aligned}
+              a+ib &= \lim_{h_2 \to 0}\dfrac{f(z_0+ih_2)-f(z)}{ih_2} \\
+              &=\lim_{h_2 \to 0}\dfrac{u(z_0+ih_2)+iv(z_0+ih_2)-u(z_0)-iv(z_0)}{ih_2}\\
+              &=\lim_{h_2 \to 0}\dfrac{u(z_0+ih_2)-u(z_0)}{ih_2} +\lim_{h_2 \to 0}\dfrac{i(v(z_0+ih_2)-v(z_0))}{ih_2}\\
+              &=\frac{1}{i}\dfrac{\partial u}{\partial y}(x,y) +\dfrac{\partial v}{\partial y}(x,y)
+        \end{aligned}$$
+        Damit folgt: 
+        $$\begin{aligned}
+              &a = \dfrac{\partial u}{\partial x}(x,y) = \dfrac{\partial v}{\partial y}(x,y)\\
+              &b = \dfrac{\partial v}{\partial x}(x,y) = -\frac{\partial u}{\partial y}(x,y)
+        \end{aligned}$$
+    \end{proof}
+
+
+
+
+
+
+
+
+
+\end{document}

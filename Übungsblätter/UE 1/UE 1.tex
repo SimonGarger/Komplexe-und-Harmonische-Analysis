@@ -1,0 +1,201 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Numerik 2022 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{arabicore}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+\newenvironment{problem}[2][Beispiel]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}] \itshape}{
+    \end{trivlist}\normalshape
+}
+
+\begin{document}
+    \begin{problem}{1}
+        Beschreibe die folgenden Punktmengen von $z\in \C$ der komplexen Ebene
+        geometrisch:
+        \begin{enumerate}[label=(\alph*)]
+            \item $|z-z_1| = |z-z_2|$ für vorgegebene $z_1,z_2\in\C$
+            \item $\frac{1}{z}=\bar{z}$
+            \item $\Re(az+b)>0$ für gegebene $a,b\in\C$
+            \item $e^z$ für $0\leq \Re(z)\leq 1$ und $0\leq \Im(z)\leq \pi$
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        \begin{enumerate}[label=(\alph*)]
+            \item Die Menge ist die Symmetrieachse zwischen $z_1$ und $z_2$.
+            Gilt $z_1=z_2$, so ist die Menge natürlich die gesamte komplexe Ebene.
+            \item Wir wissen, dass $\frac{1}{z}=\frac{\bar{z}}{|z|^2}$ gilt.
+            Ein Element $z_0$ liegt also genau dann in der Menge, wenn $|z_0|=1$ gilt,
+            also ist es der Einheitskreis.
+            \item
+            \item Mit $z=x+iy,xy\in\R$ finden wir:
+            $$e^z = e^{x+iy} = e^x\cdot e^iy$$
+            $e^x$ ist ein reeller Skalar im Intervall $[0,e]$ und $e^{iy}$ ist
+            eine komplexe Zahl, die auf der oberen Hälfte des Einheitskreises liegt.
+            Zusammengesetzt ist diese Menge also die obere Hälfte der Kreisscheibe
+            um den Ursprung, die Radius $e$ hat.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{problem}{2}
+        Seien $s\geq 0$ und $\varphi\in\R$ gegeben. Wie viele Lösungen hat die
+        Gleichung $z^n = se^{i\varphi}$, für $n\in \N$? Finde sie.
+    \end{problem}
+
+    \begin{proof}
+        Wir schreiben $z^n = re^{i\theta}$. Damit nun die gegebene Gleichung
+        erfüllt wird, muss ein $n$ existieren sodass $r^n =s$, das ist schoneinmal
+        nur möglich, wenn
+        \begin{enumerate}[label = (\roman{enumi})]
+            \item $t=s=0$, ist der triviale uninteressante Fall.
+            \item $t=s=1$, dann erfüllt jedes $n$ die obige Gleichung.
+            \item $0<t,s<1$, dann gibt es eine oder keine Lösung.
+            \item $1<t,s$, dann gibt es eine oder keine Lösung.
+        \end{enumerate}
+        Im ersten Fall sind beide Punkte die Nullpunkte und jedes $n$ erfüllt die
+        Gleichung. \\\\
+        Im zweiten Fall gibt es genau dann keine Lösung, wenn es keine
+        Lösung von
+        $$\varphi = n\theta\mod 2\pi$$
+        gibt. Andererseits ist jede Lösung der obigen Gleichung auch Lösung
+        des gegebenen Problems. \\\\
+        Angenommen es gibt im dritten Fall ein $n$, dann ist dieses genau dann
+        eine Lösung der ersten Gleichung, wenn $\varphi = n\theta\mod 2\pi$ gilt. \\\\
+        Im vierten Fall genau wie im dritten Fall.
+    \end{proof}
+
+    \begin{problem}{3}
+        Sei $w\in B_1(0)=\{z\in\C:|z|<1\}$ ein Element der Einheitskreisscheibe,
+        und definiere:
+        $$F(z):= \dfrac{w-z}{1-\bar{w}z}.$$
+        Zeige, dass dies eine Abbildung definiert mit den folgenden Eigenschaften:
+        \begin{enumerate}[label=(\alph*)]
+            \item $F:B_1(0)\to B_1(0)$, d.h. $F$ bildet die Einheitskreisscheibe
+            auf sich selber ab, und ist holomorph,
+            \item $F$ vertauscht die Punkte $0$, $w\in B_1(0): F(0)=w,F(w)=0$,
+            \item Für $|z|=1$ gilt $|F(z)|=1$,
+            \item $F:B_1(0)\to B_1(0)$ ist bijektiv.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        \begin{enumerate}[label=(\alph*)]
+            \item Die Funktion ist eine Selbstabbildung, denn es gilt:
+            $$\begin{aligned}
+                  \dfrac{|w-z|}{|1-\bar{w}z|}<1&\Leftrightarrow |w-z|^2<|1-\bar{w}z|^2\\
+                  &\Leftrightarrow (w-z)(\bar{w}-\bar{z}) < (1-\bar{w}z)(1-w\bar{z})\\
+                  &\Leftrightarrow |w|^2+|z|^2-w\bar{z}-\bar{w}z < 1+|w|^2|z|^2-w\bar{z}-\bar{w}z\\
+                  &\Leftrightarrow |w|^2+|z|^2 < 1+|w|^2|z|^2
+            \end{aligned}$$
+            Die Funktion ist holomorph, denn es gilt:
+            $$\begin{aligned}
+                  \lim_{h\to 0}\dfrac{F(z+h)F(z)}{h} &= \lim_{h\to 0}\dfrac{\frac{w-z-h}{1-\bar{w}z-\bar{w}h}
+                  -\frac{w-z}{1-\bar{w}z}}{h} \\
+                  &= \lim_{h\to 0}\dfrac{w-z-h-|w|^2z+\bar{w}z^2+\bar{w}zh-w+z+|w|^2z-\bar{w}z^2+|w|^2h-\bar{w}zh}
+                  {(1-\bar{w}z-\bar{w}h)(1-\bar{w}z)h}\\
+                  &= \lim_{h\to 0}\dfrac{-1+|w|^2}{(1-\bar{w}z-\bar{w}h)(1-\bar{w}z)}\\
+                  &= \dfrac{-1+|w|^2}{(1-\bar{w}z)^2}
+            \end{aligned}$$
+            \item Wir finden natürlich:
+            $$F(0) = \dfrac{w-0}{1-0}=w\quad \land\quad F(w) = \dfrac{w-w}{1-\bar{w}w}=0$$
+            \item Sei $z$ mit $|z|=1$ beliebig:
+            $$\begin{aligned}
+                  \dfrac{|w-z|}{|1-\bar{w}z|}=1&\Leftrightarrow |w-z|^2=|1-\bar{w}z|^2\\
+                  &\Leftrightarrow (w-z)(\bar{w}-\bar{z}) = (1-\bar{w}z)(1-w\bar{z})\\
+                  &\Leftrightarrow |w|^2+|z|^2-w\bar{z}-\bar{w}z = 1+|w|^2|z|^2-w\bar{z}-\bar{w}z\\
+                  &\Leftrightarrow |w|^2+|z|^2 = 1+|w|^2|z|^2\\
+                  &\Leftrightarrow |w|^2+1=1+|w|^2
+            \end{aligned}$$
+            \item Zuerst beweisen wir die Injektivität:
+            $$\begin{aligned}
+                  F(z_1) &= F(z_2)\\
+                  \dfrac{w-z_1}{1-\bar{w}z_1} &= \dfrac{w-z_2}{1-\bar{w}z_2}\\
+                  (w-z_1)(1-\bar{w}z_2) &= (w-z_2)(1-\bar{w}z_1)\\
+                  w-|w|^{2}z_2-z_1+\bar{w}z_1z_2 &= w-|w|^{2}z_1-z_2+\bar{w}z_1z_2\\
+                  -|w|^{2}z_2+z_2 &= -|w|^{2}z_1+z_1\\
+                  z_2 (1-|w|^2) &= z_1 (1-|w|^2)\\
+                  z_2&= z_1
+            \end{aligned}$$
+            Sei nun $z_0\in B_1(0)$ beliebig. Nehmen wir an wir finden ein $z$ mit
+            $F(z) = z_0$:
+            $$\begin{aligned}
+                  z_0 &= \frac{w-z}{1-\bar{w}z}\\
+                  z_0 &= w-z+\bar{w}zz_0\\
+                  z_0 -w &= z \underbrace{(\bar{w}z_0 -1)}_{\neq 0}\\
+                  z &= \frac{z_0 -w}{(\bar{w}z_0 -1)} = -F(z_0)\in B_1(0)
+            \end{aligned}$$
+            Also ist die Funktion bijektiv.
+            
+        \end{enumerate}
+    \end{proof}
+
+    \begin{problem}{4}
+        Sei $\Omega\subseteq \C$ offen, und $f:\Omega \to \C$ holomorph. Zeige:
+        \begin{enumerate}[label=(\alph*)]
+            \item Sowohl Real- als auch Imaginärteil von $f$ sind harmonische
+            Funktionen. \\(Erinnerung: Eine Funktion $g:U\to \R$ auf einer offenen
+            Menge $U\subseteq \R^2$ heißt harmoische, falls $\vardelta g=
+            \frac{\partial^2 g}{\partial x^2}+\frac{\partial^2 g}{\partial y^2}=0.$)
+            \item Falls $\Omega$ zusammenhängend ist und $f$ nur reelle Werte annimmt,
+            d.h. $f(\Omega)\subseteq \R\subset \C$, dann ist $f$ konstant.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        Wir schreiben $f(z) = u(z)+iv(z)$. Wir kennen die Riemann-Cauchy Gleichungen, die gelten, da
+        $f$ holomorph ist:
+        $$\dfrac{\partial u}{\partial x}(x,y) = \dfrac{\partial v}{\partial y}(x,y), \qquad
+        \dfrac{\partial u}{\partial y}(x,y) = -\dfrac{\partial v}{\partial x}(x,y)$$
+        Mit dem Satz von Schwarz folgt:
+        $$\dfrac{\partial^2 u}{\partial x^2}(x,y)=\dfrac{\partial^2 v}{\partial x\partial y}(x,y)
+        = \dfrac{\partial^2 v}{\partial y\partial x}(x,y) = -\dfrac{\partial^2 u}{\partial y^2}(x,y)$$
+        und
+        $$\dfrac{\partial^2 v}{\partial y^2}(x,y)=\dfrac{\partial^2 u}{\partial y\partial x}(x,y)
+        = \dfrac{\partial^2 u}{\partial x\partial y}(x,y) = -\dfrac{\partial^2 v}{\partial x^2}(x,y)$$
+        Also sind sowohl $u$ und $v$ harmonisch.\\\\
+        Wieder zerlegen wir $f(z) = u(z)+iv(z)$. Wenn $f$ nur reelle Werte annimmt gilt natürlich
+        $\forall z\in\Omega| v(z) = 0$. Der Imaginärteil ist also konstant, damit ist die Ableitung
+        $0$ und somit sind auch die partiellen Ableitungen $0$. Nach Gültigkeit der Riemann-Cauchy
+        Gleichungen sind auch die partiellen Ableitungen von $u$ gleich $0$. Damit ist auch $u$ konstant.
+    \end{proof}
+
+    \begin{problem}{5}
+        Sei $f=\sum_{n\geq 0}a_n z^n$ eine Potenzreihe mit Konvergenzradius
+        $R>0$. Zeige:
+        \begin{enumerate}[label=(\alph*)]
+            \item Falls $\lim_{n\to\infty}\frac{|a_{n+1}|}{|a_n|}=L<\infty$,
+            dann gilt $R=\frac{1}{L}$.
+            \item Für jeden Punkt $z_0\in B_R(0)$ kann $f$ auch als Potenzreihe um
+            $z_0$ geschrieben werden.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+
+    \end{proof}
+\end{document}
