@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.4)  3 OCT 2023 22:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.4)  7 OCT 2023 16:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"./Wahrscheinlichkeitstheorie Skript SS 2023.tex"
-(Wahrscheinlichkeitstheorie Skript SS 2023.tex
+**"./Komplexe und Harmonische Analysis Skript WS 2023.tex"
+(Komplexe und Harmonische Analysis Skript WS 2023.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24>
 (C:\Users\simon\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -1151,17 +1151,21 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \l__lipsum_b_int=\count341
 
 (C:\Users\simon\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex))
-LaTeX Info: Redefining \qed on input line 60.
+(C:\Users\simon\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsbooka.sty
+Package: amsbooka 2014/07/11 v2.08 monograph part/chapter authors
+)
+LaTeX Info: Redefining \qed on input line 61.
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:70: LaTeX Error: Command \qedsymb
-ol already defined.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:71: LaTeX Error: Command \
+qedsymbol already defined.
                Or name \end... illegal, see p.192 of the manual.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.70 \newcommand{\qedsymbol}{\openbox}
+l.71 \newcommand{\qedsymbol}{\openbox}
                                       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1186,63 +1190,62 @@ or  <return>  to continue without it.
 \c@currdefinitionctr=\count358
 \c@enddefinitionctr=\count359
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:134: LaTeX Error: Command \bemerk
-ung already defined.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:136: LaTeX Error: Command 
+\bemerkung already defined.
                Or name \end... illegal, see p.192 of the manual.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.134 \newshadedtheorem{bemerkung}
+l.136 \newshadedtheorem{bemerkung}
                                   [theo]{Bemerkung}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:136: LaTeX Error: Command \beispi
-el already defined.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:138: LaTeX Error: Command 
+\beispiel already defined.
                Or name \end... illegal, see p.192 of the manual.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.136 \newshadedtheorem{beispiel}
+l.138 \newshadedtheorem{beispiel}
                                  [theo]{Beispiel}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 142.
+Package hyperref Info: Option `colorlinks' set `true' on input line 144.
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 15
-6.
+8.
 (C:\Users\simon\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-(Wahrscheinlichkeitstheorie Skript SS 2023.aux)
-\openout1 = `"Wahrscheinlichkeitstheorie Skript SS 2023.aux"'.
+No file "Komplexe und Harmonische Analysis Skript WS 2023".aux.
+\openout1 = `"Komplexe und Harmonische Analysis Skript WS 2023.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 156.
-LaTeX Font Info:    ... okay on input line 156.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 158.
+LaTeX Font Info:    ... okay on input line 158.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1307,9 +1310,9 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 156.
+ on input line 158.
 
-Package hyperref Info: Link coloring ON on input line 156.
+Package hyperref Info: Link coloring ON on input line 158.
 (C:\Users\simon\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -1322,28 +1325,26 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count366
 )
-LaTeX Info: Redefining \ref on input line 156.
-LaTeX Info: Redefining \pageref on input line 156.
-LaTeX Info: Redefining \nameref on input line 156.
- (Wahrscheinlichkeitstheorie Skript SS 2023.out)
-(Wahrscheinlichkeitstheorie Skript SS 2023.out)
+LaTeX Info: Redefining \ref on input line 158.
+LaTeX Info: Redefining \pageref on input line 158.
+LaTeX Info: Redefining \nameref on input line 158.
 \@outlinefile=\write4
-\openout4 = `"Wahrscheinlichkeitstheorie Skript SS 2023.out"'.
+\openout4 = `"Komplexe und Harmonische Analysis Skript WS 2023.out"'.
 
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 156.
-<Uni_Logo_2016.jpg, id=14, 481.8pt x 240.9pt>
+(lastpage)             ! on input line 158.
+<Uni_Logo_2016.jpg, id=6, 481.8pt x 240.9pt>
 File: Uni_Logo_2016.jpg Graphic file (type jpg)
 <use Uni_Logo_2016.jpg>
-Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 159.
+Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 161.
 (pdftex.def)             Requested size: 290.22107pt x 145.11453pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 168.
+(Font)              <14.4> on input line 170.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 168.
+(Font)              <10> on input line 170.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 168.
+(Font)              <7> on input line 170.
 
 (C:\Users\simon\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-pdfdoc.d
 ef
@@ -1351,40 +1352,13 @@ File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) [1
 
 {C:/Users/simon/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./Uni_Logo_2
-016.jpg>] (Wahrscheinlichkeitstheorie Skript SS 2023.toc
-
-Wahrscheinlichkeitstheorie Skript SS 2023.toc:2: Package xcolor Error: Undefine
-d color `custom-black'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.2 ...n}{\numberline {1}Grundlagen}{3}{section.1}
-                                                  %
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Wahrscheinlichkeitstheorie Skript SS 2023.toc:3: Package xcolor Error: Undefine
-d color `custom-black'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3 ...}{\numberline {2}Holomorphie}{4}{section.2}
-                                                  %
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-)
+016.jpg>]
 \tf@toc=\write5
-\openout5 = `"Wahrscheinlichkeitstheorie Skript SS 2023.toc"'.
+\openout5 = `"Komplexe und Harmonische Analysis Skript WS 2023.toc"'.
 
 File: Uni_Logo_2016.jpg Graphic file (type jpg)
 <use Uni_Logo_2016.jpg>
-Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 172.
+Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 174.
 (pdftex.def)             Requested size: 85.35826pt x 42.67642pt.
 
 
@@ -1396,32 +1370,23 @@ Package fancyhdr Warning: \headheight is too small (30.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.02646pt}.
 
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:172: Package xcolor Error: Undefi
-ned color `custom-black'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.172 
-      
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 174.
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 174--177
+Underfull \hbox (badness 10000) in paragraph at lines 176--179
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--177
+Underfull \hbox (badness 10000) in paragraph at lines 176--179
 
  []
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:178: Missing { inserted.
+Missing character: There is no e in font msbm10!
+Komplexe und Harmonische Analysis Skript WS 2023.tex:181: Missing { inserted.
 <to be read again> 
                    }
-l.178     \end{bemerkung}
+l.181     \end{bemerkung}
                          
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -1429,35 +1394,35 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:178: LaTeX Error: Something's wro
-ng--perhaps a missing \item.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:181: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.178     \end{bemerkung}
+l.181     \end{bemerkung}
                          
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:178: LaTeX Error: Something's wro
-ng--perhaps a missing \item.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:181: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.178     \end{bemerkung}
+l.181     \end{bemerkung}
                          
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:178: Missing } inserted.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:181: Missing } inserted.
 <inserted text> 
                 }
-l.178     \end{bemerkung}
+l.181     \end{bemerkung}
                          
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1466,15 +1431,15 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 Package hyperref Info: bookmark level for unknown definition defaults to 0 on i
-nput line 182.
+nput line 185.
 Missing character: There is no e in font msbm10!
-LaTeX Font Info:    Trying to load font information for U+euf on input line 186
+LaTeX Font Info:    Trying to load font information for U+euf on input line 189
 .
 (C:\Users\simon\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
 Package hyperref Info: bookmark level for unknown proposition defaults to 0 on 
-input line 192.
+input line 195.
 
 Missing character: There is no e in font msbm10!
 Missing character: There is no e in font msbm10!
@@ -1482,7 +1447,7 @@ Missing character: There is no e in font msbm10!
 Missing character: There is no e in font msbm10!
 File: Uni_Logo_2016.jpg Graphic file (type jpg)
 <use Uni_Logo_2016.jpg>
-Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 220.
+Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 223.
 (pdftex.def)             Requested size: 85.35826pt x 42.67642pt.
 
 Package fancyhdr Warning: \headheight is too small (30.0pt): 
@@ -1493,35 +1458,25 @@ Package fancyhdr Warning: \headheight is too small (30.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.02646pt}.
 
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:220: Package xcolor Error: Undefi
-ned color `custom-black'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.220     \end{definition}
-                          
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 223.
 
 [3]
 Missing character: There is no e in font msbm10!
 Missing character: There is no e in font msbm10!
 
-Underfull \hbox (badness 10000) in paragraph at lines 227--231
+Underfull \hbox (badness 10000) in paragraph at lines 230--234
 
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-36.
+39.
 (C:\Users\simon\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:241: Missing { inserted.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:247: Missing { inserted.
 <to be read again> 
                    }
-l.241     \end{beispiel}
+l.247     \end{beispiel}
                         
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -1529,35 +1484,35 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:241: LaTeX Error: Something's wro
-ng--perhaps a missing \item.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:247: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.241     \end{beispiel}
+l.247     \end{beispiel}
                         
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:241: LaTeX Error: Something's wro
-ng--perhaps a missing \item.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:247: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.241     \end{beispiel}
+l.247     \end{beispiel}
                         
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:241: Missing } inserted.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:247: Missing } inserted.
 <inserted text> 
                 }
-l.241     \end{beispiel}
+l.247     \end{beispiel}
                         
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1565,10 +1520,9 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-Missing character: There is no e in font msbm10!
 File: Uni_Logo_2016.jpg Graphic file (type jpg)
 <use Uni_Logo_2016.jpg>
-Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 250.
+Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 249.
 (pdftex.def)             Requested size: 85.35826pt x 42.67642pt.
 
 Package fancyhdr Warning: \headheight is too small (30.0pt): 
@@ -1579,23 +1533,14 @@ Package fancyhdr Warning: \headheight is too small (30.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.02646pt}.
 
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:250: Package xcolor Error: Undefi
-ned color `custom-black'.
-
-See the xcolor package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.250     \end{proposition}
-                           
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+LaTeX Warning: Reference `LastPage' on page 4 undefined on input line 249.
 
 [4]
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:276: Missing { inserted.
+Missing character: There is no e in font msbm10!
+Komplexe und Harmonische Analysis Skript WS 2023.tex:282: Missing { inserted.
 <to be read again> 
                    }
-l.276     \end{proof}
+l.282     \end{proof}
                      
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -1603,36 +1548,696 @@ so that I will find a matching right brace soon.
 (If you're confused by all this, try typing `I}' now.)
 
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:276: LaTeX Error: Something's wro
-ng--perhaps a missing \item.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:282: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.276     \end{proof}
+l.282     \end{proof}
                      
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:276: LaTeX Error: Something's wro
-ng--perhaps a missing \item.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:282: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.276     \end{proof}
+l.282     \end{proof}
                      
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:276: Missing } inserted.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:282: Missing } inserted.
 <inserted text> 
                 }
-l.276     \end{proof}
+l.282     \end{proof}
                      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Runaway argument?
+{\dfrac {\partial }{\partial y}\right )$$ $$\dfrac {\partial }{\partial \ETC.
+Komplexe und Harmonische Analysis Skript WS 2023.tex:293: Paragraph ended befor
+e \@genfrac was complete.
+<to be read again> 
+                   \par 
+l.293 
+      
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:293: Missing $ inserted.
+<inserted text> 
+                $
+l.293 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:293: Missing } inserted.
+<inserted text> 
+                }
+l.293 
+      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:293: Missing \right. inser
+ted.
+<inserted text> 
+                \right .
+l.293 
+      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:293: Display math should e
+nd with $$.
+<to be read again> 
+                   \tex_par:D 
+l.293 
+      
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:300: Missing { inserted.
+<to be read again> 
+                   }
+l.300     \end{bemerkung}
+                         
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:300: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.300     \end{bemerkung}
+                         
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:300: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.300     \end{bemerkung}
+                         
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:300: Missing } inserted.
+<inserted text> 
+                }
+l.300     \end{bemerkung}
+                         
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+File: Uni_Logo_2016.jpg Graphic file (type jpg)
+<use Uni_Logo_2016.jpg>
+Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 301.
+(pdftex.def)             Requested size: 85.35826pt x 42.67642pt.
+
+Package fancyhdr Warning: \headheight is too small (30.0pt): 
+(fancyhdr)                Make it at least 47.02646pt, for example:
+(fancyhdr)                \setlength{\headheight}{47.02646pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-17.02646pt}.
+
+
+LaTeX Warning: Reference `LastPage' on page 5 undefined on input line 301.
+
+[5]
+Komplexe und Harmonische Analysis Skript WS 2023.tex:310: Missing { inserted.
+<to be read again> 
+                   }
+l.310     \end{beispiel}
+                        
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:310: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.310     \end{beispiel}
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:310: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.310     \end{beispiel}
+                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:310: Missing } inserted.
+<inserted text> 
+                }
+l.310     \end{beispiel}
+                        
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 319--321
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 319--321
+
+ []
+
+Missing character: There is no e in font msbm10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
+
+ []
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:340: Missing { inserted.
+<to be read again> 
+                   }
+l.340     \end{proof}
+                     
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:340: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.340     \end{proof}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:340: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.340     \end{proof}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:340: Missing } inserted.
+<inserted text> 
+                }
+l.340     \end{proof}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Package hyperref Info: bookmark level for unknown satz defaults to 0 on input l
+ine 343.
+File: Uni_Logo_2016.jpg Graphic file (type jpg)
+<use Uni_Logo_2016.jpg>
+Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 347.
+(pdftex.def)             Requested size: 85.35826pt x 42.67642pt.
+
+Package fancyhdr Warning: \headheight is too small (30.0pt): 
+(fancyhdr)                Make it at least 47.02646pt, for example:
+(fancyhdr)                \setlength{\headheight}{47.02646pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-17.02646pt}.
+
+
+LaTeX Warning: Reference `LastPage' on page 6 undefined on input line 347.
+
+[6]
+Missing character: There is no e in font msbm10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 351--354
+
+ []
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:369: Missing { inserted.
+<to be read again> 
+                   }
+l.369 \end{proof}
+                 
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:369: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.369 \end{proof}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:369: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.369 \end{proof}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:369: Missing } inserted.
+<inserted text> 
+                }
+l.369 \end{proof}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no e in font msbm10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--377
+
+ []
+
+File: Uni_Logo_2016.jpg Graphic file (type jpg)
+<use Uni_Logo_2016.jpg>
+Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 378.
+(pdftex.def)             Requested size: 85.35826pt x 42.67642pt.
+
+Package fancyhdr Warning: \headheight is too small (30.0pt): 
+(fancyhdr)                Make it at least 47.02646pt, for example:
+(fancyhdr)                \setlength{\headheight}{47.02646pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-17.02646pt}.
+
+
+LaTeX Warning: Reference `LastPage' on page 7 undefined on input line 378.
+
+[7]
+Komplexe und Harmonische Analysis Skript WS 2023.tex:391: Missing { inserted.
+<to be read again> 
+                   }
+l.391 \end{beispiel}
+                    
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:391: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.391 \end{beispiel}
+                    
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:391: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.391 \end{beispiel}
+                    
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:391: Missing } inserted.
+<inserted text> 
+                }
+l.391 \end{beispiel}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no e in font msbm10!
+Komplexe und Harmonische Analysis Skript WS 2023.tex:412: Missing { inserted.
+<to be read again> 
+                   }
+l.412 \end{bemerkung}
+                     
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:412: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.412 \end{bemerkung}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:412: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.412 \end{bemerkung}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:412: Missing } inserted.
+<inserted text> 
+                }
+l.412 \end{bemerkung}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 406--413
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 406--413
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 406--413
+
+ []
+
+Missing character: There is no e in font msbm10!
+File: Uni_Logo_2016.jpg Graphic file (type jpg)
+<use Uni_Logo_2016.jpg>
+Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 420.
+(pdftex.def)             Requested size: 85.35826pt x 42.67642pt.
+
+Package fancyhdr Warning: \headheight is too small (30.0pt): 
+(fancyhdr)                Make it at least 47.02646pt, for example:
+(fancyhdr)                \setlength{\headheight}{47.02646pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-17.02646pt}.
+
+
+LaTeX Warning: Reference `LastPage' on page 8 undefined on input line 420.
+
+[8]
+Missing character: There is no e in font msbm10!
+Komplexe und Harmonische Analysis Skript WS 2023.tex:439: Missing { inserted.
+<to be read again> 
+                   }
+l.439 \end{proof}
+                 
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:439: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.439 \end{proof}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:439: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.439 \end{proof}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:439: Missing } inserted.
+<inserted text> 
+                }
+l.439 \end{proof}
+                 
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:453: Missing { inserted.
+<to be read again> 
+                   }
+l.453 \end{bemerkung}
+                     
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:453: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.453 \end{bemerkung}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:453: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.453 \end{bemerkung}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:453: Missing } inserted.
+<inserted text> 
+                }
+l.453 \end{bemerkung}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+File: Uni_Logo_2016.jpg Graphic file (type jpg)
+<use Uni_Logo_2016.jpg>
+Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 459.
+(pdftex.def)             Requested size: 85.35826pt x 42.67642pt.
+
+Package fancyhdr Warning: \headheight is too small (30.0pt): 
+(fancyhdr)                Make it at least 47.02646pt, for example:
+(fancyhdr)                \setlength{\headheight}{47.02646pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-17.02646pt}.
+
+
+LaTeX Warning: Reference `LastPage' on page 9 undefined on input line 459.
+
+[9]
+Komplexe und Harmonische Analysis Skript WS 2023.tex:465: Missing { inserted.
+<to be read again> 
+                   }
+l.465 \end{beispiel}
+                    
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:465: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.465 \end{beispiel}
+                    
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:465: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.465 \end{beispiel}
+                    
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:465: Missing } inserted.
+<inserted text> 
+                }
+l.465 \end{beispiel}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 468--473
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 468--473
+
+ []
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:485: Missing { inserted.
+<to be read again> 
+                   }
+l.485 \end{proof}
+                 
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:485: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.485 \end{proof}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:485: LaTeX Error: Somethin
+g's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.485 \end{proof}
+                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:485: Missing } inserted.
+<inserted text> 
+                }
+l.485 \end{proof}
+                 
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -1640,13 +2245,13 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 \tf@thm=\write6
-\openout6 = `"Wahrscheinlichkeitstheorie Skript SS 2023.thm"'.
+\openout6 = `"Komplexe und Harmonische Analysis Skript WS 2023.thm"'.
 
 
 AED: lastpage setting LastPage
 File: Uni_Logo_2016.jpg Graphic file (type jpg)
 <use Uni_Logo_2016.jpg>
-Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 286.
+Package pdftex.def Info: Uni_Logo_2016.jpg  used on input line 496.
 (pdftex.def)             Requested size: 85.35826pt x 42.67642pt.
 
 Package fancyhdr Warning: \headheight is too small (30.0pt): 
@@ -1657,55 +2262,79 @@ Package fancyhdr Warning: \headheight is too small (30.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-17.02646pt}.
 
 
-Wahrscheinlichkeitstheorie Skript SS 2023.tex:286: Package xcolor Error: Undefi
-ned color `custom-black'.
+LaTeX Warning: Reference `LastPage' on page 10 undefined on input line 496.
 
-See the xcolor package documentation for explanation.
+[10]
+
+Komplexe und Harmonische Analysis Skript WS 2023.tex:496: LaTeX Error: \begin{p
+roposition} on input line 284 ended by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.286 \end{document}
+l.496 \end{document}
                     
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-[5] (Wahrscheinlichkeitstheorie Skript SS 2023.aux)
-Package rerunfilecheck Info: File `"Wahrscheinlichkeitstheorie Skript SS 2023".
-out' has not changed.
-(rerunfilecheck)             Checksum: 6F4882E9DC3F559EF62F80DBCE1907A8;91.
- ) 
+(Komplexe und Harmonische Analysis Skript WS 2023.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `"Komplexe und Harmonische Analysis Skript
+ WS 2023".out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `"Komplexe und Harmonische Analysis 
+Skript WS 2023".out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  4BD5AFFE83799C652FDC8F538304AEE3;138.
+ )
+(\end occurred inside a group at level 1)
+
+### semi simple group (level 1) entered at line 284 (\begingroup)
+### bottom level 
 Here is how much of TeX's memory you used:
- 41869 strings out of 478582
- 968319 string characters out of 2844345
- 1415583 words of memory out of 3000000
- 59343 multiletter control sequences out of 15000+600000
- 524012 words of font info for 74 fonts, out of 8000000 for 9000
+ 41975 strings out of 478582
+ 969500 string characters out of 2844345
+ 1418676 words of memory out of 3000000
+ 59429 multiletter control sequences out of 15000+600000
+ 529992 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,15n,80p,762b,2177s stack positions out of 10000i,1000n,20000p,200000b,80000s
-{C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{
-C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{
-C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/U
-sers/simon/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/U
-sers/simon/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<C:/Users
-/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/euler/eufm10.p
-fb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.p
-fb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.p
-fb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pf
-b><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb
-><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb>
-<C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><
-C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:
-/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/U
-sers/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/U
-sers/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/U
-sers/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Us
-ers/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msb
-m10.pfb>
+ 84i,16n,80p,769b,2375s stack positions out of 10000i,1000n,20000p,200000b,80000s
+{C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/l
+m/lm-mathex.enc}{C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/l
+m/lm-ts1.enc}{C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/l
+m-mathsy.enc}{C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/l
+m-rm.enc}{C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ma
+thit.enc}{C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec
+.enc}<C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+euler/eufm10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmbx12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmex10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmmi12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/lm/lmmi6.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/lm/lmmi8.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/lm/lmr12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+lm/lmr17.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
+m/lmr6.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/
+lmr8.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lm
+ri12.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lm
+sy10.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lm
+sy8.pfb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/symbols/msbm10.pfb>
 Output written on "C:/Users\simon\Desktop\Mathematik Studium\Komplexe und Harmo
-nische Analysis\Skript\Wahrscheinlichkeitstheorie Skript SS 2023.pdf" (5 pages,
- 503247 bytes).
+nische Analysis\Skript\Komplexe und Harmonische Analysis Skript WS 2023.pdf" (1
+0 pages, 540253 bytes).
 PDF statistics:
- 142 PDF objects out of 1000 (max. 8388607)
- 24 named destinations out of 1000 (max. 500000)
- 34 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 180 PDF objects out of 1000 (max. 8388607)
+ 46 named destinations out of 1000 (max. 500000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

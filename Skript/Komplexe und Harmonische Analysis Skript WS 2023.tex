@@ -38,6 +38,7 @@
 \usepackage{lastpage}                           % Footer note
 \usepackage{lipsum}
 \usepackage{amsfonts}
+\usepackage{amsbooka}
 
 \pagestyle{myheadings}                          % Own header
 \pagestyle{fancy}                               % Own style
@@ -216,7 +217,7 @@
             (abgeschlossen) gilt:
             $$\Omega =\Omega_1\cup\Omega_2\quad\land\quad \emptyset = \Omega_1\cap \Omega_2\quad\Rightarrow
             \quad \Omega_1 = \emptyset\quad\lor \quad \Omega_2=\emptyset$$
-            \item Wir nennen eine Funktion stetig, wenn gilt:
+            \item Wir nennen eine Funktion $f$ stetig, wenn gilt:
             $$\lim_{n\to \infty} z_n = z\quad \Rightarrow \quad \lim_{n\to \infty} f(z_n) = f(z)$$
         \end{enumerate}
     \end{definition}
@@ -225,8 +226,8 @@
 \section{Holomorphie}
 
     \begin{definition}
-        Sei $z_0\in \Omega$, dann nennen wir $f$ holomorph ("komplex differenzierbar") in $z_0$ falls
-        $$\lim_{h\to 0}\dfrac{f(z_0+h)-f(z)}{h}=f'(z_0)\in \C$$
+        Sei $z_0\in \Omega$, dann nennen wir $f$ holomorph (komplex differenzierbar) in $z_0$ falls
+        $$\lim_{h\to 0}\dfrac{f(z_0+h)-f(z_0)}{h}=f'(z_0)\in \C$$
         existiert. \\\\
         Eine Funktion heißt auf $\Omega$ holomorph, wenn sie in jedem Punkt $z\in \Omega$ holomorph ist oder
         einfach "ganz", falls sie für alle $z\in \C$ holomorph ist.
@@ -240,6 +241,9 @@
             \item Polynomfunktionen
             \item Potenzreihen
         \end{itemize}
+        Hingegen ist $f(z) = \bar{z}$ nicht holomorph, da
+        $$\lim_{h\to 0} \dfrac{f(z+h)-f(z)}{h} = \lim_{h\to 0} \dfrac{\bar{h}}{h}$$
+        und der letzte Term existiert nicht (für $h$ reell $1$ für $h$ rein imaginär $-1$).
     \end{beispiel}
 
     \begin{proposition}[Cauchy-Riemann Gleichungen]
@@ -253,29 +257,233 @@
 
     \begin{proof}
         Wir definieren für ein beliebiges $x+iy=z_0\in \Omega$:
-        $$\lim_{h\to 0}\dfrac{f(z_0+h)-f(z)}{h}=f'(z_0)=: a+ib$$
+        $$\lim_{h\to 0}\dfrac{f(z_0+h)-f(z_0)}{h}=f'(z_0)=: a+ib$$
         Nun differenzieren wir nur partiell (der obige Limes beschreibt ja eine beliebige Nullfolge, also
         können wir auch die entlang der Achsen betrachten), indem wir die obige $u,v$ Identifikation und
         $h=(h_1,h_2)$ verwenden:
         $$\begin{aligned}
               a+ib &= \lim_{h_1 \to 0}\dfrac{f(z_0+h_1)-f(z)}{h_1} \\
               &=\lim_{h_1 \to 0}\dfrac{u(z_0+h_1)+iv(z_0+h_1)-u(z_0)-iv(z_0)}{h_1}\\
-              &=\lim_{h_1 \to 0}\dfrac{u(z_0+h_1)-u(z_0)}{h_1} +\lim_{h_1 \to 0}\dfrac{i(v(z_0+h_1)-iv(z_0))}{h_1}\\
-              &=\dfrac{\partial u}{\partial x}(x,y) +i\dfrac{\partial v}{\partial x}(x,y)
+              &=\lim_{h_1 \to 0}\dfrac{u(z_0+h_1)-u(z_0)}{h_1} +\lim_{h_1 \to 0}\dfrac{i(v(z_0+h_1)-v(z_0))}{h_1}\\
+              &=\dfrac{\partial u}{\partial x}(a,b) +i\dfrac{\partial v}{\partial x}(a,b)
         \end{aligned}$$
         Genauso finden wir:
         $$\begin{aligned}
-              a+ib &= \lim_{h_2 \to 0}\dfrac{f(z_0+ih_2)-f(z)}{ih_2} \\
+              a+ib &= \lim_{h_2 \to 0}\dfrac{f(z_0+ih_2)-f(z_0)}{ih_2} \\
               &=\lim_{h_2 \to 0}\dfrac{u(z_0+ih_2)+iv(z_0+ih_2)-u(z_0)-iv(z_0)}{ih_2}\\
               &=\lim_{h_2 \to 0}\dfrac{u(z_0+ih_2)-u(z_0)}{ih_2} +\lim_{h_2 \to 0}\dfrac{i(v(z_0+ih_2)-v(z_0))}{ih_2}\\
-              &=\frac{1}{i}\dfrac{\partial u}{\partial y}(x,y) +\dfrac{\partial v}{\partial y}(x,y)
+              &=\frac{1}{i}\dfrac{\partial u}{\partial y}(a,b) +\dfrac{\partial v}{\partial y}(a,b)
         \end{aligned}$$
-        Damit folgt: 
+        Damit folgt (unter Berücksichtigung von $\frac{1}{i}=-i$):
         $$\begin{aligned}
               &a = \dfrac{\partial u}{\partial x}(x,y) = \dfrac{\partial v}{\partial y}(x,y)\\
               &b = \dfrac{\partial v}{\partial x}(x,y) = -\frac{\partial u}{\partial y}(x,y)
         \end{aligned}$$
     \end{proof}
+
+    \begin{proposition}
+        $$\dfrac{\partial }{\partial z} := \dfrac{1}{2}\left(\dfrac{\partial}{\partial x}
+        +\dfrac{1}{\dfrac{\partial}{\partial y}\right)$$
+        $$\dfrac{\partial }{\partial z} := \dfrac{1}{2}\left(\dfrac{\partial}{\partial x}
+        -\dfrac{1}{\dfrac{\partial}{\partial y}\right)$$
+        Dann gilt: $f$ holomorph, falls:
+        $$\dfrac{\partial f}{\partial z}=0$$
+        $$\dfrac{\partial f}{\partial t}=f'(z) = 2\dfrac{\partial u}{\partial z}$$
+    \end{proposition}
+
+    \begin{bemerkung}
+        $F$ ist reell differenzierbar in $(x,y)\in \R^2 \Leftrightarrow \exists J_f(x_0,y_0)
+        :\R^2\to\R^2$ linear, sodass für $H=(h_1,h_2)$
+        $$\lim_{\|H\|\to 0}\frac{F(z_0+H) - F(z_0)-J_f(z_0)H}{\|H\|} = 0$$
+        gilt. Dabei geht es nur um die Länge von $H$ und nicht wie bei der Holomorphie
+        um die Existenz des Grenzwertes in allen Richtungen.
+    \end{bemerkung}
+
+
+    \begin{beispiel}
+        Die Funktion, die komplex konjugiert, entspricht im reellen:
+        $$F(x,y) =  \begin{pmatrix}
+                        x\\-y
+                    \end{pmatrix}$$
+        Diese Abbildung ist schon linear, also ist sie insbesondere reell
+        differenzierbar.
+    \end{beispiel}
+
+    \begin{proposition}
+        $f$ holomorph $\Rightarrow F$ reell differenzierbar mit
+        $|\det J_f(x_0,y_0)| = |f'(z_0)|^2$
+    \end{proposition}
+
+    \begin{proof}
+        $f$ holomorph impliziert
+        $$f(z+h) = f(z)+f'(z)h+hR(h)$$
+        mit $R(h)\to 0$ für $h\to 0$.\\\\
+        $$J_f\cdot H =
+        \begin{pmatrix}
+            \dfrac{du}{dx} & &\dfrac{du}{dy}\\
+            \\ \dfrac{dv}{dx} & &\dfrac{dv}{dy}
+        \end{pmatrix}\begin{pmatrix} h_1\\h_2
+        \end{pmatrix} =
+        \begin{pmatrix}
+            \dfrac{du}{dx}h_1 + \dfrac{du}{dy}h_2 \\ \\
+            \dfrac{dv}{dx}h_1 + \dfrac{dv}{dy}h_2
+        \end{pmatrix}$$
+        Nun identifizieren wir $\R^2\cong \C$:
+        $$= \left(\dfrac{du}{dx}h_1+\dfrac{du}{dy}h_2\right)+i \left(\dfrac{dv}{dx}h_1+\dfrac{dv}{dy}h_2\right)$$
+        $$= \left(\dfrac{\partial u}{\partial x}- i\dfrac{\partial u}{\partial y}\right) (h_1+ih_2)$$
+        Wobei die letzte Gleichheit aus den Cauchy-Riemann Gleichungen folgt.\\\\
+        Gesamt erhalten wir damit wie gewünscht:
+        $$|\det J_f| = \left|\dfrac{du}{dx}\dfrac{dv}{dy}-\dfrac{du}{dy}\dfrac{dv}{dx}\right|
+        = \left|\left(\dfrac{du}{dx}\right)^2-\left(\dfrac{du}{dy}\right)^2\right| =
+        \left|\left(\dfrac{\partial u}{\partial x}- i\dfrac{\partial u}{\partial y}\right)\right|^2
+        = |f'|^2 $$
+    \end{proof}
+
+\begin{satz}
+    Sei $F$ reell differenzierbar mit
+    $$\dfrac{\partial u}{\partial x} =
+    \dfrac{\partial v}{\partial y}, \dfrac{\partial u}{\partial y} = - \dfrac{\partial v}{\partial x}$$
+    mit $u,v\in C^1 (\Omega)$, dann ist $f$ auch holomorph.
+\end{satz}
+
+\begin{proof}
+    Wir wollen zeigen: $\exists a \in \C$ sodass
+    $$f(z+h)-f(z)-ah = hR(h)$$
+    mit $R(h)\to 0$ für $h\to 0$. \\\\
+    Wir finden:
+    $$u(z+h)-u(z) = \dfrac{du}{dx}h_1 + \dfrac{du}{dy}h_2 + h_1R^1_u(h_1) + h_2R^2_u(h_2)$$
+    und auch
+    $$v(z+h)-v(z) = \dfrac{dv}{dx}h_1 + \dfrac{dv}{dy}h_2 + h_1R^1_v(h_1) + h_2R^2_v(h_2)$$
+    Mit Cauchy-Riemann folgt die Behauptung. Wir definieren mit diesen:
+    $$a:= \dfrac{du}{dx} + i\left(-\dfrac{du}{dy}\right)$$
+    Denn damit erhalten wir:
+    $$\begin{aligned}
+          &f(z+h)-f(z)-ah = u(z+h)-u(z)+i(v(z+h)-v(z)) - \left(\dfrac{du}{dx} + i\left(-\dfrac{du}{dy}\right)\right)h\\
+          &= \dfrac{du}{dx}h_1 + \dfrac{du}{dy}h_2 + R_u h +
+          i\left(\dfrac{dv}{dx}h_1 + \dfrac{dv}{dy}h_2 + R_v h\right)-\dfrac{du}{dx}h_1-\dfrac{du}{dy}h_2
+          -i\left(-\dfrac{du}{dy}h_1 + \dfrac{du}{dx}h_2\right)\\
+          &= h_1R^1_u(h_1) + h_2R^2_u(h_2) + h_1R^1_v(h_1) + h_2R^2_v(h_2) =: hR(h)
+    \end{aligned}$$
+    Dabei geht $R(h)$ natürlich wie gewünscht gegen $0$ für $h\to 0$, weil die $R_i^j(h_k)$ alle gegen
+    $0$ gehen.
+\end{proof}
+
+\section{Potenzreihen}
+\begin{definition}
+    Eine Potenzreihe ist ein Ausdruck der Form
+    $$\sum_{n=0}^\infty a_n z^n$$
+    wobei $a_n \in \C$.\\\\
+    Absolute Konvergenz bedeutet
+    $$\sum_{n=0}^\infty |a_n| |z|^n<\infty$$
+\end{definition}
+
+\begin{beispiel}
+    $\quad$
+    \begin{enumerate}[label = (\roman{enumi})]
+        \item geoemtrische Reihe $\sum_{n=0}^\infty z^n$\\
+        konvergiert auf $B_1(0) = \{|z|<1\}$ und dort gilt:
+        $$\sum_{n=0}^\infty z^n=\dfrac{1}{1-z}$$
+        Denn es gilt:
+        $$(1-z) \sum_{n=0}^N z^n = (1-z^{N+1})\to 1 \qquad (\text{für  }N\to\infty)$$
+        \item Die Exponentialreihe:
+        $$e^z = \sum_{n=0}^\infty \frac{z^n}{n!}$$
+    \end{enumerate}
+\end{beispiel}
+
+\begin{satz}
+    Sei $\sum_{n=0}^\infty a_n z^n$ gegeben, dann existiert ein $0\leq R\leq +\infty$
+    "Konvergenzradius", sodass
+    \begin{enumerate}[label = (\roman{enumi})]
+        \item $|z|<R$, dann konvergiert die Folge absolut
+        \item $|z|>R$, dann divergiert die Folge
+    \end{enumerate}
+    Es gilt
+    $$R = \dfrac{1}{L} \quad\text{mit}\quad L = \limsup_{n\to \infty} |a_n|^{1/n}$$
+    Für $L=0$ definieren wir $R=\infty$ und für $L=\infty$ $R=0$.
+\end{satz}
+
+\begin{bemerkung}
+    Das Verhalten auf dem Rand $B_R(0) = \{|z| =R\}$ kann kompliziert sein. Hier kann
+    es eine Mischung aus Konvergenz und Divergenz geben.\\\\
+    $e^z$ konvergiert auf ganz $\C$.\\\\
+    Äquivalent ist das Quotientenkriterium (Übung $5$).\\\\
+    Bei diesen Beweisen ändert sich verhältnismäßig wenig im Umstieg von reell auf
+    komplex, da wir über absolute Konvergenz, also Konvergenz reeller Zahlen reden.
+\end{bemerkung}
+
+\begin{proof}
+    $\quad$
+    \begin{enumerate}
+        \item $L=0\Rightarrow R=\infty$:
+        $$\forall z\in \C, \exists N>0, \exists 0\leq r<1,\forall n>N: |a_n||z|^n = (a_n^{1/n}|z|)^n<r^n$$
+        Daraus folgt:
+        $$\sum_{n=N}^M |a_n||z|^n <\sum_{n=N}^M r^n <\sum_{n^N} ^\infty <\infty$$
+        \item $L=\infty \Rightarrow R=0$ :
+        $$\forall z\in \C,\exists  N, (a_{n_k})_{k\in\N}, r>1, \forall n_k>N: |a_{n_k}||z|^n \geq r >1 $$
+        damit divergiert die Reihe.
+        \item $0<L<\infty$: Sei $R=\frac{1}{L}$ und $|z|<R$. Dann gilt
+        $$\exists \varepsilon >0, 0\leq r<1: (L+\varepsilon )|z|=r<1 $$
+        Damit folgt:
+        $$\exists N, \forall n\geq N: |a_n|^{1/n}\leq L+\varepsilon$$
+        Damit befinden wir uns wieder im Fall des ersten Unterpunkts und können somit wieder
+        die Konvergenz innerhalb von $R$ beschließen.
+        \item Ist andererseits $|z|>R$, dann folgt:
+        $$\exists \varepsilon >0, r>1: (L-\varepsilon )|z|=r>1 $$
+        Es existiert eine Teilfolge $(a_{n_k})_{k\in\N}$, sodass:
+        $$\exists N, \forall k\geq N: |a_{n_k}|^{1/n_k}> L-\varepsilon$$
+        Damit folgt:
+        $$\sum_{n=0}^\infty |a_n| |z|^n\geq \sum_{k=0}^\infty |a_{n_k}||z|^{n_k} >
+        \sum_{k=0}^\infty r^{n_k}$$
+        wobei nun der letzte Term divergiert.
+    \end{enumerate}
+\end{proof}
+
+\begin{satz}
+    Eine Potenzreihe $\sum_{n=0}^\infty a_n z^n$ definiert eine innerhalb ihres Konvergenzradius
+    $R$ holomorphe Funktion $f(z) = \sum_{n=0}^\infty a_n z^n$.
+    Außerdem gilt:
+    $$f'(z) = \sum_{n=0}^\infty n a_n z^{n-1}$$
+    und $f'(z)$ konvergiert absolut auf $B_R(0)$.
+\end{satz}
+
+\begin{bemerkung}
+    $f$ und $f'$ haben den gleichen Konvergenzradius, da $\sqrt[n]{n} = 1$. Insbesondere
+    folgt, dass Potenzreihen innerhalb ihres Konvergenzradius unendlich oft komplex
+    differenzierbar sind.
+\end{bemerkung}
+
+\begin{beispiel}$\quad$
+    \begin{enumerate}
+        \item $e^z$ ist ganz mit
+        $$\dfrac{\partial }{\partial z}(e^z) = \sum_{n=0}^\infty \dfrac{n z^{n-1}}{n!} =
+        \sum_{n=0}^\infty \dfrac{z^n}{n!} = e^z$$
+        \item Die trigonometrischen Funktionen $\sin$ und $\cos$ sind ganz:
+        $$\cos(z) = \sum_{n=0}^\infty (-1)^n\dfrac{z^{2n}}{(2n)!}= \dfrac{e^{iz}+e^{-iz}}{2}$$
+        $$\sin(z) = \sum_{n=0}^\infty (-1)^n\dfrac{z^{2n+1}}{(2n+1)!} = \dfrac{e^{iz}-e^{-iz}}{2i}$$
+        $$\Rightarrow \qquad e^{iz} = \cos(z) + i \sin(z)$$
+    \end{enumerate}
+\end{beispiel}
+
+\begin{proof}
+    Sei $f(z) = S_N(z) + E_N(z)$ mit $S_N(z) = \sum_{n=0}^N a_n z^n$ und $E_N(z) = f(z)- S_N(z)$
+    und $g(z) = \sum_{n=0}^\infty  na_n z^n$.\\\\
+    In der vorigen Bemerkung wurde bereits erwähnt, dass der Konvergenzradius von
+    $g$ gleich dem von $f$, also $R$ ist.\\\\
+    Wir folgern:
+    $$\begin{aligned}
+          \dfrac{f(z+h)-f(z)}{h}-g(z) &= \dfrac{S_N(z+h)-S_N(z)}{h}-g(z) +\dfrac{E_N(z+h)-E_N(z)}{h}\\
+          &= \dfrac{S_N(z+h)-S_N(z)}{h}-S'_N(z)+S'_N(z)-g(z) +\dfrac{E_N(z+h)-E_N(z)}{h}
+    \end{aligned}$$
+    Per Definition gilt:
+    $$\lim_{h\to 0}\dfrac{S_N(z+h)-S_N(z)}{h}-S'_N(z) = 0$$
+    Weiter gilt, weil die Potenzreihe auf dem Konvergenzradius konvergiert:
+    $$\lim_{N\to\infty }S'_N-g(z) = \lim_{N\to \infty}\sum_{n=N+1}^\infty n a_n z^{n-1} = 0$$
+    Zuletzt sehen wir noch:
+    $$\lim_{h\to 0}\dfrac{|E_N(z+h)-E_N(z)|}{|h|} = \lim_{h\to 0}\dfrac{|\sum_{n=N+1}^\infty a_n(z+h)^n- a_nz^n|}{|h|}
+    \leq \sum_{n=N+1}^\infty n |a_n| |z|^{n-1}\to 0$$
+für $N\to \infty$.
+\end{proof}
+
 
 
 
