@@ -52,9 +52,17 @@
             \item Wir wissen, dass $\frac{1}{z}=\frac{\bar{z}}{|z|^2}$ gilt.
             Ein Element $z_0$ liegt also genau dann in der Menge, wenn $|z_0|=1$ gilt,
             also ist es der Einheitskreis.
-            \item
+            \item Wir finden:
+            $$0<\Re(az+b) =\Re(az) + \Re(b) = \Re(a)z_1 -\Im(a)z_2 +\Re(b)$$
+            Wenn $a=0$ gilt, dann löst je nach $\Re(b)$ ganz $\C$ oder kein einziges $z$.\\\\
+            Wenn $\Im(a)=0$, dann ist es alles rechts von
+            $$z_1 = -\frac{\Re(b)}{\Re(a)}$$
+            Lösung der Ungleichung. \\\\
+            Wenn $\Im(a)\neq 0$, dann ist es alles unter
+            $$z_2 =\frac{\Re(a)}{\Im(a)}z_1 +\frac{\Re(b)}{\Im(a)}$$
+            Lösung der Ungleichung. \\\\
             \item Mit $z=x+iy,xy\in\R$ finden wir:
-            $$e^z = e^{x+iy} = e^x\cdot e^iy$$
+            $$e^z = e^{x+iy} = e^x\cdot e^{iy}$$
             $e^x$ ist ein reeller Skalar im Intervall $[0,e]$ und $e^{iy}$ ist
             eine komplexe Zahl, die auf der oberen Hälfte des Einheitskreises liegt.
             Zusammengesetzt ist diese Menge also die obere Hälfte der Kreisscheibe
@@ -68,25 +76,16 @@
     \end{problem}
 
     \begin{proof}
-        Wir schreiben $z^n = re^{i\theta}$. Damit nun die gegebene Gleichung
-        erfüllt wird, muss ein $n$ existieren sodass $r^n =s$, das ist schoneinmal
-        nur möglich, wenn
-        \begin{enumerate}[label = (\roman{enumi})]
-            \item $t=s=0$, ist der triviale uninteressante Fall.
-            \item $t=s=1$, dann erfüllt jedes $n$ die obige Gleichung.
-            \item $0<t,s<1$, dann gibt es eine oder keine Lösung.
-            \item $1<t,s$, dann gibt es eine oder keine Lösung.
-        \end{enumerate}
-        Im ersten Fall sind beide Punkte die Nullpunkte und jedes $n$ erfüllt die
-        Gleichung. \\\\
-        Im zweiten Fall gibt es genau dann keine Lösung, wenn es keine
-        Lösung von
-        $$\varphi = n\theta\mod 2\pi$$
-        gibt. Andererseits ist jede Lösung der obigen Gleichung auch Lösung
-        des gegebenen Problems. \\\\
-        Angenommen es gibt im dritten Fall ein $n$, dann ist dieses genau dann
-        eine Lösung der ersten Gleichung, wenn $\varphi = n\theta\mod 2\pi$ gilt. \\\\
-        Im vierten Fall genau wie im dritten Fall.
+        Wir schreiben $z = |z|e^{i\theta}$, womit wir die Gleichung $|z|^n e^{in\theta} = se^{i\varphi}$.
+        Die Lösung dieser Gleichung äquivalent zur Lösung von
+        $$\begin{aligned}
+              |z|^n &= s\\
+              n\theta &= \varphi +2k\pi, \qquad k\in \Z
+        \end{aligned}$$
+        sind. Damit bekommen wir die Lösungen:
+        $$z = s^{1/n} e^{i(\varphi/n+2k\pi/n)}, \qquad k\in \Z$$
+        wobei nur $1\leq k \leq n$ zu unterschiedlichen Lösungen führt, da wir eine Periodizität
+        in den Lösungen haben. Insgesamt sind es also $n$ Lösungen.
     \end{proof}
 
     \begin{problem}{3}
@@ -114,7 +113,7 @@
             \end{aligned}$$
             Die Funktion ist holomorph, denn es gilt:
             $$\begin{aligned}
-                  \lim_{h\to 0}\dfrac{F(z+h)F(z)}{h} &= \lim_{h\to 0}\dfrac{\frac{w-z-h}{1-\bar{w}z-\bar{w}h}
+                  \lim_{h\to 0}\dfrac{F(z+h)-F(z)}{h} &= \lim_{h\to 0}\dfrac{\frac{w-z-h}{1-\bar{w}z-\bar{w}h}
                   -\frac{w-z}{1-\bar{w}z}}{h} \\
                   &= \lim_{h\to 0}\dfrac{w-z-h-|w|^2z+\bar{w}z^2+\bar{w}zh-w+z+|w|^2z-\bar{w}z^2+|w|^2h-\bar{w}zh}
                   {(1-\bar{w}z-\bar{w}h)(1-\bar{w}z)h}\\
@@ -147,9 +146,9 @@
                   z_0 &= \frac{w-z}{1-\bar{w}z}\\
                   z_0 &= w-z+\bar{w}zz_0\\
                   z_0 -w &= z \underbrace{(\bar{w}z_0 -1)}_{\neq 0}\\
-                  z &= \frac{z_0 -w}{(\bar{w}z_0 -1)} = -F(z_0)\in B_1(0)
+                  z &= \frac{z_0 -w}{(\bar{w}z_0 -1)} = F(z_0)\in B_1(0)
             \end{aligned}$$
-            Also ist die Funktion bijektiv.
+            Also ist die Funktion bijektiv (sogar selbstinvers).
             
         \end{enumerate}
     \end{proof}
@@ -171,7 +170,8 @@
         $f$ holomorph ist:
         $$\dfrac{\partial u}{\partial x}(x,y) = \dfrac{\partial v}{\partial y}(x,y), \qquad
         \dfrac{\partial u}{\partial y}(x,y) = -\dfrac{\partial v}{\partial x}(x,y)$$
-        Mit dem Satz von Schwarz folgt:
+        Mit dem Satz von Schwarz (welcher angewendet kann, weil jede holomorphe Funktion unendlich oft
+        diffbar ist) folgt:
         $$\dfrac{\partial^2 u}{\partial x^2}(x,y)=\dfrac{\partial^2 v}{\partial x\partial y}(x,y)
         = \dfrac{\partial^2 v}{\partial y\partial x}(x,y) = -\dfrac{\partial^2 u}{\partial y^2}(x,y)$$
         und
@@ -196,6 +196,28 @@
     \end{problem}
 
     \begin{proof}
-
+        \begin{enumerate}[label=(\alph*)]
+            \item Wir wissen, dass eine Reihe nach dem Quotientenkriterium konvergiert, wenn
+            $$\frac{|c_{n+1}|}{|c_n|}\leq q<1$$
+            für fast alle $n$ existiert und dann divergiert, wenn
+            $$\frac{|c_{n+1}|}{|c_n|}\geq 1$$
+            für fast alle $n$ gilt. Somit finden wir für unsere Potenzreihe:
+            $$\frac{|c_{n+1}|}{|c_n|} = \frac{|a_{n+1}||z|^{n+1}}{|a_n||z|^n} =
+            \frac{|a_{n+1}|}{|a_n|}|z|$$
+            Für $|z|<R=\frac{1}{L}$ konvergiert die Reihe, denn
+            $$\exists \varepsilon, N, \forall n\geq N: \frac{|a_{n+1}|}{|a_n|}|z|<
+            \frac{|a_{n+1}|}{|a_n|}(L-\varepsilon)=: q <1 $$
+            und für $|z|>L$ divergiert sie, denn
+            $$\exists \varepsilon, N, \forall n\geq N: \frac{|a_{n+1}|}{|a_n|}|z|>
+            \frac{|a_{n+1}|}{|a_n|}(L+\varepsilon)\geq 1$$
+            \item Sei $|z_0|<R$, dann finden wir mit der binomischen Formel:
+            $$z^n=(z-z_0+z_0)^n = \sum_{k=0}^n \binom{n}{k} z_0^{n-k}(z-z_0)^k$$
+            wodurch wir
+            $$\sum_{n\geq 0}a_n z^n = \sum_{n\geq 0}\sum_{k=0}^n \binom{n}{k} z_0^{n-k}(z-z_0)^k
+            = \sum_{k\geq 0}\sum_{n\geq k} \binom{n}{k} z_0^{n-k}(z-z_0)^k
+            =:\sum_{k\geq 0}c_k(z-z_0)^k $$
+            Wir finden natürlich eine offene Umgebung um $z_0$ auf der diese Reihe konvergiert, da wir
+            $z_0$ im Inneren des Konvergenzradius gewählt haben.
+        \end{enumerate}
     \end{proof}
 \end{document}
