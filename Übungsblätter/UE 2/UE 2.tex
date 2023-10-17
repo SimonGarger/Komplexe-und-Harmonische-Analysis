@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Numerik 2022 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{arabicore}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+\newenvironment{problem}[2][Beispiel]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}] \itshape}{
+    \end{trivlist}\normalshape
+}
+
+\begin{document}
+    \begin{problem}{1}
+        Welche der folgenden Aussagen sind richtig bzw. falsch? Begründe:
+        \begin{enumerate}[label = (\alph*)]
+            \item Die Abbildung $f_1: \mathbb{C} \rightarrow \mathbb{C}, z=x+i y \mapsto x^5 y^4-i x^4 y^5$ ist
+            holomorph.
+            \item Die Abbildung $f_2: \mathbb{C} \rightarrow \mathbb{C}, z=x+i y \mapsto e^y-i e^x$
+            ist holomorph.
+            \item Die Abbildung $f_3: \mathbb{C} \rightarrow \mathbb{C}, z
+            \mapsto \sin \left(z^4|z|^2\right)$ ist holomorph.
+            \item Falls $f: \mathbb{C} \rightarrow \mathbb{C}$ holomorph ist, so sind dies auch
+            $g_1(z):=\overline{f(z)}, g_2(z):=f(\bar{z})$ und $g_3(z):=\overline{f(\bar{z})}$.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        Wir finden:
+        \begin{enumerate}[label = (\alph*)]
+            \item Wir prüfen die Cauchy-Riemann Gleichungen, dabei gilt $u(x+iy)=x^{5}y^4, v(x+iy) = -x^{4}y^5$:
+            $$\frac{\partial u}{\partial x} = 5x^4y^4\neq -5x^4 y^4 = \frac{\partial v}{\partial y}$$
+            Also ist die Funktion nicht holomorph.
+            \item Wir prüfen die Cauchy-Riemann Gleichungen, dabei gilt $u(x+iy)=e^y, v(x+iy) = -e^x$:
+            $$\frac{\partial u}{\partial y} = e^y\neq -e^x = \frac{\partial v}{\partial x}$$
+            Also ist die Funktion nicht holomorph.
+            \item Der Sinus ist eine Potenzreihe, die überall konvergiert, also ist die Funktion holomorph.
+            \item $g_1(z)$ und $g_2(z)$ sind im Allgemeinen nicht holomorph, wie man an dem Beispiel $f(z) = z$ sieht.
+            Für $g_3(z)$ hingegen finden wir:
+            $$\begin{aligned}
+                  &\lim_{h\to0} \frac{g_3(z+h)-g_3(z)}{h} = \lim_{h\to0}
+                  \frac{\overline{f(\overline{z+h})}-\overline{f(\bar{z})}}{h} = \lim_{h\to0}
+                  \frac{\overline{f(\bar{z}+\bar{h})-f(\bar{z})}}{h} \\&= \lim_{h\to0}
+                  \overline{\left(\frac{f(\bar{z}+\bar{h})-f(\bar{z})}{\bar{h}}\right)} =
+                  \overline{f'(\bar{z})}
+            \end{aligned}$$
+            Also ist die Funktion holomorph.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{problem}{2}
+        Sei
+        $$
+        \alpha(t):= \begin{cases}1-e^{i t}, & t \in[0,2 \pi], \\ -1+e^{-i t}, & t \in[2 \pi, 4 \pi] .
+        \end{cases}
+        $$
+        Skizziere die durch $\alpha$ parametrisierte Kurve und berechne das Kurvenintegral
+        $$
+        \int_\alpha z e^{z^2} d z
+        $$
+    \end{problem}
+
+    \begin{proof}
+        Da $ze^{z^2}$ und $\alpha(0) = 1-e ^{i0} = 0 = -1+e^{-i 4\pi} = \alpha(4\pi)$ ist die Kurve geschlossen
+        und die Funktion holomorph. Damit ist das gegebene Integral $0$.
+        Wir finden:
+        $$\int_\alpha z e^{z^2} dz = -i\left(
+        \int_{0}^{2\pi}(1-e^{i t})e^{(1-e^{i t})^2}e^{i t}+\int_{2\pi}^{4\pi}(-1+e^{-i t})e^{(-1+e^{-i t})^2}e^{-i t}\right)$$
+    \end{proof}
+
+    \begin{problem}{3}
+        Seien $\Omega \subset \mathbb{C}$ offen und $f: \Omega \rightarrow \mathbb{C}$ holomorph. Sei $R \subset \mathbb{C}$ ein solides Rechteck und $\varphi: \mathbb{C} \rightarrow \mathbb{C}$ eine $C^1$ Funktion mit $\varphi(R) \subset \Omega$. Zeige: Parametrisiert $\gamma$ den Rand von $\varphi(R)$, so gilt
+        $$
+        \int_\gamma f(z) d z=0 .
+        $$
+    \end{problem}
+
+    \begin{problem}{4}
+        Berechne die folgenden Integrale:
+        \begin{enumerate}[label = (\alph*)]
+            \item Für $n \in \mathbb{Z}$ :
+            $$
+            \int_C z^n d z
+            $$
+            wobei $C$ ein im Ursprung zentrierter, positiv orientierter Kreis ist.
+            \item Für $n \in \mathbb{Z}$ :
+            $$
+            \int_C z^n d z
+            $$
+            wobei $C$ der positiv orientierte Rand einer Kreisscheibe $\partial B_R(z)$ ist mit $0<R<|z|$.
+            \item Für $0<a<r<b$ :
+            $$
+            \int_C \frac{1}{(z-a)(z-b)} d z,
+            $$
+            wobei $C=\{z \in \mathbb{C}:|z|=r\}$ mit positiver Orientierung.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{problem}{5}
+        Sei $f$ holomorph auf $\Omega \subset \mathbb{C}$, und $T \subset \Omega$ ein Dreieck dessen
+        Inneres auch in $\Omega$ enthalten ist. Gemäss Satz von Goursat gilt dann, dass
+        $$
+        \int_T f(z) d z=0 .
+        $$
+        Beweise dies mittels Satz von Green unter der zusätzlichen Annahme, dass die Ableitung $f^{\prime}$
+        stetig ist.
+    \end{problem}
+\end{document}

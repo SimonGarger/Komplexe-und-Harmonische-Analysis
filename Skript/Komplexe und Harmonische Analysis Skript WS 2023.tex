@@ -484,6 +484,188 @@
 für $N\to \infty$.
 \end{proof}
 
+\section{Kurvenintegrale}
+
+    \begin{definition}
+        Eine Abbildung
+        $$z:[a,b]\to\C$$
+        ist eine \underline{parametrisierte Kurve}.\\\\
+        Wir sagen $z$ ist glatt oder $C^1$, falls für alle $t\in[a,b]$ die
+        Ableitung $z'(t)$ existiert, stetig ist und $z'(t)\neq 0$ gilt. \\\\
+        Stückweise glatt heißt eine Kurve, wenn $\exists a=a_0<a_1 <\dots <a_n=b$
+        mit $z|_{[a_j,a_{j+1}]}$ glatt. \\\\
+        Eine Parametrisierung $\tilde{z}:[c,d]\to \C$ heißt äquivalent zu $z$ falls
+        $\exists t:[c,d]\to[a,b]$ eine Bijektion mit $t'(s)\neq 0$ so dass
+        $$\tilde{z}(s)=z(t(s))$$
+        Die Familie aller äquivalenten Parametrisierungen definiert eine glatte,
+        orientierte Kurve $\gamma$ als $\text{Bild}(z) = z([a,b])$, durchlaufen von
+        $a$ nach $b$. \\\\
+        Notation: Dann ist $\gamma^-$ die in umgekehrter Richtung durchlaufene Kurve
+        parametrisiert durch $z^-:[a,b]\to\C$ mit $z^-(t)=z(b+a-t)$.\\\\
+        Die Punkte $z(a),z(b)$ heißen Endpunkte von $\gamma$.\\\\
+        Die Kurve heißt geschlossen, wenn $z(a)=z(b)$.\\\\
+        Die Kurve heißt einfach falls die Kurve geschlossen ist und injektiv in
+        $(a,b)$.
+    \end{definition}
+
+    \begin{bemerkung}
+        Ab jetzt wird jede Kurve (stückweise) glatt sein.
+    \end{bemerkung}
+
+    \begin{beispiel}
+        ZEICHNUNG EINHEITSKREIS \\\\
+        $[0,2\pi]\to\C, \quad t\mapsto e^{it}$ in positive Orientierung
+        (das Innere liegt links) und \\
+        $[0,2\pi]\to\C, \quad t\mapsto e^{it}$ in negative Orientierung
+    \end{beispiel}
+
+    \begin{definition}[Kurvenintegral]
+        Sei $f$ stetig, $\gamma$ Kurve (mit Parametrisierung $z:[a,b]\to \C$),
+        dann ist das Integral von $f$ entlang von $\gamma$ ist
+        $$\int_\gamma f(z) dz = \int_a^b f(z(t))z'(t)\,dt $$
+        falls $\gamma$ glatt. Falls $\gamma $ stückweise glatt, dann
+        $$\int_{\gamma} f(z)\, dz = \sum_{j=0}^{n-1}\int_{a_i}^{a_{i+1}} f(z(t)) z'(t)\, dt$$
+    \end{definition}
+
+    \begin{bemerkung}
+        Äquivalente Parametrisierungen ergeben das gleiche Kurvenintegral.
+        $$\int_\gamma f(z)\, dz = \int_a^b f(z(t))z'(t)\, dt = \int_c^d f(z(t(s)))
+        z'(t(s)) t'(s)\, ds = \int_c^d f(\tilde{z}(s))\tilde{z}'(s)\, ds$$
+        Da $\tilde(s) = z(t(s))$ und $\tilde{z}'(s)=z'(t(s)) t'(s)$ mit
+        Umparametrisierung $t= t(s)$.
+    \end{bemerkung}
+
+    \begin{definition}
+        Die Länge von $\gamma$ ist
+        $$L(\gamma):= \int_a^b |z'(t)|\, dt$$
+        ÜBUNG: $L$ hängt nicht von der Parametrisierung ab!
+    \end{definition}
+
+    \begin{proposition}
+        $\alpha,\beta\in \C$
+        \begin{enumerate}[label = (\roman{enumi})]
+            \item $\int_\gamma \alpha f(z)+\beta g(z)\, dz = \alpha \int_\gamma f(z)
+        \,dz + \beta \int_\gamma g(z)\, dz$
+            \item $\int_{\gamma^-} f(z)\,dz = -\int_\gamma f(z) \, dz$
+            \item $\left|\int_\gamma f(z)\, dz\right|\leq \sup_{z\in\gamma}|f(z)|L(\gamma)$
+        \end{enumerate}
+    \end{proposition}
+
+    \begin{proof}
+        \begin{enumerate }[label = (\roman{enumi})]
+            \item klar
+            \item klar
+            \item $\left|\int_\gamma f(z)\, dz\right|=\left|\int_a^b f(z(t))z'(t)
+            \,dt\right|\leq \int_a^b |f(z(t))||z'(t)|\,dt
+            \leq \sup_{z\in\gamma}|f(z)|\int_a^b |z'(t)|$
+        \end{enumerate }
+        $\quad$
+    \end{proof}
+
+    \underline{Integrale vs. Ableitungen}
+
+    \begin{definition}
+        Sei $f:\Omega\to\C$, $\Omega$ offen. Dann heißt $F:\Omega\to\C$ Stammfunktion
+        von $f$ falls $F$ holomorph mit $F'(z) = f(Z)$.
+    \end{definition}
+
+    \begin{satz}
+        Sei $f:\Omega\to \C$ stetig mit Stammfunktion $F$, $\gamma$ Kurve in
+        $\Omega$ von $w_1$ nach $w_2$. Dann gilt:
+        $$\int_\gamma f(z)\, dz = F(w_2)-F(w_1)$$
+    \end{satz}
+
+    \begin{proof}
+        Sei $\gamma$ glatt, parametrisiert durch $z:[a,b]\to\C$
+        $$\begin{aligned}
+              \int_\gamma f(z)\, dz &= \int_a^b f(z(t))z'(t)\, dt\\& =
+              \int_a^b F'(z(t)) z'(t) \,dt\\& = \int_a^b \frac{d}{dt}[F(z(t))]\, dt \\&=
+              F(z(b))-F(z(a)) = F(w_2)-F(w_1)
+        \end{aligned}$$
+        Stückweise glatt funktioniert genau gleich, nur, dass wir eine Teleskopsumme
+        erhalten.
+    \end{proof}
+
+    \begin{korollar}
+        Falls außerdem $\gamma$ geschlossen mit den Voraussetzungen von oben,
+        dann gilt
+        $$\int_\gamma f(z)\, dz = 0$$
+    \end{korollar}
+
+    \begin{beispiel}
+        Wir betrachten $\C\setminus \{0\}\to\C, z\mapsto \frac{1}{z}$ und
+        untersuchen die Existenz einer Stammfunktion. \\\\
+        Dafür integrieren wir über den Einheitskreis $\gamma :[0,2\pi]\to \C,
+        t\mapsto e^{it}$. Dann gilt:
+        $$\int_\gamma \frac{1}{z}\, dz = \int_0^{2\pi}\frac{1}{e^{it}}ie^{it} dt =
+        \int_0^{2\pi}i \, dt = 2\pi i\neq 0$$
+        Also gibt es keine Stammfunktion.
+    \end{beispiel}
+
+    \begin{korollar}
+        Sei $f$ holomorph auf $\Omega$ offen und zusammenhängend, falls
+        $f'=0\Rightarrow f$ konstant.
+    \end{korollar}
+
+    \begin{proof}
+        Wir zeigen, dass für alle $w_1,w_2$ die Werte gleich sind. Dafür finden
+        wir eine Kurve $\gamma$ (parametrisiert durch $z:[a,b]\to\Omega$ mit
+        $z(a)=w_1, z(b)=w_2$) von $w_1$ nach $w_2$, damit gilt:
+        $$f(w_2)-f(w_1) = \int_\gamma f'(z)\, dz = \int_\gamma 0\,dz = 0$$
+        also sind die Funktionswerte gleich.
+    \end{proof}
+
+    \begin{definition}
+        $\Omega\subset\C$ ist ein Gebiet, falls $\Omega$ offen und zusammenhängend.
+    \end{definition}
+
+    \chapter{Satz von Cauchy und Folgerungen}
+    \begin{bemerkung}
+        Informelle besatz der Satz von Cauchy: \\
+        Sei $\Omega$ offen, geschlossene Kurve $\gamma\in\Omega$ deren Inneres
+        auch in $\Omega$ liegt. Dann gilt
+        $$0 = \int_\gamma f(z)\, dz$$
+        für jede holomorphe Funktion.
+    \end{bemerkung}
+
+    \begin{satz}[Satz von Goursat (?)]
+        Sei $\Omega\subset \C$ offen, $T\subset \Omega$ ein Dreieck dessen Inneres
+        $D$ in $\Omega$ liegt. \\\\
+        Falls $f:\Omega\to\C$ holomorph, dann
+        $$\int_T f(z)\, dz = 0$$
+    \end{satz}
+
+    \begin{proof}
+        Wir konstruieren eine Folge von Dreiecken durch sukzessives Halbieren der
+        Seiten. (ZEICHNUNG)
+        $$\int_{T^{(0)}} f(z)\, dz = \int_{T^{(1)}_1} f(z)\, dz+
+        \int_{T^{(1)}_2} f(z)\, dz+\int_{T^{(1)}_3} f(z)\, dz+\int_{T^{(1)}_4} f(z)\, dz$$
+        Damit wissen wir $\exists 1\leq  j\leq 4:$
+        $$\left|\int_{T^{(0)}} f(z)\,dz\right|\leq
+        4\left|\int_{T^{(1)}_j} f(z)\,dz\right|$$
+        Umbenennung $T^{(1)} := T^{(1)}_j$, wieder kann man die Seiten halbieren und
+        wieder ein $T^{(2)}$ finden. Durch Iteration erhalten wir so eine Folge von
+        Dreiecken $T^{(0)},T^{(1)},T^{(2)},\dots$ mit Innerem
+        $D^{(0)}\supset D^{(1)}\supset D^{(2)}\supset \dots$
+        mit Durchmesser von $D^{(n)}=: d^n \leq \frac{1}{2}d^{(n-1)}\leq 2^{-n}d^{(0)}$
+        und Umfang von $T^{(n)} =: p^{(n)}\leq 2^{-n}p^{(0)}$.
+        $$\left|\int_{T^{(0)}} f(z)\,dz\right|\leq
+        4^n\left|\int_{T^{(n)}} f(z)\,dz\right|$$
+        Wir nehmen das Innere kompakt und finden damit:
+        $$D^{(n)}\text{ kompakt}\Rightarrow \exists ! z_0\in \bigcap_{n\geq 1} D^{(n)}$$
+        Schreibe $f(z) = f(z_0) + f'(z_0)(z-z_0) + R(z)(z-z_0)$ mit $R(z)\to 0$ für
+        $z\to z_0$.\\\\
+        Da $f(z_0)$ und $f'(z_0)(z-z_0)$ Stammfunktionen haben, gilt
+        $$\int_{T^{(n)}}f(z)\, dz = \int_{T^{(n)}}R(z)(z-z_0)\,dz$$
+        Daraus folgt:
+        $$\left|\int_{T^{(0)}} f(z)\,dz\right|\leq
+        4^n\left|\int_{T^{(n)}} f(z)\,dz\right| \leq
+        \left|\int_{T^{(n)}}R(z)(z-z_0)\,dz\right\leq 4^n \sup_{z\in D^{(n)}}|R(z)|
+        d^{(n)} p^{(n)}\leq 4^n \sup_{z\in D^{(n)}}|R(z)| 2^{-n} d^{(0)}2^{-n}p^{(0)}
+        \leq \sup_{z\in D^{(n)}}|R(z)| d^{(0)}p^{(0)}\to 0(\quad \text{für  }n\to\infty)$$
+    \end{proof}
+
+    \section{Pausiert solange er "Complex Analysis, Stein, Shakarchi folgt!}
 
 
 
