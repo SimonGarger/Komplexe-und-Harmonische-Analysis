@@ -1,0 +1,168 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Numerik 2022 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{arabicore}
+\usepackage{amsmath-2018-12-01}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+\newenvironment{problem}[2][Beispiel]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}] \itshape}{
+    \end{trivlist}\normalshape
+}
+
+\begin{document}
+    \begin{problem}{1}
+        Benutze Kurvenintegrale in der komplexen Ebene, um das Integral
+        $$\int_0^{\infty}\frac{\sin(x)}{x}\,dx$$
+        zu berechnen.
+    \end{problem}
+
+    \begin{proof}
+        Wir wählen die Funktion $f(z) = \frac{e^{iz}}{z}$.\\
+        Wir berechnen das Integral einer geschlossenen Kurve, die aus einem
+        großen Halbkreis mit Radius $R$, zwei Geraden Strecken von
+        $-R$ bis $-\varepsilon$ bzw. $\varepsilon$ bis $R$ und einem kleinen
+        Halbkreis mit Radius $\varepsilon$. Dafür gilt:
+        $$0 = \int_{\gamma_R}f(z)dz+\int_{-R}^{-\varepsilon} f(x)dx
+        +\int_{\varepsilon}^R f(x)dx + \int_{\gamma_{\varepsilon}}f(z)dz$$
+        Wir bestimmen die einzelnen Integrale und fangen mit den geraden Strecken an:
+        $$\begin{aligned}
+              \int_{-R}^{-\varepsilon} f(x)dx +\int_{\varepsilon}^R f(x)dx &=
+              \int_{-R}^{-\varepsilon} \frac{e^{ix}}{x}dx +\int_{\varepsilon}^R
+              \frac{e^{ix}}{x}dx\\
+              &= \int_{R}^{\varepsilon} \frac{e^{-iu}}{-u}-du +\int_{\varepsilon}^R
+              \frac{e^{ix}}{x}dx\\
+              &= -\int_{\varepsilon}^R \frac{e^{-iu}}{u}du +\int_{\varepsilon}^R
+              \frac{e^{ix}}{x}dx\\
+              &= \int_{\varepsilon}^R \frac{e^{ix}-e^{-ix}}{x}dx\\
+              &= 2i\int_{\varepsilon}^R \frac{\sin(x)}{x}dx\\
+        \end{aligned} $$
+        Die Wahl unserer Funktion war als sinnvoll, weil so das Integral der beiden
+        Strecken annähernd dem gesuchten Integral entspricht.\\\\
+        Nun berechnen wir das Integral über den großen Halbkreis und parametrisieren
+        diesen dafür mit $\gamma_R: t\mapsto Re^{it}, t\in [0,\pi]$. Damit gilt:
+        $$\int_{\gamma_R}f(z)dz = \int_0^\pi \frac{e^{iRe^{it}}}{Re^{it}} iRe^{it}dt =
+        i\int_0^\pi e^{iR (\cos(t)+ i \sin(t))}dt =
+        i\int_0^\pi e^{iR\cos(t)} e^{-R\sin(t)}dt$$
+        Nun gilt $|e^{R\cos(t)}| = 1$ und $e^{-R\sin(t)} \to 0$ für $R\to \infty$ f.s.
+        Also ergibt das obige Integral den Wert $0$, wenn $R$ gegen $\infty$ geht.
+        \\\\
+        Nun berechnen wir noch das Integral über den kleinen Halbkreis.
+        Dafür parametrisieren wir wie folgt: $\gamma_{\varepsilon}: t \mapsto
+        \varepsilon e^{it}, t\in[\pi, 0]$ und finden damit:
+        $$\int_{\gamma_{\varepsilon}} \frac{e^{i\varepsilon e^{it}}}{\varepsilon e^{it}}
+        i\varepsilon e^{it}dt = i\int_{\pi}^0 e^{i\varepsilon e^{it}} dt \to
+        -i\pi
+        $$
+        für $\varepsilon\to 0$. Nun gilt also gesamt (für $R\to\infty$ und
+        $\varepsilon\to 0$):
+        $$0 = 2i \int_0^{\infty}\frac{\sin(x)}{x}\,dx - i\pi
+        \Rightarrow \int_0^{\infty}\frac{\sin(x)}{x}\,dx = \frac{\pi}{2}$$
+    \end{proof}
+
+    \begin{problem}{2}
+        Zeige, dass
+        $$\int_0^\infty \sin(x^2)\,dx = \int_0^\infty\cos(x^2)\,dx = \frac{\sqrt{2\pi}}{4}.$$
+        (Hinweis: Betrachte $z\mapsto e^{-z^2}$ auf einem Kreissektor mit Winkel $\frac{\pi}{4}$.)
+    \end{problem}
+
+    \begin{proof}
+        Wir legen den Kreissektor entlang der $x$-Achse auf und erhalten somit drei Teilkurven,
+        die zusammen eine geschlossene Kurve ergeben:
+        $$\gamma_1: t\mapsto t, t\in [0,R];\qquad \gamma_2: t\mapsto Re^{it}, t\in \left[0,\frac{\pi}{4}\right];\qquad
+        \gamma_3: t\mapsto te^{i\frac{\pi}{4}}, t\in [R,0]$$
+        Wir berechnen die Integrale von $e^{-z^2}$ über diese Kurven und finden damit:
+        $$\int_{\gamma_1} e^{-z^2}dz = \int_{0}^R e^{-t^2}dt\to \frac{\sqrt{\pi}}{2}$$
+        Für $R\to\infty$.
+        $$\int_{\gamma_2} e^{-z^2}dz = \int_0^{\pi/4} e^{- R^2 e^{i2t}}iRe^{it}dt =
+        iR\int_0^{\pi/4}e^{- R^2\cos(2t)}e^{- iR^2\sin(2t)}e^{it}$$
+        Betragsmäßig ist diese Integral kleiner gleich $\frac{\pi}{4} Re^{-R^2}\to 0$ für $R\to\infty$.
+        $$\int_{\gamma_3} e^{-z^2}dz = -\int_0^{R} e^{- t^2 e^{i\frac{\pi}{2}}}e^{i\frac{\pi}{4}}dt
+        = -e^{i\frac{\pi}{4}}\int_0^{R} e^{-it^2}dt = -e^{i\frac{\pi}{4}}\left(\int_0^R\cos(-t^2)dt +i\int_0^R\sin(-t^2)\right)$$
+        Wir nutzen nun, dass der Cosinus gerade und der Sinus ungerade ist. Anschließend setzen wir
+        zusammen:
+        $$\frac{\sqrt{\pi}}{2}e^{-i\frac{\pi}{4}} = \frac{\sqrt{\pi}}{2}\left(\frac{1}{\sqrt{2}} - i
+        \frac{1}{\sqrt{2}}\right)=\int_0^R\cos(t^2)dt -i\int_0^R\sin(t^2)$$
+        Durch vergleichen von Real- und Imaginärteil auf beiden Seiten folgt das Behauptete.
+    \end{proof}
+
+    \begin{problem}{3}
+        Sei $f: B_1(0)\to\C$ holomorph. Zeige: Dann gilt
+        $$|f'(0)|\leq \frac{1}{2}\sup_{z,w\in B_1(0)} |f(w)-f(z)|.$$
+    \end{problem}
+
+    \begin{proof}
+        Zuerst finden wir mit der Cauchy-Integralformel:
+        $$\begin{aligned}
+              2 f'(0) &= \frac{1}{2\pi i}\left(\int_{\partial B_1(0)}\frac{f(\zeta)}{\zeta^2}d\zeta
+              +\int_{\partial B_1(0)}\frac{f(\xi)}{\xi^2}d\xi\right)\\
+              &= \frac{1}{2\pi i}\left(\int_{\partial B_1(0)}\frac{f(\zeta)}{\zeta^2}d\zeta
+              -\int_{\partial B_1(0)}\frac{f(-\zeta)}{\zeta^2}d\zeta\right)\\
+              &= \frac{1}{2\pi i}\left(\int_{\partial B_1(0)}\frac{f(\zeta)}{\zeta^2}d\zeta
+              -\int_{\partial B_1(0)}\frac{f(-\zeta)}{\zeta^2}d\zeta\right)\\
+              &= \frac{1}{2\pi i}\int_{\partial B_1(0)}\frac{f(\zeta)-f(-\zeta)}{\zeta^2}d\zeta
+        \end{aligned}$$
+        Nun können wir die gleichen Abschätzungen wie bei den Cauchy-Ungleichungen durchführen (für $R<1$):
+        $$\begin{aligned}
+              2|f'(0)|
+              &= \left|\frac{1}{2\pi i}\int_{\partial B_1(0)}\frac{f(\zeta)-f(-\zeta)}{\zeta^2}d\zeta\right|\\
+              &= \frac{1}{2\pi}\left|\int_{0}^{2\pi}\frac{f(Re^{it})-f(-Re^{it})}{(Re^{it})^2}iRe^{it}dt\right|\\
+              &\leq \frac{1}{2\pi R}\int_{0}^{2\pi}\left|\frac{f(Re^{it})-f(-Re^{it})}{(Re^{it})^2}\right|dt\\
+              &\leq \frac{1}{2\pi R}\cdot 2\pi \cdot \sup_{w,z\in B_1(0)}|f(w)-f(z)| = \frac{1}{R}\sup_{w,z\in B_1(0)}|f(w)-f(z)|
+        \end{aligned}$$
+        Wäre nun $2|f'(0)|>\sup_{w,z\in B_1(0)}|f(w)-f(z)|$, könnten wir ein $\varepsilon>0$ finden, sodass
+        $2|f'(0)|-\varepsilon>\sup_{w,z\in B_1(0)}|f(w)-f(z)|$ auch gilt. Diesen Fall können wir
+        aber mit der oben erhaltenen Ungleichung zum Widerspruch führen, indem wir
+        $R = 1- \frac{\varepsilon}{2|f'(0)|}$ wählen und oben einsetzen.
+    \end{proof}
+
+    \begin{problem}{4}
+        Zeige oder widerlege: Für jedes stetige $f: \overline{B_1(0)}\to\C$ gibt es eine Folge von
+        komplexen Polynomen $P_n(z)$ die gleichmäßig gegen $f$ konvergieren wenn $n\to\infty$.\\
+        (Zum Kontext: Jede reelle, stetige Funktion $g : [0, 1] \to \R$ auf dem Einheitsintervall kann
+        gleichmässig durch Polynome approximiert werden (Satz von Weierstrass).)
+    \end{problem}
+
+    \begin{proof}
+        Betrachten wir die Funktion $f(z) = \bar{z}$ und eine beliebige Folge $P_n(z)$ von Polynomen, die
+        gleichmäßig gegen $P(z)$ konvergiert. Da Polynome holomorphe Funktionen sind, konvergieren
+        diese nach Satz 5.2 gleichmäßig auf jeder kompakten Teilmege gegen eine holomorphe Funktion.
+        Somit ist $P$ holomorph und damit $P\neq f$. Da die Folge beliebig war, ist die Aussage widerlegt.
+    \end{proof}
+
+    \begin{problem}{5}
+        Sei $f:\C\to\C$ ganz. Zeige: Falls es ein $M>0$ gibt so dass $\Re(f(z))\leq M$ für alle $z\in\C$,
+        dann ist $f$ konstant.
+    \end{problem}
+
+    \begin{proof}
+        Da $f$ ganz ist, ist auch $e^{f(z)}$ ganz und wir finden:
+        $$|e^{f(z)}| = |e^{u(z)+iv(z)}| = |e^{u(z)}e^{iv(z)}| = |e^{\Re(f(z))}|\leq e^M $$
+        Nach Liouville ist also $e^{f(z)}$ konstant, das ist wiederrum äquivalent mit $f(z)$ konstant.
+    \end{proof}
+
+\end{document}
