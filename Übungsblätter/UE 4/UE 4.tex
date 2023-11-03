@@ -1,0 +1,175 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Numerik 2022 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{arabicore}
+\usepackage{amsmath-2018-12-01}
+\usepackage{amsmath-2018-12-01}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+\newenvironment{problem}[2][Beispiel]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}] \itshape}{
+    \end{trivlist}\normalshape
+}
+
+\begin{document}
+    \begin{problem}{1}
+        Seien $f_n: \Omega \rightarrow \mathbb{C}, n \in \mathbb{N}$, holomorphe Funktionen auf einer
+        offenen Menge $\Omega \subset \mathbb{C}$, welche auf jeder kompakten Teilmenge von $\Omega$
+        gleichmässig gegen eine Funktion $f: \Omega \rightarrow \mathbb{C}$ konvergieren. Aus der Vorlesung
+        wissen wir, dass $f$ dann holomorph ist. Zeige ausserdem, dass sogar die Folgen der $k$-ten Ableitungen
+        von $f$ gleichmässig gegen die $k$-te Ableitung von $f$ konvergieren, d.h. $f_n^{(k)}
+        \rightarrow f^{(k)}(n \rightarrow \infty)$, auf jeder kompakten Teilmenge von $\Omega$.
+    \end{problem}
+
+    \begin{proof}
+        Genauer argumentieren mit den Kompakten Mengen! \\\\
+        Wir gehen wie beim Beweis von Satz 5.3 vor. Wieder nehmen wir oBdA an, dass die Folge der Funktionen
+        auf ganz $\Omega$ konvergiert, andernfalls können wir es auf jeder kompakten Menge betrachten und
+        zusammenstückeln. Wieder bilden wir $\Omega_\delta$, also die Menge, die $\Omega$ um einen
+        $\delta$-Streifen verkleinert. Wieder zeigen wir:
+        $$\sup_{z\in\Omega_\delta} |F^{(k)}|\leq \frac{k!}{\delta^k} \sup_{\zeta\in \Omega}|F(\zeta)|$$
+        (Denn $F = f_n-f$ führt zum gewünschten Ergebnis, da die rechte Seite dann gegen $0$ konvergiert).
+        Wir finden mit der Cauchy-Integralformel:
+        $$\begin{aligned}
+              |F^{(k)}(z)|
+              &= \left|\frac{k!}{2\pi i}\int_{C_\delta (z)}\frac{F(\zeta)}{(\zeta-z)^{k+1}}\,d\zeta\right|\\
+              &\leq \frac{k!}{2\pi}\int_{C_\delta (z)}\frac{|F(\zeta)|}{|(\zeta-z)^{k+1}|}\,d\zeta\\
+              &\leq \frac{k!}{2\pi}\sup_{\zeta \in\Omega} |F(\zeta)|\frac{1}{\delta^{k+1}} 2\pi\delta\\
+              &= \frac{k!}{\delta^{k}}\sup_{\zeta \in\Omega} |F(\zeta)|
+        \end{aligned}$$
+        Das gilt für alle $k$ und alle $\delta$. Zuletzt lassen wir noch $\delta$ gegen $0$ gehen und erhalten
+        das Gewünschte.
+    \end{proof}
+
+    \begin{problem}{2}
+        Benutze Kurvenintegrale in der komplexen Ebene, um das Integral
+        $$
+        \int_{-\infty}^{+\infty} \frac{1}{1+x^2} d x
+        $$
+        zu berechnen.
+    \end{problem}
+
+    \begin{proof}
+        Zuerst bemerken wir, dass die Funktion $f(z) := \frac{1}{1+z^2}$ auf $\C\setminus\{\pm i\}$
+        holomorph ist. \\\\
+        Wir berechnen das Kurvenintegral über den oberen Halbkreis mit einem Schlüsselloch bei $i$.
+        $$0 = \int_{-R}^{\varepsilon} \frac{1}{1+x^2}\, dx + \int_{\gamma_{\varepsilon}} f(z)\,dz +
+        \int_{\varepsilon}^R \frac{1}{1+x^2}\, dx + \int_{\gamma_{R}} f(z)\,dz$$
+        Wobei $\gamma_{\varepsilon}: t\mapsto \varepsilon e^{-it}+i$ mit $t\in [0,2\pi]$ und
+        $\gamma_{R}: t\mapsto R e^{it}$ mit $t\in [0,\pi]$. Die Geraden zum Schlüsselloch wurden bereits
+        weggelassen, da diese im Grenzwert verschwinden. Außerdem haben wir bei $\gamma_{\varepsilon}$
+        das Intervall gleich wie im Grenzwert bis $2\pi$ zugelassen. Nun berechnen wir die Integrale:
+        $$\left|\int_{\gamma_{R}} f(z)\,dz\right|\leq \int_{0}^\pi \frac{|Rie^{it}|}{|1+R^2 e^{2it}|}
+        \,dt\leq \int_{0}^\pi \frac{R}{R^2-1}\,dt= \frac{R\pi}{R^2-1} \to 0$$
+        für $R\to\infty$. \\\\
+        Weiter finden wir:
+        $$\int_{\gamma_{\varepsilon}} f(z)\,dz = \int_{0}^{2\pi}\frac{1}{1+\varepsilon^2 e^{-2it} +
+        2\varepsilon i e^{-it} -1}\varepsilon(-i)e^{-it}\,dt =-i\int_{0}^{2\pi}\frac{1}{\varepsilon e^{-it} +
+        2i}\,dt \to -i\frac{1}{2i}2\pi = -\pi $$
+        Für $\varepsilon\to 0$.\\\\
+        Insgesamt haben wir damit also im Grenzwert von $\varepsilon\to 0$ und $R\to\infty$:
+        $$\int_{-\infty}^{+\infty} \frac{1}{1+x^2} d x = - \int_{\gamma_{\varepsilon}} f(z)\,dz = \pi$$
+        Anmekrung aus den Übung: $\varepsilon$ muss garnicht gegen $0$ gehen. Geht leichter
+        mit Partialbruchzerlegung. Und es geht auch recht cool mit der Cauchy-Integralformel.
+    \end{proof}
+
+    \begin{problem}{3}
+        Beweise: Das Bild einer nicht-konstanten ganzen Funktion ist dicht in $\mathbb{C}$.
+    \end{problem}
+
+    \begin{proof}
+        Nehmen wir an $f(\C)$ ist nicht dicht. Dann finden wir ein $a$, sodass $B_\varepsilon (a)\cap f(\C) =
+        \emptyset$. Nun betrachten wir die Funktion $\frac{1}{f(z)-a}$, welche natürlich ganz und
+        betragsmäßig kleiner gleich $\frac{1}{\varepsilon}$ ist, also ist sie konstant und somit ist $f(z)$
+        konstant, was ein Widerspruch zur Annahme ist.
+    \end{proof}
+
+    \begin{problem}{4}
+        Betrachte die durch die folgenden Potenzreihen definierten Funktionen:
+        $$
+        f(z):=\sum_{n=0}^{\infty} z^n, \quad g(z):=\sum_{n=0}^{\infty} z^{2^n} .
+        $$
+        \begin{enumerate}[label = (\alph*)]
+            \item Zeige: $f$ und $g$ definieren auf $B_1(0)$ holomorphe Funktionen.
+            \item Kann $f$ holomorph auf eine offene Menge $\Omega$ mit $B_1(0) \subsetneq \Omega \subset \mathbb{C}$
+        fortgesetzt werden?
+            \item Kann $g$ holomorph auf eine offene Menge $\Omega$ mit $B_1(0) \subsetneq \Omega \subset \mathbb{C}$
+        fortgesetzt werden?
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        \begin{enumerate}[label = (\alph*)]
+            \item Wir wissen aus Satz 2.6, dass eine Potenzreihe auf ihrem Konvergenzradius eine holomorphe
+            Funktion definiert. Für den Konvergenzradius der ersten Reihe gilt:
+            $$R = \frac{1}{\limsup_{n\to\infty}\sqrt[n]{1}} = 1$$
+            Wir schreiben die zweite Reihe zu $\sum_{n\geq 0} a_n z^{n}$ mit $a_n = 1$, wenn ein $k$
+            existiert sodass $2^k = n$ gilt und $0$ sonst. Damit finden wir den Konvergenzradius:
+            $$R = \frac{1}{\sqrt[n]{\limsup_{n\to\infty}|a_n|}} = 1$$
+            Also sind beide Funktionen auf $B_1(0)$ holomorph.
+            \item Auf der Einheitskreisscheibe gilt $f(z) = \frac{1}{1-z}$. Diese Funktion ist
+            aber überall außer in $1$ holomorph und somit können wir die Funktion auf $\Omega = \C\setminus
+            \{0\}$ fortsetzen.
+            \item Hingegen kann man diese Funktion nicht holomorph fortsetzen. Wir betrachten die
+            Punkte $z = re^{i\frac{2\pi p}{2^k}}$ mit $p,k\in\N$. Nun gilt:
+            $$g(z)=\sum_{n=0}^{\infty} r^{2^n}e^{i2\pi p 2^{n-k}} = \sum_{n=0}^{k} r^{2^n}e^{i2\pi p 2^{n-k}}
+            +\sum_{n=k+1}^{\infty} r^{2^n}e^{i2\pi p 2^{n-k}}\leq \sum_{n=k+1}^{\infty} r^{2^n} \to \infty$$
+            für $r\to 1$. Nun liegt diese Menge allerdings dicht auf dem Einheitskreis. Denn sei
+            $\varphi$ ein beliebiger Winkel und $\varepsilon>0$ beliebig. Dann finden wir:
+            $$\frac{2\pi}{2^{\min(n| \frac{2\pi}{2^n}<\varepsilon)}}\cdot p$$
+            wobei wir $p$ so wählen, dass unsere Approximation bestmöglich wählen. Somit kann man die Potenzreihe
+            aber nicht einmal auf den Abschluss fortsetzen.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{problem}{5}
+        Sei $f: \overline{B_1(0)} \rightarrow \mathbb{C}\setminus\{0\}$ stetig und holomorph auf $B_1(0)$. Zeige:
+        Falls $|f(z)|=1$ für alle $z \in \partial B_1(0)$, dann ist $f$ konstant.
+        (Hinweis: Betrachte die Fortsetzung von $f$ auf ganz $\mathbb{C}$, welche durch Reflektion am
+        Einheitskreis definiert ist.)
+    \end{problem}
+
+    \begin{proof}
+        Wir betrachten die Funktion
+        $$F(z):=
+        \begin{cases}
+            f(z)\qquad &z\in B_1(0)\\
+             \frac{1}{\overline{f(1/\overline{z})}}\qquad &z\notin B_1(0)
+        \end{cases}$$
+        Da $f$ nirgendwo verschwindet, ist $f$ außerhalb des Einheitskreises holomorph.
+        Innerhalb des Einheitskreises ist die Funktion natürlich immernoch holomorph. \\
+        Weiter gilt für Punkte $z_0$ auf dem Einheitskreis:
+        $$F(z_0) = \frac{1}{\overline{f(1/\overline{z_0})}} =\frac{1}{\overline{f(z_0)}}=f(z_0)$$
+        Also setzt sich diese Funktion stetig am Rand fort und ist somit überall holomorph.\\\\
+        Nun nimmt die Funktion auf der Einheitskreisscheibe natürlich das Maximum und das Minimum an
+        und somit finden wir:
+        $$|F(z)|\leq \max_{z\in \overline{B_1(0)}} \max(|f(z)|, |1/f(z)|) $$
+        Die Funktion ist somit ganz und beschränkt, also ist sie konstant.\\\\
+        Holomorphie von Dreiecken über den Rand muss man eigentlich noch zeigen.
+    \end{proof}
+\end{document}

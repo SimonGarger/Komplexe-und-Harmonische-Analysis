@@ -118,20 +118,20 @@
     \begin{proof}
         Zuerst finden wir mit der Cauchy-Integralformel:
         $$\begin{aligned}
-              2 f'(0) &= \frac{1}{2\pi i}\left(\int_{\partial B_1(0)}\frac{f(\zeta)}{\zeta^2}d\zeta
-              +\int_{\partial B_1(0)}\frac{f(\xi)}{\xi^2}d\xi\right)\\
-              &= \frac{1}{2\pi i}\left(\int_{\partial B_1(0)}\frac{f(\zeta)}{\zeta^2}d\zeta
+              2 f'(0) &= \frac{1}{2\pi i}\left(\int_{\partial B_R(0)}\frac{f(\zeta)}{\zeta^2}d\zeta
+              +\int_{\partial B_R(0)}\frac{f(\xi)}{\xi^2}d\xi\right)\\
+              &= \frac{1}{2\pi i}\left(\int_{\partial B_R(0)}\frac{f(\zeta)}{\zeta^2}d\zeta
               -\int_{\partial B_1(0)}\frac{f(-\zeta)}{\zeta^2}d\zeta\right)\\
-              &= \frac{1}{2\pi i}\left(\int_{\partial B_1(0)}\frac{f(\zeta)}{\zeta^2}d\zeta
-              -\int_{\partial B_1(0)}\frac{f(-\zeta)}{\zeta^2}d\zeta\right)\\
-              &= \frac{1}{2\pi i}\int_{\partial B_1(0)}\frac{f(\zeta)-f(-\zeta)}{\zeta^2}d\zeta
+              &= \frac{1}{2\pi i}\left(\int_{\partial B_R(0)}\frac{f(\zeta)}{\zeta^2}d\zeta
+              -\int_{\partial B_R(0)}\frac{f(-\zeta)}{\zeta^2}d\zeta\right)\\
+              &= \frac{1}{2\pi i}\int_{\partial B_R(0)}\frac{f(\zeta)-f(-\zeta)}{\zeta^2}d\zeta
         \end{aligned}$$
         Nun können wir die gleichen Abschätzungen wie bei den Cauchy-Ungleichungen durchführen (für $R<1$):
         $$\begin{aligned}
               2|f'(0)|
-              &= \left|\frac{1}{2\pi i}\int_{\partial B_1(0)}\frac{f(\zeta)-f(-\zeta)}{\zeta^2}d\zeta\right|\\
+              &= \left|\frac{1}{2\pi i}\int_{\partial B_R(0)}\frac{f(\zeta)-f(-\zeta)}{\zeta^2}d\zeta\right|\\
               &= \frac{1}{2\pi}\left|\int_{0}^{2\pi}\frac{f(Re^{it})-f(-Re^{it})}{(Re^{it})^2}iRe^{it}dt\right|\\
-              &\leq \frac{1}{2\pi R}\int_{0}^{2\pi}\left|\frac{f(Re^{it})-f(-Re^{it})}{(Re^{it})^2}\right|dt\\
+              &\leq \frac{1}{2\pi R}\int_{0}^{2\pi}\left|f(Re^{it})-f(-Re^{it})\right|dt\\
               &\leq \frac{1}{2\pi R}\cdot 2\pi \cdot \sup_{w,z\in B_1(0)}|f(w)-f(z)| = \frac{1}{R}\sup_{w,z\in B_1(0)}|f(w)-f(z)|
         \end{aligned}$$
         Wäre nun $2|f'(0)|>\sup_{w,z\in B_1(0)}|f(w)-f(z)|$, könnten wir ein $\varepsilon>0$ finden, sodass
