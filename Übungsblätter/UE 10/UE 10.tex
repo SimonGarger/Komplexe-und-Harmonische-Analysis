@@ -1,0 +1,284 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Numerik 2022 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{arabicore}
+\usepackage{amsmath-2018-12-01}
+\usepackage{amsmath-2018-12-01}
+\usepackage{farsifnt}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\res}{\text{res}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+\newenvironment{problem}[2][Beispiel]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}] \itshape}{
+    \end{trivlist}\normalshape
+}
+
+\begin{document}
+    \begin{problem}{1}
+        Sei $f: \mathbb{R} \rightarrow \mathbb{C} \,\,2 \pi$ periodisch mit
+        $$
+        f(x)=\left\{\begin{array}{ll}
+                        -\frac{\pi}{2}-\frac{x}{2} & -\pi \leq x<0 \\
+                        0 & x=0 \\
+                        \frac{\pi}{2}-\frac{x}{2} & 0<x<\pi
+        \end{array} .\right.
+        $$
+        \begin{enumerate}[label = (\alph*)]
+            \item Zeigen Sie, das
+            $$
+            f(x) \sim \frac{1}{2 i} \sum_{n \in \mathbb{Z} \backslash\{0\}} \frac{e^{i n x}}{n} .
+            $$
+            \item Beachten Sie, dass $f$ nicht stetig ist. Zeigen Sie, dass die Fourier Reihe dennoch für jedes
+            $x$ konvergiert (womit wir wie üblich meinen, dass die symmetrischen Teilsummen der Reihe
+            konvergieren).
+            (Achtung: Sie müssen nicht beweisen, dass die Reihe gegen $f(x)$ konvergiert, sondern dass sie
+            konvergent ist.)
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        \begin{enumerate}[label = (\alph*)]
+            \item Wir finden für $n\neq 0$:
+            $$\begin{aligned}
+                  \hat{f}(n) &= \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}dx \\
+                  &= \frac{1}{2\pi}\left(\int_{-\pi}^{0}\left(-\frac{\pi}{2}-\frac{x}{2}\right)e^{-inx}dx+
+                  \int_{0}^{\pi}\left(\frac{\pi}{2}-\frac{x}{2}\right)e^{-inx}dx\right)\\
+                  &= \frac{1}{2\pi}\left(-\frac{\pi}{2}\int_{-\pi}^{0}e^{-inx}dx
+                  \frac{\pi}{2}\int_{0}^{\pi}e^{-inx}dx - \int_{-\pi}^{\pi}\frac{x}{2}e^{-inx}\right)\\
+                  &= \frac{1}{2\pi}\left(-\frac{\pi}{2}\left[\frac{1}{-in}e^{-inx}\right]_{-\pi}^{0}+
+                  \frac{\pi}{2}\left[\frac{1}{-in}e^{-inx}\right]_{0}^{\pi}-\frac{1}{2}\left[
+                      \frac{xe^{-inx}}{-in}+\frac{e^{-inx}}{n^2}\right]_{-\pi}^{\pi}\right)\\
+                  &= \frac{1}{2\pi}\left(\frac{\pi}{2in}-\frac{\pi e^{in\pi}}{2in}-\frac{\pi e^{-in\pi}}{2in}
+                  +\frac{\pi}{2in}-\frac{1}{2}\left(\frac{\pi e^{-in\pi}}{-in}+\frac{e^{-in\pi}}{n^2}-
+                  \frac{\pi e^{in\pi}}{in}-\frac{e^{in\pi}}{n^2}\right)\right)\\
+                  &= \frac{1}{2\pi}\left(\frac{\pi}{in}-\frac{\pi e^{in\pi}}{in}+\frac{\pi e^{in\pi}}{in}
+                  \right)\\
+                  &= \frac{1}{2\pi}\cdot \frac{\pi}{in} = \frac{1}{2in}
+            \end{aligned}$$
+            Und für $n=0$ sehen wir:
+            $$\begin{aligned}
+                  \hat{f}(0) &= \int_{-\pi}^{0} -\frac{\pi}{2}-\frac{x}{2} dx +
+                  \int_{0}^{\pi} \frac{\pi}{2}-\frac{x}{2} dx\\
+                  &= \frac{\pi}{2}\left(\int_{0}^{\pi}1 dx-\int_{-\pi}^{0} 1 dx\right) - \frac{1}{2}
+                  \int_{-\pi}^{\pi}xdx \\
+                  &= -\frac{1}{2}\left[\frac{1}{2}x^2\right]_{-\pi}^{\pi} = 0
+            \end{aligned}$$
+            \item Für den zweiten Punkt wenden wir die Dirichlet-Test an. Dafür spalten wir die
+            Reihe in $\frac{1}{n}$ und $e^{inx}$. Ob wir den nullten Summanden mitzählen macht keinen
+            Unterschied für die Konvergenz und die Reihe über $e^{inx}$ ist der Dirichletkern, also:
+            $$\left|\sum_{n=-N}^N e^{inx}\right| = \frac{|\sin((N+\frac{1}{2})x)}{|\sin(\frac{x}{2})|}
+            \leq \frac{1}{|\sin(\frac{x}{2})|}$$
+            Für $x\neq 0$ haben wir somit mit dem Dirichlet-Test die Konvergenz gezeigt. Für $x=0$ haben
+            wir aber einfach:
+            $$\sum_{
+            \begin{subarray}{c}
+                n=-N\\n\neq 0
+            \end{subarray}
+            }^N\frac{e^{in0}}{n}=\sum_{
+            \begin{subarray}{c}
+                  n=-N\\n\neq 0
+            \end{subarray}
+            }^N\frac{1}{n}=0$$
+        \end{enumerate}
+    \end{proof}
+
+    \begin{problem}{2}
+        Sei $f: \mathbb{R} \rightarrow \mathbb{C} \,\,2 \pi$-periodisch und integrierbar und
+        $x_0 \in[-\pi, \pi]$. Nehmen wir an, dass $f$ (höchstens) eine Sprungunstetigkeit bei $x_0$ hat,
+        d.h., die Limes
+        $$
+        f\left(x_0^{-}\right)=\lim _{x \rightarrow x_0^{-}} f(x), \quad f\left(x_0^{+}\right)=\lim _{x
+        \rightarrow x_0^{+}} f(x)
+        $$
+        existieren und sind endlich. Zeigen Sie,
+        \begin{enumerate}[label = (\alph*)]
+            \item $A_r(f) \rightarrow \frac{1}{2}\left(f\left(x_0^{+}\right)+f\left(x_0^{-}\right)\right)$,
+            für $r \rightarrow 1^{-}$;
+            \item $C_N(f) \rightarrow \frac{1}{2}\left(f\left(x_0^{+}\right)+f\left(x_0^{-}\right)\right)$,
+            für $N \rightarrow \infty$;
+        \end{enumerate}
+        wobei $A_r$ und $C_N$ die Abel und Cesaro Durchschnitte der Fourier Reihe sind.
+        (Hinweis: Zeigen Sie, dass $\frac{1}{2 \pi} \int_{-\pi}^0 P_r(x) d x=\frac{1}{2 \pi}
+        \int_0^\pi P_r(x) d x=\frac{1}{2}$ und argumentieren Sie wie im Satz 23.)
+    \end{problem}
+
+    \begin{proof}
+        Wir zeigen zuerst, dass das Integral über den Poisson Kern jeweils $\frac{1}{2}$ ergibt.
+        Wir wissen, dass die Poissonkerne eine gute Folge von Kernen sind, wenn wir $r_n\to 1^-$
+        betrachten, das Integral über $P_r$ von $-\pi$ bis $\pi$ ist daher immer $1$. Das könnten wir
+        auch händisch ausrechnen. Weil
+        die Reihe konvergiert, können wir summandenweise integrieren:
+        $$\begin{aligned}
+              \frac{1}{2\pi}\int_{-\pi}^\pi P_r(x) d x &=
+              \frac{1}{2\pi}\sum_{n\in\Z}r^{|n|}\int_{-\pi}^{\pi}e^{inx}dx \\
+              &= 1 + \frac{1}{2\pi}\sum_{n\in\Z\setminus\{0\}}\frac{r^{|n|}}{in}(e^{in\pi}-e^{-in\pi})=1
+        \end{aligned}$$
+        In der Darstellung:
+        $$P_r(x)=\frac{1-r^2}{1-2r\cos(x)+r^2}$$
+        sieht man, dass die Funktion in $x$ gerade ist. Somit muss von $0$ bis $\pi$ die gleiche Fläche,
+        wie von $-\pi$ bis $0$ liegen, also jeweils $\frac{1}{2}$.
+        \\\\
+        Weiter gilt $A_r(f)= (f*P_r)$, damit finden wir analog zum Beweis von Satz 23:
+        $$\begin{aligned}
+              &\left|A_r(f)(x_0)-\frac{1}{2}(f(x_0^{+})+f(x_0^{-}))\right| =
+              \left|(f*P_r)(x_0)-\frac{1}{2}(f(x_0^{+})+f(x_0^{-}))\right|\\
+              = &\left|\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x_0-y)P_r(y)dy-\frac{1}{2}(f(x_0^{+})+f(x_0^{-}))\right|\\
+              = &\left|\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x_0-y)P_r(y)dy-
+              \frac{1}{2 \pi} \int_{-\pi}^0 f(x_0^{+})P_r(y) d y-\frac{1}{2 \pi} \int_{0}^{\pi} f(x_0^{-})P_r(y) d y\right|\\
+              =&\left|\frac{1}{2\pi}\left(\int_{-\pi}^{0}f(x_0-y)P_{r}-f(x_0^{+})P_r(y)dy+
+              \int_{0}^{\pi}f(x_0-y)P_{r}-f(x_0^{-})P_r(y)dy\right)\right|\\
+              \leq &\frac{1}{2\pi}\left(\int_{-\pi}^{0}|f(x_0-y)-f(x_0^{+})||P_r(y)|dy+
+              \int_{0}^{\pi}|f(x_0-y)-f(x_0^{-})||P_r(y)|dy\right)\\
+              \leq & \frac{1}{2\pi}\bigg(\int_{-\delta<y<0}|f(x_0-y)-f(x_0^{+})||P_r(y)|dy+
+              \int_{-\pi}^{-\delta}|f(x_0-y)-f(x_0^{+})||P_r(y)|dy \\&+ \int_{0<y<\delta}|f(x_0-y)-f(x_0^{+})||P_r(y)|dy +
+              \int_{\delta}^{\pi}|f(x_0-y)-f(x_0^{+})||P_r(y)|dy\bigg)\\
+              \leq&\frac{1}{2\pi}\bigg(\sup_{-\delta<y<0}(|f(x_0-y)-f(x_0^{+})|)\int_{-\pi}^{\pi}|P_r(y)|dy+
+              2\|f\|_{\infty}\int_{-\pi}^{-\delta}|P_r(y)|dy\\&+
+              \sup_{0<y<\delta}(|f(x_0-y)-f(x_0^{+})|)\int_{-\pi}^{\pi}|P_r(y)|dy+
+              2\|f\|_{\infty}\int_{\delta}^{\pi}|P_r(y)|dy\bigg)\\
+              \leq & \frac{1}{2\pi}\bigg(\underbrace{\sup_{-\delta<y<0}(|f(x_0-y)-f(x_0^{+})|)}_{\to 0}M+
+              2\|f\|_{\infty}\underbrace{\int_{-\pi}^{-\delta}|P_r(y)|dy}_{\to 0}\\&+
+              \underbrace{\sup_{0<y<\delta}(|f(x_0-y)-f(x_0^{+})|)}_{\to 0}M+
+              2\|f\|_{\infty}\underbrace{\int_{\delta}^{\pi}|P_r(y)|dy}_{\to 0}\bigg)
+        \end{aligned}$$
+        Genau analog können wir für Fejér Kerne, also für die Cesaro-Mittel mit $C_n(f)=f*F_n$,
+        argumentieren, die auch eine gute Folge von Kernen und symmetrisch in $x$ sind:
+        $$F_n(x)=\frac{1}{n}\cdot\frac{\sin^2(nx/2)}{\sin^2(x/2)}$$
+    \end{proof}
+
+    \begin{problem}{3}
+        Betrachten Sie die Funktions- und Sequenzrăume
+        $$
+        \begin{aligned}
+            L^1([-\pi, \pi]) & =\left\{f: \mathbb{R} \rightarrow \mathbb{C} \text { messbar, mit }
+            \|f\|_1<\infty\right\}, & \text { wobei } & \|f\|_1=\frac{1}{2 \pi} \int_{-\pi}^\pi|f(x)| d x,\\
+            \ell^{\infty}(\mathbb{Z}) & =\left\{a: \mathbb{Z} \rightarrow \mathbb{C}:\|a\|_{\infty}<
+            \infty\right\}, & \text { wobei } & \|a\|_{\infty}=\sup _{n \in \mathbb{Z}}\left|a_n\right| .
+        \end{aligned}
+        $$
+        (Wie üblich werden $L^1$-Funktionen identifiziert, wenn sie sich in einer Nullmenge
+        unterscheiden.)
+
+        Zeigen Sie, dass die Fourier-Transformation
+        $$
+        \begin{aligned}
+            \mathcal{F}: L^1([-\pi, \pi]) & \rightarrow \mathcal{\ell}^{\infty}(\mathbb{Z}) \\
+            f & \mapsto(f(n))_{n \in Z}
+        \end{aligned}
+        $$
+        eine stetige Abbildung ist. (Hier, $f(n)=\frac{1}{2 \pi} \int_{-\pi}^\pi f(x) e^{-i n x} d x$.)
+    \end{problem}
+
+    \begin{proof}
+        Sei $f_k$ eine Folge, die gegen $f$ konvergiert, also
+        $$\frac{1}{2\pi}\int_{-\pi}^{\pi}|f_k-f|dx \to 0$$
+        Nun prüfen wir, ob die Folge $(\hat{f}_k(n))_{n\in\Z}$ auch gegen $(\hat{f}(n))_{n\in\Z}$
+        konvergiert.
+        $$\begin{aligned}
+              \|(\hat{f}_k(n))_{n\in\Z}- (\hat{f}(n))_{n\in\Z}\| &=
+              \sup_{n\in\Z}\left|\frac{1}{2\pi}\int_{-\pi}^{\pi}(f_k-f)e^{-inx}dx\right|
+              &\leq \sup_{n\in\Z}\frac{1}{2\pi}\int_{-\pi}^{\pi}|f_k-f||e^{-inx}|dx\\
+              &=\sup_{n\in\Z}\frac{1}{2\pi}\int_{-\pi}^{\pi}|f_k-f|dx\to 0
+        \end{aligned}$$
+    \end{proof}
+
+    \begin{problem}{4}
+        Seien $f: \mathbb{R} \rightarrow \mathbb{C} \,\,2 \pi$-periodisch und integrierbar und
+        $k \in \mathbb{N}_0$. Zeigen Sie das Folgende.
+        \begin{enumerate}[label = (\alph*)]
+            \item Wenn $f\,\, k$-mal stetig differenzierbar ist, dann
+            $$
+            \sup _{n \in \mathbb{Z}}(1+|n|)^k|\hat{f}(n)|<\infty .
+            $$
+            (Wobei, "0-mal stetig differenzierbar" = "stetig".)
+            \item Wenn
+            $$
+            \sum_{n \in \mathbb{Z}}(1+|n|)^k|\hat{f}(n)|<\infty,
+            $$
+            dann ist $f\,\, k$-mal stetig differenzierbar nach Neudefinition auf einer Nullmenge. Das heißt, eine
+            $k$-mal stetig differenzierbare Funktion $g$ existiert mit $f=g$ fast überall.
+            \item Finden Sie eine integrierbare aber nicht (fast) stetige Funktion $f$, mit
+            $$
+            \sup _{n \in \mathbb{Z}}(1+|n|)|\hat{f}(n)|<\infty .
+            $$
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        \begin{enumerate}[label = (\alph*)]
+            \item Aus Satz 12 wissen wir $\hat{f'}(n)=in\hat{f}(n)$ und damit bekommen wir analog
+            zum Beweis von Korollar 13 für $n\neq 0$:
+            $$|\hat{f}(n)|=\left|\frac{1}{(in)^k}\hat{f^{(k)}}(n)\right|=
+            \frac{1}{2\pi |n|^k}\left|\int_{-\pi}^{\pi} f^{(k)}(n)e^{-inx}dx\right|\leq
+            \frac{1}{2\pi |n|^k}\int_{-\pi}^{\pi} |f^{(k)}(n)|dx\leq \frac{C}{|n|^k}$$
+            Damit bekommen wir für $n\neq 0$:
+            $$\begin{aligned}
+                  \sup _{n \in \mathbb{Z}}(1+|n|)^k|\hat{f}(n)|&\leq
+                  \sup _{n \in \mathbb{Z}}(1+|n|)^k C\frac{1}{|n|^k}\\
+                  &= C\sup _{n \in \mathbb{Z}}\left(\frac{1+|n|}{|n|}\right)^k\\
+                  &\leq 2^kC
+            \end{aligned} $$
+            Für $n=0$ ist $\hat{f}(0)$ aber auch beschränkt, weil die Funktion integrierbar ist.
+            \item Wir definieren:
+            $$g(x):= \sum_{n\in\Z} \hat{f}(n) e^{inx}$$
+            Nach der Voraussetzung sind insbesondere die $\hat{f}(n)$ absolut summierbar, damit
+            existiert nach Korollar 38 eine Funktion $g$ mit den gleichen Fourierkoeffizienten,
+            die stetig ist und fast überall mit $f$ übereinstimmt. So können wir
+            $g$ oBdA stetig und f.ü $f=g$ wählen. Nun differenzieren wir $g$, dabei dürfen wir
+            Ableitungsoperator und Summe vertauschen, weil diese absolut konvergiert:
+            $$g'(x) =\sum_{n\in\Z}\frac{d}{dx} \hat{f}(n) e^{inx}=\sum_{n\in\Z} \hat{f}(n)(in) e^{inx}$$
+            Nun gilt aber nach Voraussetzung:
+            $$\sum_{n\in\Z} |\hat{f}(n)(in) e^{inx}|=\sum_{n\in\Z} |\hat{f}(n)||n|
+            \leq \sum_{n \in \mathbb{Z}}(1+|n|)^k|\hat{f}(n)|<\infty$$
+            Wir fahren per Induktion fort, nehmen also an, dass die $l-1$-te Ableitung absolut konvergent
+            und sehen so für die $l$-te Ableitung (mit $l\leq k$):
+            $$g^{(l)}=\sum_{n\in\Z}\frac{d}{dx} \hat{f}(n)(in)^{l-1} e^{inx}=
+            \sum_{n\in\Z}\frac{d}{dx} \hat{f}(n)(in)^{l} e^{inx}$$
+            und
+            $$\sum_{n\in\Z} |\hat{f}(n)(in)^l e^{inx}|=\sum_{n\in\Z} |\hat{f}(n)||n|^l
+            \leq \sum_{n \in \mathbb{Z}}(1+|n|)^k|\hat{f}(n)|<\infty$$
+            Somit ist auch jede Ableitung bis zur $k$-ten stetig.
+            \item Für den letzten Punkt ziehe ich das Beispiel 3 von UE 8 heran:
+            $$
+            f(x)=\left\{\begin{array}{ll}
+                            1 & x \in[a, b] \\
+                            0 & x \notin \mid a, b]
+            \end{array} .\right.
+            $$
+            Wobei wir $\hat{f}(0)=\frac{b-a}{2\pi}$ und $\hat{f}(n)=\frac{e^{-ina}-e^{-inb}}{2\pi in}$
+            erhalten, damit sehen wir für $n\neq 0$:
+            $$(1+|n|)|\hat{f}(n)|=(1+|n|)\frac{|e^{-ina}-e^{-inb}|}{|2\pi in|}\leq
+            \frac{2(1+|n|)}{2\pi |n|}=\frac{1}{\pi |n|}+ \frac{1}{\pi}\leq \frac{2}{\pi}$$
+            Gesamt haben wir also:
+            $$\sup _{n \in \mathbb{Z}}(1+|n|)|\hat{f}(n)|\leq \max\left(\frac{b-a}{2\pi},\frac{2}{\pi}
+            \right)<\infty$$
+            Die Funktion ist nicht fast stetig, weil an ihren Sprungstellen eine stetige Annäherung auf
+            einer nicht Nullmenge verschieden von $f$ sein muss.
+        \end{enumerate}
+    \end{proof}
+\end{document}

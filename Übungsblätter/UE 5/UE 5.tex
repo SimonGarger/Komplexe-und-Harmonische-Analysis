@@ -1,0 +1,172 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Numerik 2022 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{arabicore}
+\usepackage{amsmath-2018-12-01}
+\usepackage{amsmath-2018-12-01}
+\usepackage{farsifnt}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\res}{\text{res}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+\newenvironment{problem}[2][Beispiel]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}] \itshape}{
+    \end{trivlist}\normalshape
+}
+
+\begin{document}
+    \begin{problem}{1}
+        Sei $z_0$ eine isolierte Singularität einer holomorphe Funktion $f$. Zeige: Die Funktion
+        $z\mapsto e^{f(z)}$ kann in $z_0$ keinen Pol haben.
+    \end{problem}
+
+    \begin{proof}
+        Nehmen wir an $e^{f(z)}$ hätte einen Pol bei $z_0$, dann gilt:
+        $$|e^{f(z)}|\to\infty \Rightarrow \Re(f(z))\to +\infty$$
+        Damit ist die Singulatität von $f$ auch ein Pol. Wir schreiben in einer Umgebung von
+        $z_0$ $f(z) = (z-z_0)^{-n}g(z)$. Ist $g(z_0)=re^{i\varphi}$ wählen wir $\theta = \pi-\varphi$
+        Nun betrachten wir die Folge $z_k = z_0 +\frac{1}{k}e^{i\theta/(-n)}\to z_0$.
+        $$f(z_k) = (z_k-z_0)^{-n}g(z) = k^n \underbrace{e^{i\theta }g(z)}_{=-r}\to -\infty$$
+        Man kann auch jeden Fall einzeln durchargumentieren.
+    \end{proof}
+
+    \begin{problem}{2}
+        Berechne die Pole, deren Ordnung und Residuen für die Funktion
+        $$z\mapsto \frac{1}{\sin(\pi z)}$$
+    \end{problem}
+
+    \begin{proof}
+        Nullstellen von Sinus genauer argumentieren. \\
+        Die Pole der Funktion sind die Nullstellen von $\sin(\pi z)$ und somit $z\in\Z$. Ich behaupte, dass
+        alle diese Pole die Ordnung $1$ haben. Dafür betrachten wir für einen Pol $z_0\pi$
+        $$\sin(\pi z) = (z-z_0\pi)\frac{\sin(\pi z)}{(z-z_0\pi)}:= (z-z_0\pi) g(z)$$
+        Nun müssen wir zeigen, dass $g(\pi z_0)\neq 0$ gilt. Wir wissen aber das $g(z)$ holomorph und somit
+        insbesondere stetig ist. Damit ist aber $g(\pi z_0)=1$, weil wir uns auf der reellen Achse befinden.\\\\
+        Die Residuen sind damit:
+        $$\res_{z_0\pi} = \lim_{z\to z_0\pi} (z-z_0\pi)\frac{1}{\sin(\pi z)}$$
+        Wir wissen, dass dieser Grenzwert existieren muss, also muss er gleich dem reellen Grenzwert sein und
+        damit gleich $\frac{1}{(-1)^n \pi}$.
+    \end{proof}
+
+    \begin{problem}{3}
+        Berechne das Integral
+        $$\int_{-\infty}^\infty \frac{1}{1+x^4}dx$$
+        mit Hilfe des Residuensatzes.
+    \end{problem}
+
+    \begin{proof}
+        Offensichtlich haben wir $4$ Pole, nämlich $\frac{1+i}{\sqrt{2}},\frac{1-i}{\sqrt{2}},
+        \frac{-1+i}{\sqrt{2}}, \frac{-1-i}{\sqrt{2}}$. Diese sind alle erster Ordnung, weil
+        wir von einem Polynom vierter Ordnung nur $4$ Nullstellen finden können. Wir berechnen nun das Integral
+        über den oberen Halbkreis $\gamma_R: t\mapsto Re^{it}$:
+        $$\int_{-R}^R \frac{1}{1+x^4}dx + \int_{0}^{\pi}\frac{Rie^{it}}{1+R^4e^{4it}} =
+        2\pi i(\res_{\frac{1+i}{\sqrt{2}}} + \res_{\frac{-1+i}{\sqrt{2}}})$$
+        Das Integral über die Kreislinie geht gegen $0$ für $R\to\infty$. Wir berechnen nun die Residuen:
+        $$\begin{aligned}
+              \res_{\frac{1+i}{\sqrt{2}}} \frac{1}{1+z^4}&= \lim_{z\to \frac{1+i}{\sqrt{2}}}\frac{1}
+              {(z-\frac{1-i}{\sqrt{2}})(z-\frac{-1+i}{\sqrt{2}})(z-\frac{-1-i}{\sqrt{2}})} = 
+              \frac{1}{\frac{2i}{\sqrt{2}}\cdot \frac{2}{\sqrt{2}}\cdot \frac{2+2i}{\sqrt{2}}} =
+              \frac{1}{2\sqrt{2}(-1+i)}\\
+              \res_{\frac{-1+i}{\sqrt{2}}} \frac{1}{1+z^4}&= \lim_{z\to \frac{-1+i}{\sqrt{2}}}\frac{1}
+              {(z-\frac{1-i}{\sqrt{2}})(z-\frac{1+i}{\sqrt{2}})(z-\frac{-1-i}{\sqrt{2}})} =
+              \frac{1}{\frac{-2+2i}{\sqrt{2}}\cdot \frac{-2}{\sqrt{2}}\cdot \frac{2i}{\sqrt{2}}} =
+              \frac{1}{2\sqrt{2}(1+i)}
+        \end{aligned}$$
+        Somit erhalten wir gesamt mit $R\to\infty$:
+        $$\int_{-\infty}^{\infty}\frac{1}{1+x^4}=2\pi i \left(\frac{1}{2\sqrt{2}(-1+i)}+\frac{1}{2\sqrt{2}(1+i)}\right)
+        =2\pi i \left(\frac{4\sqrt{2}i}{8(-2)}\right) = \frac{\sqrt{2}\pi}{2}$$
+    \end{proof}
+
+    \begin{problem}{4}
+        Zeige, dass
+        $$\int_{-\infty}^\infty \frac{x\sin(x)}{x^2+a^2}\,dx = \pi e^{-a},\quad a>0.$$
+    \end{problem}
+
+    \begin{proof}
+        Wir betrachten das Integral über den oberen Halbkreis von $f(z) := \frac{ze^{iz}}{z^2 +a^2}$.
+        Der einzige Pol in der oberen Halbebene ist $ia$, somit haben wir:
+        $$\int_{-R}^{R} f(z)dz +\int_{\gamma_R} f(z)dz=2\pi i\res_{ia}f$$
+        Zuerst bestimmen wir:
+        $$\begin{aligned}
+              \left|\int_{\gamma_R} f(z)dz\right| &=
+              \left|\int_{0}^{\pi}\frac{iR^2e^{2it}e^{iRe^{it}}}{R^2 e^{2it}+a^2}dt\right|\\
+              &\leq \int_{0}^{\pi}\frac{R^2|e^{iR(\cos(t)+i\sin(t))}|}{|R^2 e^{2it}+a^2|}dt\\
+              &\leq \int_{0}^{\pi}\frac{R^2|e^{-R\sin(t)}|}{R^2-a^2}dt\to 0
+        \end{aligned}$$
+        Weiter finden wir (weil der Pol Ordnung $1$ hat):
+        $$\res_{ia}f = \lim_{z\to ia}\frac{ze^{iz}}{z+ia} = \frac{e^{-a}}{2}$$
+        Somit gilt:
+        $$\begin{aligned}
+              &\int_{-\infty}^{\infty} \frac{ze^{iz}}{z^2 +a^2}dz =
+              \underbrace{\int_{-\infty}^{\infty} \frac{z\cos(z)}{z^2 +a^2}dz}_{\in \R}+
+              i\int_{-\infty}^{\infty} \frac{z\sin(z)}{z^2 +a^2}dz
+              = 2\pi i\frac{e^{-a}}{2}=i\pi e^{-a}\\&
+              \Rightarrow \int_{-\infty}^\infty \frac{x\sin(x)}{x^2+a^2}\,dx = \pi e^{-a}
+        \end{aligned}$$
+    \end{proof}
+
+    \begin{problem}{5}
+        Sei $f$ holomorph auf einem Gebiet, das einen Kreisring $D_{r,R}=\{r\leq |z-z_0|\leq R\}$ enthält,
+        wobei $0<r<R, z_0\in\C$. Zeige: dann hat $f$ im Inneren von $D_{r,R}$ eine eindeutige Darstellung als
+        sogenannte "Laurent-Reihe"
+        $$f(z)=\sum_{k=-\infty}^\infty a_k(z-z_0)^k, \quad a_k\in\C.$$
+        (Vorschlag Zeige, dass sich $f$ schreiben lässt als
+        $$f(z)=\frac{1}{2\pi i}\int_{C_R}\frac{f(\zeta)}{\zeta -z}d\zeta-\frac{1}{2\pi i}\int_{C_r}
+        \frac{f(\zeta)}{\zeta -z}d\zeta,$$
+        wobei $C_{\rho}:= \{|z-z_0|=\rho\},\rho>0$. Folgere daraus die Behauptung.)
+    \end{problem}
+
+    \begin{proof}
+        Mit dem richtigen Schlüsselloch ist offensichtlich, dass wir $f$ in der Form des Tipps schreiben
+        können. \\\\
+        Wir versuchen beide Integrale als Potenzreihe zu schreiben, dafür beginnen wir mit dem äußeren Kreis:
+        $$\frac{1}{\zeta -z} = \frac{1}{\zeta-z_0+z_0- z} = \frac{1}{\zeta -z_0}\cdot \frac{1}{1-\frac{z_0-z}
+        {\zeta -z_0}} = \frac{1}{\zeta -z_0}\cdot\sum_{n\geq 0}\left(\frac{z_0-z}{\zeta -z_0}\right)^n$$
+        Für den kleineren Kreis:
+        $$\frac{1}{\zeta -z} = \frac{1}{\zeta-z_0+z_0- z} = \frac{1}{z_0 -z}\cdot \frac{1}{1-\frac{\zeta-z_0}
+        {z_0-z}} = \frac{1}{z_0 -z}\cdot\sum_{n\geq 0}\left(\frac{\zeta-z_0}{z_0-z}\right)^n$$
+        Gesamt haben wir damit (weil alle vorkommenden Reihen absolut konvergieren):
+        $$\begin{aligned}
+              f(z)&=\frac{1}{2\pi i}\int_{C_R}\frac{f(\zeta)}{\zeta -z}d\zeta-\frac{1}{2\pi i}\int_{C_r}
+              \frac{f(\zeta)}{\zeta -z}d\zeta\\
+              &= \frac{1}{2\pi i}\int_{C_R}f(\zeta)\frac{1}{\zeta -z_0}\cdot\sum_{n\geq 0}\left(\frac{z_0-z}
+              {\zeta -z_0}\right)^nd\zeta + \frac{1}{2\pi i}\int_{C_r}f(\zeta)\frac{1}{z_0 -z}\cdot
+              \sum_{n\geq 0}\left(\frac{\zeta-z_0}{z_0-z}\right)^nd\zeta\\
+              &=\sum_{n\geq 0}\frac{1}{2\pi i}\int_{C_R}f(\zeta)\frac{(z_0-z)^n}
+              {(\zeta -z_0)^{n+1}}d\zeta + \sum_{n< 0}\frac{1}{2\pi i}\int_{C_r}f(\zeta)\cdot
+              \frac{(z_0-z)^{n}}{(\zeta-z_0)^{n+1}}d\zeta
+        \end{aligned}$$
+        Für $k\geq 0$ definieren wir also
+        $$a_k = \frac{1}{2\pi i}\int_{C_R}f(\zeta)\frac{(-1)^k}{(\zeta -z_0)^{k+1}}d\zeta$$
+        und für $k<0$ haben wir
+        $$a_k = \frac{1}{2\pi i}\int_{C_r}f(\zeta)\cdot\frac{(-1)^{k}}{(\zeta-z_0)^{k+1}}d\zeta$$
+        und erhalten damit das Gewünschte.\\\\
+        Eindeutig ist die Darstellung, weil die Reihe mit positiven Koeffizienten eindeutig
+        sein muss. Und mit $f(z)(z-z_0)^n$ kann ich das gleiche Argument auf negative
+        Koeffizienten fortsetzen.
+    \end{proof}
+\end{document}

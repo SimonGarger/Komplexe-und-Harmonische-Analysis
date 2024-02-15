@@ -1,0 +1,266 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Numerik 2022 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{arabicore}
+\usepackage{amsmath-2018-12-01}
+\usepackage{amsmath-2018-12-01}
+\usepackage{farsifnt}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\res}{\text{res}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+\newenvironment{problem}[2][Beispiel]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}] \itshape}{
+    \end{trivlist}\normalshape
+}
+
+\begin{document}
+    \begin{problem}{1}
+        Zeige dass für $\xi \in \mathbb{R}$
+        $$
+        \int_{-\infty}^{\infty} \frac{e^{-2 \pi i x \xi}}{\cosh (\pi x)} d x=\frac{1}{\cosh (\pi \xi)}
+        $$
+        wobei $\cosh (z):=\frac{e^z+e^{-z}}{2}$.
+        (Hinweis: Benutze den Residuensatz für eine geeignete Rechteck-Kontour und die Periodizität von $e^{\pi z}$.)
+    \end{problem}
+
+    \begin{proof}
+        Sei $f(z):= \frac{e^{-2 \pi i z \xi}}{\cosh (\pi z)}$. Zuerst bemerken wir, dass der Nenner genau dann
+        verschwindet, wenn $e^z = -e^{-z}\Rightarrow e^{2\pi z} = -1$ gilt. Somit muss $2\pi z = i\pi\mod 2\pi$.
+        Wir betrachten nun das Rechteck auf der $x$-Achse von $-R$ bis $R$ und mit der Höhe bis $2i$.
+        Die einzigen Pole in diesem Rechteck sind $z_1 = i/2$ und $z_2=3i/2$. Die Residuen dieser Pole sind:
+        $$\begin{aligned}
+              \lim_{z\to z_1}(z-z_1)f(z)
+              &= \lim_{z\to z_1}(z-z_1)\frac{2 e^{-2\pi i z\xi}}{e^{\pi z}+e^{-\pi z}}\\
+              &= \lim_{z\to z_1}(z-z_1)\frac{2e^{\pi z} e^{-2\pi i z\xi}}{e^{\pi z}(e^{\pi z}-e^{2\pi z_1}e^{-\pi z})}\\
+              &= \lim_{z\to z_1}2 e^{-2\pi i z\xi}e^{\pi z}\frac{z-z_1}{e^{2\pi z}-e^{2\pi z_1}}\\
+              &= 2 e^{-2\pi i z_1\xi}e^{\pi z_1}\frac{1}{2\pi e^{2\pi z_1}} = \frac{e^{\pi \xi}}{\pi i}
+        \end{aligned}$$
+        Somit hat $f$ erstens einen einfachen Pol und wir haben auch gleich das Residuum.
+        Genauso finden wir:
+        $$\begin{aligned}
+              \lim_{z\to z_2}(z-z_2)f(z)
+              &= \lim_{z\to z_2}(z-z_2)\frac{2 e^{-2\pi i z\xi}}{e^{\pi z}+e^{-\pi z}}\\
+              &= \lim_{z\to z_2}(z-z_2)\frac{2e^{\pi z} e^{-2\pi i z\xi}}{e^{\pi z}(e^{\pi z}-e^{2\pi z_2}e^{-\pi z})}\\
+              &= \lim_{z\to z_2}2 e^{-2\pi i z\xi}e^{\pi z}\frac{z-z_2}{e^{2\pi z}-e^{2\pi z_2}}\\
+              &= 2 e^{-2\pi i z_2\xi}e^{\pi z_2}\frac{1}{2\pi e^{2\pi z_2}} = -\frac{e^{3\pi \xi}}{\pi i}
+        \end{aligned}$$
+        Für die rechte Seitenfläche finden wir mit $z=R+iy$ mit $0\leq y\leq 2$:
+        $$\frac{|e^{-2 \pi i z \xi}|}{|\cosh (\pi z)|}\leq \frac{2e^{4\pi|\xi| }}{||e^{\pi z}|-|e^{-\pi z}||}
+        = \frac{2e^{4\pi|\xi| }}{e^{\pi R}-e^{-\pi R}}\to 0$$
+        Genauso finden wir für die linke Seitenfläche:
+        $$\frac{|e^{-2 \pi i z \xi}|}{|\cosh (\pi z)|}\leq \frac{2e^{4\pi|\xi|}}{||e^{\pi z}|-|e^{-\pi z}||}
+        = \frac{2e^{4\pi|\xi| }}{e^{-\pi R}-e^{\pi R}}\to 0$$
+        Nun bemerken wir, dass die Funktion entlang der $y$-Achse "periodisch" ist. Denn es gilt:
+        $$f(z+2i) = \frac{e^{4\pi \xi}e^{-2 \pi i z \xi}}{\frac{e^{z\pi+2\pi i} + e^{-(z\pi + 2\pi i)}}{2}}
+        = e^{4\pi \xi} f(z)$$
+        Gesamt haben wir also bis jetzt:
+        $$\int_{R} f(z)\,dz = \int_{-\infty}^{\infty} \frac{e^{-2 \pi i x \xi}}{\cosh (\pi x)} d x -
+        e^{4\pi \xi}\int_{-\infty}^{\infty} \frac{e^{-2 \pi i x \xi}}{\cosh (\pi x)} d x
+        = 2\pi i\left(\frac{e^{\pi \xi}}{\pi i}-\frac{e^{3\pi \xi}}{\pi i}\right) =
+        2(e^{\pi \xi}-e^{3\pi \xi})$$
+        $$\int_{-\infty}^{\infty} \frac{e^{-2 \pi i x \xi}}{\cosh (\pi x)} d x =
+        \frac{-2e^{2\pi\xi}(e^{\pi \xi}-e^{-\pi \xi})}{1-e^{4\pi \xi}} =
+        \frac{-2e^{2\pi\xi}(e^{\pi \xi}-e^{-\pi \xi})}{-e^{2\pi\xi}(e^{2\pi\xi}-e^{-2\pi\xi})}
+        = \frac{2(e^{\pi \xi}-e^{-\pi \xi})}{(e^{\pi\xi}-e^{-\pi\xi})(e^{\pi\xi}+e^{-\pi\xi})}=$$
+        Damit haben wir wie gewünscht:
+        $$\int_{-\infty}^{\infty} \frac{e^{-2 \pi i x \xi}}{\cosh (\pi x)} d x=
+        \frac{1}{\cosh (\pi \xi)}$$
+    \end{proof}
+
+    \begin{problem}{2}
+        Berechne das Integral
+        $$
+        \int_{-\infty}^{\infty} \frac{x^2}{\left(x^2+a^2\right)^2} d x, \quad a>0 .
+        $$
+    \end{problem}
+
+    \begin{proof}
+        Wir können faktorisieren:
+        $$(z^2+a^2)^2 = (z-ia)^2 (z+ia)^2$$
+        Wir haben also zwei Pole, jeweils mit Ordnung $2$. Wir berechnen das
+        Residuum vom Pol $ia$:
+        $$\begin{aligned}
+              \res_{ia} f(z) &= \lim_{z\to ia}\frac{1}{(2-1)!}\left(\frac{d}{dz}\right)^{2-1}
+              (z-ia)^2 f(z) \\&= \lim_{z\to ia}\frac{d}{dz}\frac{z^2}{(z+ia)^2} \\&=
+              \lim_{z\to ia}\frac{2z(z+ia)^2- 2(z+ia)z^2}{(z+ia)^4}\\& =
+              \frac{2ia(-4a^2)+4ia^3}{16a^4} \\&= \frac{-ia^3}{4a^4} = -\frac{i}{4a}
+        \end{aligned}$$
+        Nun integrieren wir über den oberen Halbkreis von $-R$ bis $R$. Dabei wählen wir
+        die Parametriesierung $\gamma_R: t\mapsto Re^{it}$ mit $t\in [0,\pi]$.
+        $$\begin{aligned}
+              \int_{\gamma_R} f(z) \, dz &=
+              \left|\int_0^{\pi}\frac{R^2e^{2it}iRe^{it}}{(R^2e^{2it}+a^2)^2}\, dt \\
+              &= \int_0^{\pi}\frac{R^3e^{3it}i}{R^4e^{4it}+2R^2e^{2it}a^2+a^4}\, dt \\
+              |\cdot |\Rightarrow &\leq \int_0^{\pi}\frac{R^3}{R^4 -2R^2-a^4}dt \\
+              &= \frac{\pi R^3}{R^4 -2R^2 a^2 -a^4 }\to 0
+        \end{aligned}$$
+        Nach dem Residuensatz haben wir somit:
+        $$\int_{-\infty}^{\infty} \frac{x^2}{\left(x^2+a^2\right)^2} d x=
+        2\pi i \left(-\frac{i}{4a}\right)= \frac{\pi}{2a}$$
+    \end{proof}
+
+    \begin{problem}{3}
+        Sei $f: \mathbb{C} \rightarrow \mathbb{C}$ ganz und injektiv. Zeige: dann existieren $a \in \mathbb{C} \backslash\{0\}$ und $b \in \mathbb{C}$ so dass $f(z)=a z+b$.
+        (Hinweis: Betrachte $z \mapsto f(1 / z)$ und untersuche die isolierte Singularität in $z=0$.)
+    \end{problem}
+
+    \begin{proof}
+        Nehmen wir an es wäre eine hebbare Singularität. Dann wäre $f(1/z)$ um $0$ beschränkt, also
+        wäre $f(z)$ außerhalb eines bestimmen Radius beschränkt. Damit ist $f$ aber beschränkt und ganz und
+        damit konstant, was ein Widerspruch zur Injektivität ist. \\\\
+        Nehmen wir nun an es ist eine essentielle Singularität. Dann liegt das Bild von $f(1/z)$
+        einer Umgebung von $0$ dicht in $\C$. Damit ist das Bild von $f$ dicht außerhalb eines Radius.
+        Nun wählen wir $f^{-1}(B_\varepsilon(z))$ (offen) für ein $z$ im inneren Kreis. Da das Bild außerhalb
+        des Radius dicht ist, widerspricht das der injektivität. Gebietstreu weil
+        injektiv und stetig? Eher über Bilder als über Urbilder argumentieren? \\\\
+        Also hat $f(1/z)$ einen Pol bei $z=0$. Nun schreiben wir:
+        $$f(z) = \sum_{n=1}^\infty a_n z^n \quad\Rightarrow \quad f(1/z)=\sum_{n=1}^\infty a_n z^{-n}$$
+
+        Nach Theorem 1.2, müssen fast alle $a_n$ verschwinden. Also ist $f(z)$ ein Polynom. Dieses Polynom
+        muss Grad $1$ haben, denn ein Polynom mit Grad $0$ ist nicht injektiv und ein Polynom mit
+        Grad $n>1$ hat entweder mehrere verschiedene Nullstellen (nicht injektiv) oder zumindest eine mit
+        Vielfachheit $k>1$. Ist allerdings $f(z) = (x-z_0)^k$, dann finden wir mit zwei verschiedenen
+        $k$-ten Einheitswurzeln $r_1$ und $r_2$:
+        $$f(z_0 +r_1) = f(z_0+r_2) = 1$$
+    \end{proof}
+
+    \begin{problem}{4}
+        Nullstellen zählen:
+        \begin{enumerate}[label = (\alph*)]
+            \item Bestimme die Anzahl Nullstellen (mit Vielfachheiten) von $z \mapsto z^7-5 z^3+7$ auf $1<|z|<2$, und
+            von $z \mapsto z^8-3 z^2+1$ auf $|z|>1$.
+            \item Zeige: Das Polynom $P(z):=z^4+6 z+3$ hat 4 Nullstellen in $B_2(0)$. Eine davon liegt in $B_1(0)$, die
+            restlichen drei in $B_2(0) \backslash B_1(0)$.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        Wir verwenden Rouches Theorem:
+        \begin{enumerate}[label = (\alph*)]
+            \item Für $|z|=2$
+            $$|f(z)-z^7| = |-5z^3+7|\leq 47< 128 = |z^7|$$
+            Also haben wir als $7$ Nullstellen innerhalb des Kreises mit Radius $2$. Weiter finden wir
+            mit $|z|=1$:
+            $$|f(z)-7| = |z^7-5z^3| \leq 6 < 7$$
+            Deshalb sind innerhalb des Einheitskreises gleich viele Nullstellen wie von $g(z)=7$, also keine.
+            \\\\
+            Für die zweite Funktion sehen wir auf dem Einheitskreis:
+            $$|f(z)+ 3z^2| = |z^8 +1|\leq 2 < 3=|-3z^2|$$
+            Somit haben wir zwei Nullstellen innerhalb des Einheitskreises.
+            \item Zuerst sehen wir für $|z|=2$:
+            $$|P(z)-z^4|=|6z+3|\leq 9< 16 = |z^4|$$
+            Für $z=1$ sehen wir genauso:
+            $$|P(z)-6z|=|z^4+4|\leq 5 < 6 = |6z|$$
+            was das Gewünschte zeigt.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{problem}{5}
+        Klassifizere die isolierten Singularitäten und bestimme (wo relevant) die Residuen für
+        \begin{enumerate}[label = (\alph*)]
+            \item $\frac{1-\cos (z)}{z^2}$,
+            \item $e^{\frac{1}{z}}-\frac{1}{z}$,
+            \item $\left(z^2+1\right)^{-n}, n \in \mathbb{N}$,
+            \item $(z+2) \sin \left((z+2)^{-1}\right)$,
+            \item $\frac{g(z)}{1+z^n}$ mit $g$ ganz,
+            \item $\frac{4 z}{\left(z^2+2 a z+1\right)^2}$ mit $a>1$.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        \begin{enumerate}[label = (\alph*)]
+            \item Wir finden:
+            $$\frac{1-\cos (z)}{z^2} = \frac{1-\sum_{n=0}^\infty (-1)^n \frac{z^{2n}}{(2n)!}}{z^2} =
+            \frac{1}{z^2}-\frac{1}{z^2}+\frac{1}{2} + \sum_{n=2}^\infty(-1)^n \frac{z^{2n-2}}{(2n)!}
+            \to \frac{1}{2}$$
+            Also ist die Singularität hebbar, denn durch Umformungen sehen wir, dass jede
+            Folge gegen $\frac{1}{2}$ konvergiert.
+            \item Entlang der Folge $\frac{1}{n}$ sehen wir:
+            $$e^n - n \to \infty$$
+            Also ist es keine hebbare Singularität. \\
+            Wir entwickeln wieder die Potenzreihe
+            $$e^{1/z}-\frac{1}{z} = \sum_{n=0}^\infty \frac{z^{-n}}{n!}-\frac{1}{z} = 1 -
+            \frac{1}{z}+ \frac{1}{z} +\sum_{n=2}^\infty \frac{z^{-n}}{n!}$$
+            Wäre es ein Pol vom Grad $n$ könnten wir $z^{-n}$ herausheben und dann müsste die Reihe
+            holomorph sein. Das ist sie offensichtlich nicht, also ist es eine essentielle Singularität.
+            \\ Gilt allgemeiner, wenn man zB $e^{1/z}-\frac{1}{z} = f(z)$, dann muss
+            $f(z)+\frac{1}{z}$ auch eine essentielle Singularität sein.
+            \item Wir haben diesmal Singularitäten bei $\pm i$. Wir finden:
+            $$\frac{1}{(1+z^2)^n} = \frac{1}{(z+i)^n(z-i)^n}$$
+            Beide Pole sind somit $n$-fach. Wir bestimmen die Residuen:
+            $$\begin{aligned}
+                  \res_i f &= \lim_{z\to i}\frac{1}{(n-1)!}\left(\frac{d}{dz}\right)^{n-1} (z+i)^{-n}\\& =
+                  \lim_{z\to i}\frac{1}{(n-1)!} (-1)^{n-1} (n\cdot (n+1)\cdots (2n-2))\cdot (z+i)^{-(n+n-1)}
+                  \\&= \lim_{z\to i}\frac{(2n-2)!}{(n-1)!^2} (-1)^{n-1}(z+i)^{-(2n-1)}\\
+                  &= \frac{(2n-2)!}{(n-1)!^2} (-1)^{n-1}(2i)^{-(2n-1)}
+            \end{aligned}$$
+            Genauso finden wir:
+            $$\begin{aligned}
+                  \res_{-i} f &= \lim_{z\to -i}\frac{1}{(n-1)!}\left(\frac{d}{dz}\right)^{n-1} (z-i)^{-n}\\& =
+                  \lim_{z\to i}\frac{1}{(n-1)!} (-1)^{n-1} (n\cdot (n+1)\cdots (2n-2))\cdot (z-i)^{-(n+n-1)}
+                  \\&= \lim_{z\to -i}\frac{(2n-2)!}{(n-1)!^2} (-1)^{n-1}(z-i)^{-(2n-1)}\\
+                  &= \frac{(2n-2)!}{(n-1)!^2} (-1)^{-n+1}(2i)^{-(2n-1)}
+            \end{aligned}$$
+            \item Wir schreiben als Potenzreihe:
+            $$(z+2) \sin ((z+2)^{-1}) = (z+2)\cdot \sum_{n=0}^\infty (-1)^n\frac{(z+2)^{-(2n+1)}}{(2n+1)!}
+            =\sum_{n=0}^\infty (-1)^n\frac{(z+2)^{-2n}}{(2n+1)!}$$
+            Mit der gleichen Arumentation von $b$ sehen wir, dass es sich um eine essentielle
+            Singularität handeln muss.
+            \item Offensichtlich ist die Singularität für $g(z) = 0$ hebbar. Die Nullstellen des Nenners
+            sind die Punkte $z_j = e^{\frac{i\pi + 2\pi ij}{n}}$ mit $j=0,1,\dots , n-1$. $z_j$ ist
+            genau dann hebbar, wenn $g(z_j)=0$ (nicht so trivial) gilt und sonst ein einfacher Pol. Nehmen wir an
+            $g(z_j)\neq 0$, dann gilt:
+            $$\res_{z\to z_j}\frac{g(z)}{1+z^n} = \lim_{z\to z_j} (z-z_j)\frac{g(z)}{1+z^n} =
+            \lim_{z\to z_j}\frac{g(z)}{\prod_{
+            \begin{subarray}{c}
+                i = 0\\
+                i\neq j
+            \end{subarray}}^{n-1}(z-z_i)} = \frac{g(z_j)}{\prod_{
+            \begin{subarray}{c}
+                i = 0\\
+                i\neq j
+            \end{subarray}}^{n-1}(z_j-z_i)}$$
+            \item Zuerst bestimmen wir die Pole:
+            $$(z^2+2 a z+1)^2 = (z+a-\sqrt{a^2-1})^2(z+a+\sqrt{a^2-1})^2$$
+            Also haben wir zwei Pole mit Ordung $2$. Damit finden wir:
+            $$\begin{aligned}
+                  \res_{z\to -a+\sqrt{a^2-1}} &= \lim_{z\to -a+\sqrt{a^2-1}}\frac{d}{dz}\frac{4z}{(z+a+\sqrt{a^2-1})^2}
+                  \\& = \lim_{z\to -a+\sqrt{a^2-1}}\frac{4(z+a+\sqrt{a^2-1})^2-8z(z+a+\sqrt{a^2-1})}{(z+a+\sqrt{a^2-1})^4}\\
+                  &= \frac{16(a^2-1)-16\sqrt{a^2-1}(-a+\sqrt{a^2-1})}{16(a^2-1)^2}
+                  = \frac{1}{a^2-1}-\frac{-a+\sqrt{a^2-1}}{(a^2-1)^{3/2}}
+            \end{aligned}$$
+            Für den anderen Pol finden wir:
+            $$\begin{aligned}
+                  \res_{z\to -a-\sqrt{a^2-1}} &= \lim_{z\to -a-\sqrt{a^2-1}}\frac{d}{dz}\frac{4z}{(z+a-\sqrt{a^2-1})^2}
+                  \\& = \lim_{z\to -a-\sqrt{a^2-1}}\frac{4(z+a-\sqrt{a^2-1})^2-8z(z+a-\sqrt{a^2-1})}{(z+a-\sqrt{a^2-1})^4}\\
+                  &= \frac{16(a^2-1)+16\sqrt{a^2-1}(-a-\sqrt{a^2-1})}{16(a^2-1)^2}
+                  = \frac{1}{a^2-1}+\frac{-a-\sqrt{a^2-1}}{(a^2-1)^{3/2}}
+            \end{aligned}$$
+        \end{enumerate}
+    \end{proof}
+\end{document}

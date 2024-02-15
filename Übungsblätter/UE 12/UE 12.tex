@@ -1,0 +1,185 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Numerik 2022 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{arabicore}
+\usepackage{amsmath-2018-12-01}
+\usepackage{amsmath-2018-12-01}
+\usepackage{farsifnt}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\res}{\text{res}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+\newenvironment{problem}[2][Beispiel]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}] \itshape}{
+    \end{trivlist}\normalshape
+}
+
+\begin{document}
+    \begin{problem}{1}
+        Seien $f, g \in L^2([-\pi, \pi])$. Zeigen Sie, dass
+        $$
+        \frac{1}{2 \pi} \int_{-\pi}^\pi f(x) \overline{g(x)} d x=\sum_{k \in
+        \mathbb{Z}} \hat{f}(k) \overline{\hat{g}(k)} .
+        $$
+    \end{problem}
+
+    \begin{proof}
+        Wir finden mit der Polarisationsformel:
+        $$\begin{aligned}
+              \frac{1}{2 \pi} \int_{-\pi}^\pi f(x) \overline{g(x)} d x &= \langle f,g\rangle \\
+              &= \frac{1}{4}(\|f+g\|^2 - \|f-g\|^2 +i\|f-ig\|^2 - i\|f+ig\|^2)\\
+              &= \frac{1}{4}(\|\widehat{f+g}\|^2 - \|\widehat{f-g}\|^2 +i\|\widehat{f-ig}\|^2 - i\|\widehat{f+ig}\|^2)\\
+              &= \langle \hat{f}, \hat{g}\rangle =\sum_{k \in
+              \mathbb{Z}} \hat{f}(k) \overline{\hat{g}(k)}
+        \end{aligned}$$
+        Die folgende Reihe konvergiert absolut, weil das Skalarprodukt in
+        $L^2 $ stetig ist (?):
+        $$\begin{aligned}
+              \frac{1}{2 \pi} \int_{-\pi}^\pi f(x) \overline{g(x)} d x &=
+              \frac{1}{2 \pi} \int_{-\pi}^\pi\sum_{n\in \Z}\hat{f}(n)e^{inx}
+              \overline{\sum_{m\in \Z}\hat{g}(m)e^{imx}}dx\\
+              &= \frac{1}{2 \pi} \int_{-\pi}^\pi\sum_{n\in \Z}\sum_{m\in \Z}
+              \hat{f}(n)\overline{\hat{g}(m)}e^{i(n-m)x}dx\\
+              &= \sum_{n\in \Z}\sum_{m\in \Z}\hat{f}(n)\overline{\hat{g}(m)}\frac{1}{2 \pi}
+              \int_{-\pi}^\pi e^{i(n-m)x}dx\\
+              &= \sum_{n\in \Z}\sum_{m\in \Z}\hat{f}(n)\overline{\hat{g}(m)}\delta_{m,n}\\
+              &= \sum_{n\in \Z}\hat{f}(n)\overline{\hat{g}(n)}
+        \end{aligned}$$
+    \end{proof}
+
+    \begin{problem}{2}
+        (Verbesserung von Korollar 14) Beweisen Sie, dass die Fourier-Reihe einer stetig
+        differenzierbaren und periodischen Funktion absolut konvergent ist.
+        (Hinweis: Verwenden Sie die Cauchy-Schwarz-Ungleichung und die Parseval-Identität für
+        die Ableitungsfunktion.)
+    \end{problem}
+
+    \begin{proof}
+        Wir wissen aus Satz 12, dass $\hat{f'}(n)=in\hat{f}(n)$ gilt.\\\\
+        Da $f$ stetig ist, ist die Funktion integrierbar und damit ist $f'\in L^2$. Damit gilt:
+        $$\sum_{n\in \Z}|\hat{f}(n)|=|\hat{f}(0)|+\sum_{n\in \Z\setminus\{0\}}\frac{1}{n}|\hat{f'}(n)|\leq
+        |\hat{f}(0)|+\left(\sum_{n\in \Z\setminus\{0\}}\frac{1}{n^2}\right)^{\frac{1}{2}}\cdot
+        \left(\sum_{n\in \Z\setminus\{0\}}|\hat{f'}(n)|^2\right)^{\frac{1}{2}} < C\|f'(x)\|_{L^2}<\infty$$
+    \end{proof}
+
+    \begin{problem}{3}
+        Sei $f: \mathbb{R} \rightarrow \mathbb{C}\thickspace 2 \pi$-periodisch und $C^k$ (d.h., $k$-mal
+        stetig differenzierbar). Zeigen Sie, dass
+        $$
+        \lim _{n \rightarrow \pm \infty}(1+|n|)^k|\hat{f}(n)|=0 .
+        $$
+
+        Dies ist eine Verbesserung gegenüber einer vorherigen Übung. (Hint: Verwenden Sie
+        das Riemann-Lebesgue-Lemma.)
+    \end{problem}
+
+    \begin{proof}
+        Wir beginnen mit einer ähnlichen Abschätzung wie auf Übungsblatt 10:
+        $$|\hat{f}(n)|=\left|\frac{1}{(in)^k}\widehat{f^{(k)}}(n)\right|=
+        \frac{1}{|n|^k }|\widehat{f^{(k)}}(n)|$$
+        Nun ist nach der Angabe $f^{(k)}(x)$ stetig und damit auf kompakten Intervallen beschränkt.
+        Die Funktion $f^{(k)}(n)$ ist somit integrierbar und nach dem Riemann-Lebesgue-Lemma (Übungsblatt
+        11) gilt damit
+        $\widehat{f^{(k)}}(n)\to 0$. Damit bekommen wir:
+        $$\lim _{n \rightarrow \pm \infty}(1+|n|)^k|\hat{f}(n)|\leq \lim _{n \rightarrow \pm \infty}
+        \frac{(1+|n|)^k}{|n|^k}\left|\widehat{f^{(k)}}(n)\right|=0$$
+        Wobei der letzte Schritt aus Riemann-Lebesgue folgt.
+    \end{proof}
+
+    \begin{problem}{4}
+        Wir werden die Ungleichungen von Wirtinger und Poincaré beweisen, die einen Zusammenhang
+        zwischen die Norm einer Funktion und die ihrer Ableitung herstellen.
+        \begin{enumerate}[label = (\alph*)]
+            \item Sei $f: \mathbb{R} \rightarrow \mathbb{C}$ $T$-periodisch, stetig
+            und stückweise $C^1$ (d.h., einmal stetig differenzierbar) mit $\int_0^T f(x) d x=0$.
+            Zeigen Sie, dass
+            $$
+            \int_0^T|f(x)|^2 d x \leq \frac{T^2}{4 \pi^2} \int_0^T\left|f^{\prime}(x)\right|^2 d x
+            $$
+            mit Gleichheit genau dann, wenn $f(x)=A \sin (2 \pi x / T)+B \cos (2 \pi x / T)$.
+            (Hint: Wenden Sie Parsevals Identität an.)
+            \item Sei $f$ wie oben und $g \thickspace C^1$ und $\mathrm{T}$-periodisch, Zeigen Sie, dass
+            $$
+            \left|\int_0^T \overline{f(x)} g(x) d x\right|^2 \leq \frac{T^2}{4 \pi^2} \int_0^T
+            |f(x)|^2 d x \int_0^T\left|g^{\prime}(x)\right|^2 d x .
+            $$
+            \item  Zeigen Sie, dass für jedes kompakte Intervall $[a, b]$ und jede stetig
+            differenzierbare Funktion $f$ mit $f(a)=f(b)=0$,
+            $$
+            \int_a^b|f(x)|^2 d x \leq \frac{(b-a)^2}{\pi^2} \int_a^b\left|f^{\prime}(x)\right|^2 d x
+            $$
+            mit Gleichheit genau dann, wenn $f(x)=A \sin \left(\pi \frac{x-a}{b-a}\right)$.
+            (Hint: Erweitern Sie f so, dass es bezüglich $a$ ungerade und $T$-periodisch
+            ist, mit $T=2(b-a)$, so dass sein Integral über ein Intervall der Länge $T$ null ist.)
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        Nach dem Beweis für Satz 12 gilt allgemeiner:
+        $$\begin{aligned}
+              T\hat{f}(n) &= \int_0^T f(x)e^{-\frac{2\pi inx}{T}}dx =
+              \int_0^T f(x)\frac{d}{dx}\left[\frac{T}{-2\pi in} e^{-\frac{2\pi inx}{T}}\right]dx\\
+              &= \left[f(x)\frac{T}{-2\pi in}e^{-\frac{2\pi inx}{T}}\right]_0^T -
+              \int_0^T f'(x)\frac{T}{-2\pi in} e^{-\frac{2\pi inx}{T}}dx =\frac{T^2}{-2\pi in}\hat{f'}(n)\\
+              &\Rightarrow \hat{f}(n) = \frac{T}{2\pi in}\hat{f'}(n)
+        \end{aligned}$$
+        Weiter sehen wir, dass nach Vorraussetzung
+        $$\hat{f}(0) = \frac{1}{T}\int_0^T f(x)dx = 0$$
+        gilt. Damit bekommen wir:
+        $$\int_0^T |f(x)|^2 =\sum_{n\in\Z\setminus\{0\}} |\hat{f}(x)|^2 \leq
+        \sum_{n\in\Z\setminus\{0\}}n^2 |\hat{f}(x)|^2 =\frac{T^2}{4\pi^2}
+        \sum_{n\in\Z\setminus\{0\}} |\hat{f'}(x)|^2 =\frac{T^2}{4\pi^2}\int_0^T |f'(x)|^2 dx$$
+        Damit Gleichheit gilt müssen alle Fourierkoeffizienten außer $\hat{f}(1)$ und $\hat{f}(-1)$
+        verschwinden. Damit muss unsere Fourierreihe wie folgt aussehen:
+        $$\begin{aligned}
+              f(x)&\sim \hat{f}(-1)e^{-\frac{2\pi ix}{T}} + \hat{f}(1)e^{\frac{2\pi ix}{T}}\\
+              &= \hat{f}(-1)\left(\cos\left(-\frac{2\pi x}{T}\right)+i\sin\left(-\frac{2\pi x}{T}
+              \right)\right)+\hat{f}(1)\left(\cos\left(\frac{2\pi x}{T}\right)+i\sin\left(\frac{2\pi x}{T}
+              \right)\right)\\
+              &= (\hat{f}(1)+\hat{f}(-1))\cos\left(\frac{2\pi x}{T}\right) +
+              i(\hat{f}(1)-\hat{f}(-1))\sin\left(\frac{2\pi x}{T}\right)
+        \end{aligned}$$
+        Für den zweiten Unterpunkt sehen wir durch die Cauchy-Schwarz-Ungleichung und
+        den ersten Unterpunkt:
+        $$\left|\int_0^T \overline{f(x)} g(x) d x\right|^2\leq
+        \int_0^T|f(x)|^2 d x \int_0^T\left|g(x)\right|^2 d x
+        \leq \frac{T^2}{4 \pi^2} \int_0^T
+        |f(x)|^2 d x \int_0^T\left|g^{\prime}(x)\right|^2 d x$$
+        [Falsch: $g$ muss man noch anpassen, weil das Integral nicht
+        notwendigerweise verschwindet, $h(x)=g(x)-\frac{1}{T}\int_0^T g(x)dx$].
+        Wie im Hinweis gegeben betrachten wir die ungerade (bzgl. $a$)
+        Funktion $f$ auf einem Intervall mit Länge $T=2(b-a)$. Damit
+        ist das Integral über $f$ auf jedem Intervall mit Länge
+        $T$ gleich $0$ und somit können wir die Ungleichung des ersten
+        Punktes anwenden und bekommen damit die erste Behauptung direkt.
+        Gleicheit gilt damit genau dann wenn die Funktion
+        $$f(x-a)=A\sin\left(\frac{\pi (x-a)}{b-a}\right)+ B
+        \cos\left(\frac{\pi (x-a)}{b-a}\right)$$
+        Diese Form hat (eigentlich $f(x)$, nur gleich $(x-a)$ geschrieben wegen dem Folgenden.)
+        Diese Funktion ist um $x=0$ ungerade und damit muss $B$ gleich $0$ sein.
+    \end{proof}
+\end{document}

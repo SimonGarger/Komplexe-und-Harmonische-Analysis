@@ -1,0 +1,353 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Numerik 2022 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{arabicore}
+\usepackage{amsmath-2018-12-01}
+\usepackage{amsmath-2018-12-01}
+\usepackage{farsifnt}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\res}{\text{res}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+\newenvironment{problem}[2][Beispiel]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}] \itshape}{
+    \end{trivlist}\normalshape
+}
+
+\begin{document}
+    \begin{problem}{1}
+        Sei $f: \mathbb{R} \rightarrow \mathbb{C} \,\,2 \pi$-periodisch und integrierbar. Zeigen Sie
+        folgendes.
+        \begin{enumerate}[label = (\alph*)]
+            \item Wenn die Fourier-Reihe von $f$ am Punkt $x$ konvergiert, dann
+            $$
+            f(x)=\hat{f}(0)+\sum_{n \geq 1}[\hat{f}(n)+\hat{f}(-n)] \cos (n x)+i[\hat{f}(n)-\hat{f}(-n)]
+            \sin (n x) .
+            $$
+            \item Wenn $f$ gerade ist, dann ist $\hat{f}(n)=\hat{f}(-n)$ und die Fourier-Reihe von
+            $f$ besteht, wenn sie konvergent ist, aus Kosinusfunktionen.
+            \item Wenn $f$ ungerade ist, dann ist $\hat{f}(n)=-\hat{f}(-n)$ und die Fourier-Reihe von
+            $f$ besteht, wenn sie konvergent ist, aus Sinusfunktionen.
+            \item Wenn $f(x+\pi)=f(x)$ für jedes $x \in \mathbb{R}$, dann $\hat{f}(n)=0$ fiir jedes ungerade
+            $n \in \mathbb{Z}$.
+            \item Wenn $f$ reellwertig ist, dann ist $\hat{f}(n)=\overline{\hat{f}(-n)}$ für alle
+            $n \in \mathbb{Z}$. Gilt die umgekehrte Implikation?
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        \begin{enumerate}[label = (\alph*)]
+        \item Da $x\in\R$, gilt:
+        $$\begin{aligned}
+              f(x) &= \sum_{n=-\infty}^{\infty} \hat{f}(n)e^{inx}\\&=
+              \hat{f}(0) +\sum_{n\geq 1}^{\infty} \hat{f}(n)e^{inx} +
+              \sum_{n\geq 1}^{\infty} \hat{f}(-n)e^{-inx}\\&=
+              \hat{f}(0) +\sum_{n\geq 1}^{\infty} \hat{f}(n)(\cos(nx)+i\sin(nx)) +
+              \sum_{n\geq 1}^{\infty} \hat{f}(-n)(\cos(nx)-i\sin(nx))\\&=
+              \hat{f}(0)+\sum_{n \geq 1}[\hat{f}(n)+\hat{f}(-n)] \cos (n x)+i[\hat{f}(n)-\hat{f}(-n)]
+              \sin(nx)
+        \end{aligned}$$
+        \item Wir finden:
+        $$\begin{aligned}
+              \hat{f}(n) &= \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{-inx}dx \\
+              &=\frac{1}{2\pi}\left(\int_{-\pi}^{\pi}f(x)\cos(-nx) dx+
+              i\int_{-\pi}^{\pi}f(x)\sin(-nx)dx\right) \\
+              &= \frac{1}{2\pi}\left(\int_{-\pi}^{\pi}f(x)\cos(nx) dx+
+              i\int_{-\pi}^{\pi}f(x)\sin(nx)dx\right)\\
+              &= \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{inx}dx = \hat{f}(-n)
+        \end{aligned}$$
+        Weil der Sinus ungerade ist und $f$ gerade ist, fällt das entsprechende Integral weg,
+        deswegen dürfen wir von der zweiten auf die dritte Zeile das Vorzeichen des zweiten
+        Integrals wechseln. \\
+        Für die Fourierreihe gilt:
+        $$\begin{aligned}
+              \sum_{n=-\infty}^{\infty}\hat{f}(n)e^{inx}
+              &=\sum_{n=-\infty}^{\infty}\hat{f}(n)(\cos(nx) + i\sin(nx))\\
+              &= \hat{f}(0) + \sum_{n\geq 1}\hat{f}(n)(\cos(nx) + i\sin(nx)) +
+              \sum_{n\geq 1}\hat{f}(-n)(\cos(-nx) + i\sin(-nx))\\
+              &=\hat{f}(0)+2\sum_{n\geq 1}\hat{f}(n)\cos(nx)
+        \end{aligned}$$
+        \item Genauso sehen wir für $f$ ungerade:
+        $$\begin{aligned}
+              \hat{f}(n) &= \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{-inx}dx \\
+              &=\frac{1}{2\pi}\left(\int_{-\pi}^{\pi}f(x)\cos(-nx)dx +
+              i\int_{-\pi}^{\pi}f(x)\sin(-nx)dx\right) \\
+              &= \frac{1}{2\pi}\left(-\int_{-\pi}^{\pi}f(x)\cos(nx) dx-
+              i\int_{-\pi}^{\pi}f(x)\sin(nx)dx\right)\\
+              &= -\frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{inx}dx = -\hat{f}(-n)
+        \end{aligned}$$
+        Weil der Cosinus gerade ist und $f$ ungerade ist, fällt das entsprechende Integral weg,
+        deswegen dürfen wir von der zweiten auf die dritte Zeile das Vorzeichen des ersten
+        Integrals wechseln.
+        Für die Fourierreihe gilt:
+        $$\begin{aligned}
+              \sum_{n=-\infty}^{\infty}\hat{f}(n)e^{inx}
+              &=\sum_{n=-\infty}^{\infty}\hat{f}(n)(\cos(nx) + i\sin(nx))\\
+              &= \hat{f}(0) + \sum_{n\geq 1}\hat{f}(n)(\cos(nx) + i\sin(nx)) +
+              \sum_{n\geq 1}\hat{f}(-n)(\cos(-nx) + i\sin(-nx))\\
+              &=2i\sum_{n\geq 1}\hat{f}(n)\sin(nx)
+        \end{aligned}$$
+        \item Sei $2m+1\in\Z$ ungerade (also $m\in\Z$), dann gilt:
+        $$\begin{aligned}
+              \hat{f}(2m+1) &= \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{-i(2m+1)x}dx \\&=
+              \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x+\pi)e^{-i(2m+1)(x+\pi)}dx\\&=
+              e^{-i(2m+1)\pi}\frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{-i(2m+1)x}dx\\
+              &= -\frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{-i(2m+1)x}dx=-\hat{f}(2m+1)
+        \end{aligned}$$
+        \item Es gilt:
+        $$\begin{aligned}
+              \hat{f}(n) &= \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{-inx}dx \\
+              &=\frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)\cos(-nx)dx+
+              i\frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)\sin(-nx)dx\\
+              &= \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)\cos(nx)dx-
+              i\frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)\sin(nx)dx\\&=
+              \overline{\frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{inx}dx} = \overline{\hat{f}(-n)}
+        \end{aligned}$$
+        Nehmen wir an die gegebene Bedingung hält für $f$, dann ist
+        (weil man bei konvergenten Reihen die Konjugation in die Summe ziehen darf):
+        $$\begin{aligned}
+              \overline{f(x)} &= \overline{\sum_{n=-\infty}^{\infty} \hat{f}(n)e^{inx}}\\&=
+              \sum_{n=-\infty}^{\infty} \overline{\hat{f}(n)e^{inx}}\\
+              &=\sum_{n=-\infty}^{\infty}\hat{f}(-n) e^{-inx}\\
+              &= \sum_{n=-\infty}^{\infty} \hat{f}(n)e^{inx} = f(x)
+        \end{aligned}$$
+        Also ist $f$ reellwertig.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{problem}{2}
+        Beweisen Sie das folgende Kriterium für die Konvergenz einer Reihe (bekannt als Dirichlet-Test).
+        Seien $\left\{a_n: n \geq 1\right\} \subset \mathbb{R}$ und $\left\{b_n: n \geq 1\right\} \subset
+        \mathbb{C}$. Nehmen wir an, dass $\left(a_n\right)_{n \geq 1}$ monoton auf 0 abnimmt und dass
+        die Folge der Partialsummen
+        $$
+        B_n:=\sum_{k=1}^n b_k
+        $$
+        beschränkt ist. Dann konvergiert $\sum_{k \geq 1} a_k b_k$.
+    \end{problem}
+
+    \begin{proof}
+        Wir haben:
+        $$\sum_{k=1}^n a_kb_k = a_nB_n+ \sum_{k=1}^{n-1}B_k(a_k-a_{k+1})$$
+        Sei $|B_n|\leq M$, dann gilt:
+        $$\begin{aligned}
+              \sum_{k=1}^{n-1}|B_k(a_k-a_{k+1})| &\leq M \sum_{k=1}^{n-1}(a_k-a_{k+1})\to Ma_1
+        \end{aligned}$$
+        und da wir $a_{n}B_n\to 0$. Also konvergiert die Reihe absolut nach dem Majorantenkriterium.
+        Das $a_k$ reell und monoton ist brauchen wir, damit wir den Betrag weglassen können.
+    \end{proof}
+
+    \begin{problem}{3}
+        Sei $f: \mathbb{R} \rightarrow \mathbb{C}$ die $2 \pi$-periodische Funktion
+        $$
+        f(x)=\left\{\begin{array}{ll}
+                        1 & x \in[a, b] \\
+                        0 & x \notin \mid a, b]
+        \end{array} .\right.
+        $$
+        wobei $-\pi<a<b<\pi$.
+        \begin{enumerate}[label = (\alph*)]
+            \item Zeigen Sie, dass
+            $$
+            f(x) \sim \frac{b-a}{2 \pi}+\sum_{n \in Z\setminus\{0\}} \frac{e^{-i n a}-e^{-i n b}}{2 \pi i n}
+            e^{i n x} .
+            $$
+            \item Zeigen Sie, dass die Fourier-Reihe für kein $x$ absolut konvergiert.
+            \item Beweisen Sie jedoch, dass die Fourier-Reihe in jedem Punkt $x$ konvergiert. (Achtung: Sie
+            müssen nicht beweisen, dass die Reihe gegen $f(x)$ kotwergiert; Hinweise: Dirichlet-Test).
+            \item Was passiert, wenn $a=-\pi$ und $b=\pi$ ?
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        \begin{enumerate}[label = (\alph*)]
+            \item Wir finden:
+            $$\begin{aligned}
+                  f(x)&\sim\sum_{n=-\infty}^{\infty}\hat{f}(n)e^{inx}\\
+                  &= \sum_{n=-\infty}^{\infty}\frac{1}{2\pi}\int_a^b e^{-in\theta}d\theta e^{inx}\\
+                  &= \frac{b-a}{2\pi}+\sum_{n\in\Z\setminus \{0\}}\frac{1}{2\pi}\cdot\frac{e^{-inb}-e^{-ina}}
+                  {-in}e^{inx}\\&=
+                  \frac{b-a}{2 \pi}+\sum_{n \in Z\setminus\{0\}} \frac{e^{-i n a}-e^{-i n b}}{2 \pi i n}e^{i n x}
+            \end{aligned}$$
+            \item Sei $x$ beliebig. Definieren wir $\theta$ so,
+            dass $0<2\theta<\min(2\pi -b+a,b-a)$ hält. Dann gilt
+            für alle $\alpha\in[-\pi,\pi)\setminus [-\theta,\theta]$ immer
+            $1-\cos(\alpha)\geq 1-\cos(\theta):=\varepsilon>0$. \\\\
+            Das wählen wir, damit wir gesamt
+            $$1-\cos(n(b-a))<\varepsilon \quad \Rightarrow \quad 1-\cos((n+1)(b-a))\geq \varepsilon$$
+            haben. Graphisch haben wir also einen Sektor am Einheitskreis gewählt, der so klein ist,
+            dass wir, wenn wir einmal darin landen mit der nächsten Iteration um $b-a$ weiter
+            den Einheitskreis entlang gehen und damit sicher aus dem Sektor herausgehen, was wir in
+            der folgenden Abschätzung gleich verwenden werden:
+            $$\begin{aligned}
+                  \sum_{n \in Z\setminus\{0\}} \left|\frac{e^{-i n a}-e^{-i n b}}{2 \pi i n}e^{i n x}\right|&=
+                  \sum_{n \in Z\setminus\{0\}} \frac{|e^{-i n a}-e^{-i n b}|}{2 \pi |n|}\\&=
+                  \sum_{n \in Z\setminus\{0\}} \frac{|e^{-i n a}||1-e^{-i n (b-a)}|}{2 \pi |n|}\\&=
+                  \sum_{n \in Z\setminus\{0\}} \frac{|1-\cos(n(b-a))-i\sin(n(b-a))|}{2 \pi |n|}\\&=
+                  \sum_{n \in Z\setminus\{0\}} \frac{\sqrt{(1-\cos(n(b-a)))^2+\sin^2(n(b-a))}}{2 \pi |n|}\\&=
+                  \sum_{n \in Z\setminus\{0\}} \frac{\sqrt{1-\cos(n(b-a))}}{\sqrt{2}\pi |n|}\\
+                  &\geq \sum_{
+                      \begin{subarray}c
+                          n\in Z\setminus\{0\}\\
+                          1-\cos(n(b-a))\geq \varepsilon
+                  \end{subarray}}\frac{\sqrt{\varepsilon}}{\sqrt{2}\pi |n|} = +\infty
+            \end{aligned}$$
+            Nach Konstruktion wissen wir, dass die Indexmenge der letzten Summe unendlich ist, weil
+            es zumindest jede zweite ganze Zahl sein muss.
+            \item Wir wählen für den Dirichlet-Test die reelle Nullfolge $\frac{1}{2\pi n}$ (das $i$ im
+            Nenner hat keinen Einfluss auf Konvergenz). Nun zeigen wir, dass die Partialsummen (symmetrisch
+            also betrachten wir technisch gesehen $-n$ und $n$ als einen Summanden, was bei der
+            Summation nicht zu einem Problem führt, weil wir die Werte der Partialsummen nicht
+            verändern)
+            von
+            $(e^{-i n a}-e^{-i n b})e^{inx}$ beschränkt sind. \\\\
+            Sei zuerst $x\neq a,b$.
+            Wir erinnern uns an den Dirichlet-Kern:
+            $$D_N(x) = \sum_{n=-N}^N e^{inx}=\frac{\sin((N+\frac{1}{2})x)}{\sin(\frac{x}{2})}$$
+            Dann gilt:
+            $$\begin{aligned}
+                \sum_{n=-N}^N (e^{-i n a}-e^{-i n b})e^{i n x} &=
+                \sum_{n=-N}^N e^{i n (x-a)}-\sum_{n=-N}^N e^{i n (x-b)}\\&=
+                \frac{\sin((N+\frac{1}{2})(x-a))}{\sin(\frac{x-a}{2})} -
+                \frac{\sin((N+\frac{1}{2})(x-b))}{\sin(\frac{x-b}{2})}\\& \overset{|\cdot|}{\leq}
+                  \frac{2}{\min\left(\sin(\frac{x-a}{2}),\sin(\frac{x-b}{2})\right)}<\infty
+            \end{aligned}$$
+            Sei nun $x=a$ ($x=b$ geht symmetrisch):
+            $$\begin{aligned}
+                  \sum_{n=-N}^N \frac{(e^{-i n a}-e^{-i n b})e^{i n a}}{2\pi ni} &=
+                  \sum_{n=-N}^N \frac{1-e^{i n (a-b)}}{2\pi ni}\\&=
+                  \sum_{n=-N}^N \frac{1}{2\pi ni} - \sum_{n=-N}^N\frac{e^{i n (a-b)}}{2\pi ni}
+            \end{aligned}$$
+            Die erste Summe ist aufgrund der Symmetrie $0$, der zweite Summand konvergiert wieder nach
+            dem Dirichlet-Test, genau wie oben.
+            \item Für $a=-\pi$ und $b=\pi$ haben wir die konstante $1$-Funktion und für
+            die Fourier-Reihe gilt natürlich:
+            $$f(x)=\frac{2\pi}{2 \pi}+\sum_{n \in Z\setminus\{0\}} \frac{e^{i n \pi}-e^{-i n \pi}}{2 \pi i n}
+              e^{i n x}&= 1+ \sum_{n \in Z\setminus\{0\}} \frac{(-1)^n-(-1)^n}{2 \pi i n}
+              e^{i n x}=1$$
+        \end{enumerate}
+    \end{proof}
+
+    \begin{problem}{4}
+        Sei $\left\{a_n: n \geq 1\right\} \subset \mathbb{C}$ eine Folge von komplexen Zahlen. Wir
+        definieren die (formelle) Abel-Reihe durch
+        $$
+        A(r):=\sum_{n \geq 1} a_n r^n, \qquad 0<r<1 .
+        $$
+
+        Die Reihe $\sum_{n \geq 1} a_n$ heißt Abel konvergent, wenn jede $A(r)$ konvergent ist und der
+        Abel Limes
+        $$
+        \lim _{r \rightarrow 1^{-}} A(r)
+        $$
+        existiert. Zeigen Sie das Folgende.
+        \begin{enumerate}[label = (\alph*)]
+        \item Die Abel-Reihe $A(r)$ ist wohldefiniert, wenn $a$ beschrānkt ist.
+        \item Wenn $\sum_{n>1} a_n$ konvergent ist, dann ist sie auch Abel konvergent.
+        \item Die Reihe $\sum_{\mathrm{n} \geq 1}(-1)^n$ ist nicht konvergent, aber sie ist Abel konvergent.
+        Was ist ihr Abel Limes?
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        \begin{enumerate}[label = (\alph*)]
+        \item Ist $\|a\|_\infty = M$, dann finden wir:
+        $$\sum_{n \geq 1} |a_n r^n|\leq M \sum_{n \geq 1}r^n =M\left(\frac{1}{1-r}-1\right)$$
+        also konvergiert sie für alle $r$ absolut und ist somit wohldefiniert.
+        \item Da die Summe über $a_n$ konvergiert, ist diese eine Nullfolge und damit beschränkt
+        durch $M$ und die Abelreihe wohldefiniert. Sei nun $0<r<1$ beliebig, dann finden wir:
+        $$\sum_{n \geq 1} |a_n r^n|\leq M \sum_{n\geq 1}r^n<\infty$$
+        Nach dem Majorantenkriterium ist damit $a_{n}r^n$ absolut konvergent.
+        Aus diesem Grund dürfen wir Limit und Summe vertauschen, also:
+        $$\lim _{r \rightarrow 1^{-}} \sum_{n \geq 1} a_n r^n =
+        \sum_{n \geq 1}\lim _{r \rightarrow 1^{-}} a_n r^n =
+        \sum_{n \geq 1} a_n=A$$
+        \item Das $\sum_{\mathrm{n} \geq 1}(-1)^n$ nicht konvergiert ist offensichtlich.
+        Allerdings gilt:
+        $$\sum_{n \geq 1} (-1)^n r^n =\sum_{n \geq 1} (-r)^n = \frac{1}{1+r}-1$$
+        Und damit gilt natürlich auch:
+        $$\lim _{r \rightarrow 1^{-}} A(r) = \lim _{r \rightarrow 1^{-}}\frac{1}{1+r}-1 =
+        -\frac{1}{2}$$
+        \end{enumerate}
+        b) Falsch siehe Ana2 Übungsblätter
+    \end{proof}
+
+    \begin{problem}{5}
+        Zeigen Sie, die Reihe $\sum_{n \geq 1}(-1)^n n$ ist nicht Cesàro konvergent aber sie ist
+        Abel konvergent.
+    \end{problem}
+
+    \begin{proof}
+        Zuerst beweise ich per Induktion $\sum_{j=1}^n (-1)^j j=(-1)^n\lceil\frac{n}{2}\rceil$.\\\\
+        Für $n=1$ gilt offensichtlich $\sum_{j=1}^1 (-1)^j j = -1 = -1\cdot 1$. Nun zum Induktionsschritt:
+        $$\begin{aligned}
+              \sum_{j=1}^n (-1)^j j &= (-1)^{n-1}\left\lceil\frac{n-1}{2}\right\rceil + (-1)^n n\\
+              &= (-1)^{n}\left(n-\left\lceil\frac{n-1}{2}\right\rceil\right)\\
+        \end{aligned}$$
+        Ist nun $n$ gerade, dann erhalten wir:
+        $$n-\left\lceil\frac{n-1}{2}\right\rceil = n-\frac{n}{2}=\frac{n}{2}=\left\lceil\frac{n}{2}\right\rceil$$
+        und für $n$ ungerade erhalten wir:
+        $$n-\left\lceil\frac{n-1}{2}\right\rceil =n-\frac{n-1}{2}=\frac{n+1}{2}=\left\lceil\frac{n}{2}\right\rceil$$
+        Nun überprüfen wir Cesaro-Konvergenz und betrachten dafür die Teilfolge der Partialsummen mit
+        $n=2m$ gerade:
+        $$\begin{aligned}
+              \frac{1}{n}\sum_{k=0}^{n-1}\sum_{j=1}^k a_j &=
+              \frac{1}{2m}\sum_{k=0}^{2m-1}(-1)^k\left\lceil\frac{k}{2}\right\rceil\\&=
+              \frac{1}{2m}\left(\sum_{k=0}^{m-1}\left\lceil\frac{2k}{2}\right\rceil -
+              \sum_{k=0}^{m-1}\left\lceil\frac{2k+1}{2}\right\rceil\right)\\&=
+              \frac{1}{2m}\left(\sum_{k=0}^{m-1}k -\sum_{k=0}^{m-1}k+1\right)\\&=
+              \frac{-m}{2m}=-\frac{1}{2}
+        \end{aligned}$$
+        Sei hingegen $2m=n-1$, dann finden wir:
+        $$\begin{aligned}
+              \frac{1}{n}\sum_{k=0}^{n-1}\sum_{j=1}^k a_j &=
+              \frac{1}{2m+1}\sum_{k=0}^{2m}(-1)^k\left\lceil\frac{k}{2}\right\rceil\\&=
+              \frac{1}{2m+1}\left(\sum_{k=0}^{m}\left\lceil\frac{2k}{2}\right\rceil -
+              \sum_{k=0}^{m-1}\left\lceil\frac{2k+1}{2}\right\rceil\right)\\&=
+              \frac{1}{2m+1}\left(\sum_{k=0}^{m}k -\sum_{k=0}^{m-1}k+1\right)\\&=
+              \frac{m-m}{2m+1}=0
+        \end{aligned}$$
+        Damit ist die Folge nicht Cesàro konvergent. \\\\
+        Nun untersuchen wir die Reihe auf Abelkonvergenz. Wir wissen bereits, dass
+        $\sum_{n\geq 1}z^{n+1}$ auf der offenen Einheitskreisscheibe konvergiert und somit nach
+        Theorem 2.6 (Complex analysis, Princeton Lectures) holomorph ist. Nach dem gleichen
+        Satz wissen wir auch, dass die termweise Ableitung $\sum_{n\geq 1}(n+1)z^n$ auf dem gleichen
+        Konvergenzradius konvergiert. Damit gilt:
+        $$\sum_{n\geq 1}|(-1)^n nr^n| &= \sum_{n\geq 1}nr^n\\
+        &\leq \sum_{n\geq 1}(n+1)r^n<\infty $$
+        Also haben wir absolute Konvergenz. Insbesondere gilt durch die entsprechende Überlegung:
+        $$\begin{aligned}
+              \sum_{n\geq 1}(-1)^n n r^n &= \sum_{n\geq 1} n (-r)^n=
+              (-r)\sum_{n\geq 1} n(-r)^{n-1}= r\sum_{n\geq 1} \frac{d}{dr}(-r)^n \\&=
+              r\frac{d}{dr}\sum_{n\geq 1} (-r)^n = r\frac{d}{dr}\left(\frac{1}{1+r}-1\right)
+              = \frac{-r}{(1+r)^2}\to -\frac{1}{4}
+        \end{aligned}$$
+        Für $r\to 1^-$. Also ist unser Abel-Grenzwert $-\frac{1}{4}$.\\\\
+        Der erste Unterpunkt geht viel leichter nach Übungsblatt 1 letzter
+        Unterpunkt.
+    \end{proof}
+\end{document}

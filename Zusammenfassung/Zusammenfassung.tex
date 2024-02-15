@@ -1,0 +1,352 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Komplexe und Harmonische Analysis 2023 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{amstex}
+
+
+
+\newenvironment{problem}[1]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}] }{
+    \end{trivlist}\normalshape
+}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\ker}{\text{ker}}
+\newcommand{\im}{\text{im}}
+\newcommand{\rg}{\text{rg}}
+\newcommand{\Cov}{\normalfont\text{Cov}}
+\newcommand{\Var}{\normalfont\text{Var}}
+\newcommand{\cor}{\normalfont\text{cor}}
+
+\begin{document}
+    \maketitle
+    \section{Preliminaries to Complex Analysis}
+    \begin{problem}{Holomorphie}
+        Wir nennen eine Funktion $f:\C\to \C$ holomorph am Punkt $z$, wenn
+        $$\lim_{h\to 0}\frac{f(z+h)-f(z)}{h}$$
+        für $h\in \C$ existiert. \\\\
+        Das ist genau dann der Fall, wenn für $f=u+iv$ $u$ und $v$ differenzierbar sind und sie
+        die Cauchy-Riemann Gleichungen
+        $$\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}\qquad
+        \frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}$$
+        erfüllen. \\\\
+        Weiter definiert jede Potenzreihe eine holomorphe Funktion auf dem Konvergenzradius und
+        die termweise Ableitung entspricht der Ableitung selbst. Damit ist eine holomorphe Funktion
+        unendlich oft differenzierbar und die Ableitung hat den gleichen Konvergenzradius.
+    \end{problem}
+
+    \section{Cauchy’s Theorem and Its Applications}
+    \begin{problem}{Goursat}
+        $\Omega$ offen und $T\subset\Omega$ ein Dreieck, wessen Inneres in $\Omega$ liegt, dann
+        gilt
+        $$\int_T f(z)dz=0$$
+        wenn $f$ holomorph auf $\Omega$ ist.
+    \end{problem}
+
+    \begin{problem}{Stammfunktionen}
+        Eine holomorphe Funktion hat auf jeder offenen Kreisscheibe eine Stammfunktion. Damit ist
+        das Integral holomorpher Funktionen über geschlossene Kurven immer $0$.
+    \end{problem}
+
+    \begin{problem}{Cauchy-Integral-Formel}
+        Ist $f$ holomorph auf einer offenen Menge, die den Abschluss einer Kreisscheibe $D$ enthält.
+        Sei nun $C$ der Rand von $D$ in positiver Richtung dann gilt die Cauchy-Integral-Formel
+        $$f(z)=\frac{1}{2\pi i}\int_C\frac{f(\zeta)}{\zeta -z}d\zeta$$
+        für alle $z\in D$. \\\\
+        Für die $n$-te Ableitung gilt entsprechend:
+        $$f^{(n)}(z)=\frac{n!}{2\pi i}\int_C\frac{f(\zeta)}{(\zeta-z)^{n+1}}d\zeta$$
+        Womit man auch die Abschätzung
+        $$|f^{(n)}(z_0)|\leq \frac{n!\|f\|_C}{R^n}$$
+    \end{problem}
+
+    \begin{problem}{Liouville}
+        Eine ganze und beschränkte Funktion $f$ ist konstant.
+    \end{problem}
+
+    \begin{problem}{Analytische Fortsetzung}
+        Gilt für $f,g$ holomorph auf $\Omega$ auch $f(z)=g(z)$ auf einer Folge unterschiedlicher Punkte mit
+        Grenzwert in $\Omega$, dann sind $f$ und $g$ gleich.
+    \end{problem}
+
+    \begin{problem}{Morera}
+        Eine stetige Funktion, die auf einer offenen Teilmenge für jedes Dreick im Inneren
+        $$\int_T f(z)dz=$$
+        erfüllt, ist holomorph.
+    \end{problem}
+
+    \begin{problem}{Folgen holomorpher Funktionen}
+        Der Grenzwert $f$ einer Folge holomorpher Funktionen $f_n$ ist holomorph, wenn die
+        Folge gleichmäßig konvergiert.
+    \end{problem}
+
+    \begin{problem}{Schwarz reflection principle}
+        Sei $\Omega$ eine offene Menge symmetrisch um die reelle Achse und sei weiter $f$ eine
+        holomorphe Funktion auf dem "positiven Teil" $\Omega^+$. Kann die Funktion weiter
+        stetig auf die reelle Achse fortgesetzt werden, sodass sie dort nur reelle Werte annimmt, dann
+        kann man die Funktion gleich auf $\Omega^-$ fortsetzen. Das passiert durch $F=f$ auf $\Omega^+$ und
+        $F(z)=\overline{f(\overline{z})}$ für $z\in\Omega^-$.
+    \end{problem}
+
+    \begin{problem}{Runge's approximation theorem}
+        Eine holomorphe Funktion kann in der Umgebung von einer kompakten Menge $K$ gleichmäßig
+        auf $K$ durch rationale Funktionen approximiert werden. Die Singularitäten diese Funktionen liegen
+        in $K^c$. \\
+        Ist $K^c$ zusammenhängend, dann kann man die Funktion sogar durch Polynome approximieren.
+    \end{problem}
+    
+    \section{Meromorphic Functions and the Logarithm}
+    \begin{problem}{Singularities}
+        Wir haben drei verschiedene Arten an Singularitäten:
+        \begin{itemize}
+            \item Hebbare Singularität ($f$ beschränkt)
+            \item Pol ($1/f$ beschränkt, hat eine Ordnung $n$)
+            \item Essentielle Singularität ($f(B_\varepsilon(z_0))$ liegt dicht in $\C$)
+        \end{itemize}
+    \end{problem}
+
+    \begin{problem}{Residuum}
+        Hat $f$ einen Pol der Ordnung $n$ bei $z_0$, dann können wir
+        $$f(z)=\frac{a_{-n}}{(z-z_0)^n}+\cdots + \frac{a_{-1}}{(z-z_0)}+G(z)$$
+        mit $G$ holomorph und der Teil davor heißt Hauptteil (principal part). Weiter haben wir
+        $\text{res}_{z_0} f=a_{-1}$. \\\\
+        Wir bestimmen das Residuum im Allgemeinen mit
+        $$\text{res}_{z_0} f=\lim_{z\to z_0}\frac{1}{(n-1)!}\left(\frac{d}{dz}\right)^{n-1}(z-z_0)^n f(z)$$
+        und für $n=1$ einfach mit $\text{res}_{z_0} f=\lim_{z\to z_0}(z-z_0)f(z)$.
+    \end{problem}
+
+    \begin{problem}{Residuen Formel}
+        Ist $f$ holomorph auf einer offenen Menge, welche den Kreis (Contour Integral) $C$ und sein Inneres
+        enthält bis auf die Pole $z_1,\dots, z_N$ im Kreis. Dann gilt
+        $$\int_C f(z)dz = 2\pi i\sum_{k=1}^N \text{res}_{z_k} f$$
+    \end{problem}
+    
+    \begin{problem}{Argument principle}
+        Sei $f$ meromorph in einer offenen Menge, die einen Kreis (Contourintegral)
+        $C$ und sein Inneres enthält. Wenn $f$ keine Pole und keine Nullstellen
+        auf $C$ hat, dann gilt 
+        $$\frac{1}{2\pi i}\int_C \frac{f'(z)}{f(z)}dz=\text{ (Nullstellen innerhalb
+            von $C$) } - \text{ (Anzahl an Polen innerhalb von C)}$$
+    \end{problem}
+
+    \begin{problem}{Rouché's Theorem}
+        Seien $f$ und $g$ holomorph in einer offenen Menge, die einen Kreis $C$
+        und sein Inneres enthält. Wenn nun $|f(z)|>|g(z)|$ auf $C$ gilt,
+        dann haben $f$ und $f+g$ gleich viele Nullstellen innerhalb von $C$.
+    \end{problem}
+
+    \begin{problem}{Folgerungen}
+        Eine nichtkonstante, holomorphe Funktion $f$ bildet offene Mengen
+        auf offene Mengen ab. \\\\
+        Eine nichtkonstante, holomorphe Funktion nimmt auf einer offenen Menge
+        $\Omega$ nicht ihr Maximum an.
+    \end{problem}
+
+    \begin{problem}{Homotopie}
+        Zwei Kurven $\gamma_0$, $\gamma_1$ sind homotop, wenn sie die gleichen
+        Anfangs- und Endpunkte haben und für jedes $0\leq s\leq 1$ eine
+        Kurve existiert $\gamma_s$ existiert, die ebenso die selben Anfangspunkte
+        hat und in $s$ stetig ist. Es geht also lasch gesagt darum, dass man
+        die eine Kurve stetig zu der anderen umformen kann. \\\\
+        Für holomorphe Funktionen $f$ und homotope Kurven $\gamma_0$, $\gamma_1$
+        gilt
+        $$\int_{\gamma_0}f(z)dz=\int_{\gamma_1}f(z)dz$$
+        In einfach zusammenhängenden Gebieten sind alle Kurven mit gleichen
+        Endpunkten homotop. Auf einfach zusammenhängenden Gebieten
+        haben deswegen auch alle holomorphen Funktionen eine Stammfunktion.
+    \end{problem}
+
+    \begin{problem}{Komplexer Logarithmus}
+        Weil die Umkehrung von $e^z$ nicht aufgrund des Phasenwinkels von $z$
+        nicht eindeutig ist, können wir den Logarithmus nicht global definieren
+        sonderen nur auf Branches/Zweigen, also der komplexen Zahlenebene mit
+        einem Schlitz. \\\\
+        Diese Gebiete sind dann nämlich einfach zusammenhängend (weil wir die
+        $0$ ausnehmen). Auf diesen definieren wir nun:
+        $$\log(z)=\log(r)+i\theta$$
+        wobei $z=re^{i\theta}$. Dieser Logarithmus erbt im Allgemeinen nicht
+        die Rechenregeln vom reellen Logarithmus. Wir können aber damit für
+        alle $\alpha$
+        $$z^{\alpha}=e^{\alpha\log(z)}$$
+        definieren.
+    \end{problem}
+
+    \section{Fourier Reihe}
+    \begin{problem}{Fourier Reihe}
+        Für eine integrierbare Funktion auf dem Intervall $[-\pi,\pi]$ definieren wir
+        den $n$-ten Fourierkoeffizienten
+        $$\hat{f}(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi} f(\theta)e^{-in\theta}d\theta, \qquad n\in\Z$$
+        und die Fourierreihe durch
+        $$f(x)\sim \sum_{n=-\infty}^\infty \hat{f}(n) e^{inx}$$
+        wobei die letzte Reihe über den symmetrischen Grenzwert definiert ist.
+    \end{problem}
+
+    \begin{problem}{Eindeutigkeit}
+        Sei $f:\R\to\C$ $2\pi$-periodisch und integrierbar mit
+        $$\hat{f}(n)=0,\qquad n\in\Z$$
+        und $x_0\in \R$. Wenn $f$ bei $x_0$ stetig ist, dann $f(x_0)=0$. Sonst ist die Funktion f.ü. $0$\\\\
+        Damit folgt sofort
+        Sei $f,g:\R\to\C$ $2\pi$-periodisch und stetig mit
+        $$\hat{f}(n)=\hat{g}(n),\qquad n\in\Z$$
+        Dann gilt $f\equiv g$.\\\\
+        Weiter ist für eine periodische und stetige Funktion mit
+        $\sum_{n\in\Z}|\hat{f}(n)|<\infty$. Dann
+        $$f(x)=\sum_{n\in\Z}\hat{f}(n)e^{inx},\qquad x\in\R$$
+        mit absoluter und gleichmäßiger Konvergenz.\\\\
+        Eine weitere Folgerung ist, dass für eine periodische und integrierbare Funktion $f$ die auch
+        $\sum_{n\in\Z}|\hat{f}(n)|<\infty$ erfüllt gilt, dass $f$ fast stetig ist, also existiert $g$ stetig
+        mit $f=g$ f.ü.
+    \end{problem}
+
+    \begin{problem}{Absolute Konvergenz der Fourierkoeffizienten}
+        Für $f:\R\to\C$ $2\pi$-periodisch und stetig differenzierbar gilt
+        $$\hat{f'}(n)=in\hat{f}(n)$$
+        und damit konvergiert die Fourier-Reihe auf jeden Fall absolut und gleichmäßig gegen $f$, wenn
+        die Funktion zweimal stetig differenzierbar ist. Außerdem erhalten wir die Abschätzung
+        $$|\hat{f}(n)|\leq C|n|^{-2},\qquad n\in\Z\setminus\{0\}$$
+    \end{problem}
+
+    \begin{problem}{Faltungsprodukt}
+        Für $f,g$ periodisch, $f$ integrierbar und $g$ messbar und beschränkt definieren wir
+        die Faltung von $f$ und $g$ als
+        $$(f*g)(x)=\frac{1}{2\pi}\int_{-\pi}^{\pi} f(y)g(x-y)dy,\qquad x\in\R$$
+        Dieses ist auch periodisch und stetig. Weiter gilt
+        $$\hat{f*g}(n)=\hat{f}(n)\hat{g}(n)$$
+        und wir haben alle Eigenschaften von Produkten, Assoziativität mit Skalaren, Distributivität,
+        Kommutativität, Assoziativität.
+    \end{problem}
+
+    \begin{problem}{Folge guter Kerne}
+        Eine Folge $(K_n)_{n\geq 1}$ heißt gut, wenn
+        \begin{enumerate}[label = (\roman{enumi})]
+        \item Für alle $n\geq 1$ gilt
+        $$\frac{1}{2\pi}\int_{-\pi}^{\pi} K_n(x)dx=1$$
+        \item Es gibt ein $M>0$, so dass für alle $n\geq 1$
+        $$\int_{-\pi}^{\pi} |K_n(x)|dx\leq M$$
+        \item Für jedes $\delta>0$ gilt
+        $$\int_{\delta\leq |x|\leq \pi}|K_n(x)|dx\to 0 $$
+        für $n\to\infty$.
+        \end{enumerate}
+        In diesem Fall gilt $(f*K_n)(x_0)\to f(x_0)$, wenn $f$ auf $x_0$ stetig ist und wenn $f$ stetig
+        ist, dann $f*K_n\to f$ gleichmäßig. Für $f$ periodisch und integrierbar gilt immernoch
+        $$\|f*K_n-f\|_1=\frac{1}{2\pi}\int_{-\pi}^{\pi}|(f*K_n-f)(x)|dx$$
+    \end{problem}
+
+    \begin{problem}{Kerne}
+        Der Dirichlet Kern ist definiert durch
+        $$D_N(x):=\sum_{n=-N}^N e^{inx}=\frac{\sin\left(\frac{N+1}{2}\cdot x\right)}{\sin\left(
+        \frac{x}{2}\right)}$$
+        Ist keine Folge guter Kerne, die Faltung konvergiert aber trotzdem.\\\\
+        Der Poisson Kern ist für $\in (0,1)$ definiert
+        $$P_r(x):=\sum_{n\in \Z}r^{|n|}e^{inx}=\frac{1-r^2}{1-2r\cos(x)+r^2}$$
+        Ist eine Folge guter Kerne. Vorallem gilt für die Abel-Durchschnitte
+        $$A_r(f)(x):=\sum_{n\in\Z}r^{|n|}\hat{f}(n)e^{inx}=(f*P_r)(x)\to f,\qquad r\in(0,1)$$
+        wobei die letzte Konvergenz gleichmäßig ist. \\\\
+        Der Fejér Kern ist definiert als
+        $$F_N(x):=\frac{1}{N}\sum_{M=0}^{N-1}D_M(x)=\frac{1}{N}\frac{\sin^2(Nx/2)}{\sin^2(x/2)}$$
+        Es ist eine gute Folge von Kernen. Vorallem gilt für die Cesàro-Durchschnitte
+        $$C_n(f)(x):= \frac{1}{N}\sum_{M=0}^{N-1}\sum_{n=-M}^M \hat{f}(n)e^{inx}=(f*F_n)(x)
+        =\sum_{n=-(N-1)}^{N-1}(1-\frac{|n|}{N})\hat{f}(n)e^{inx}\to f$$
+        wobei die letzte Konvergenz gleichmäßig ist.
+    \end{problem}
+
+    \begin{problem}{Interpretation als Hilbertraum}
+        Wir können den $L^2([-\pi,\pi])$ (quadratintegrierbare Funktion mit Äquivalenzklassen auf f.ü.
+        übereinstimmenden Funktionen) als Hilbertraum mit dem Skalarprodukt
+        $$\langle f,g \rangle:= \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)g^*(x)dx$$
+        Dabei bildet $e^{inx}$ mit $n\in\Z$ eine Orthonormalbasis und somit finden wir mit
+        $S_N(f)(x):=\sum_{n=-N}^N \hat{f}(n)e^{inx}$ die quadratische Konvergenz
+        $$\frac{1}{2\pi}\int_{-\pi}^\pi |f(x)-S_N(f)(x)|^2 dx\to 0$$
+        und die Parseval-Isometrie
+        $$\frac{1}{2\pi}\int_{-\pi}^{\pi}|f(x)|^2dx =\sum_{n\in \Z}|\hat{f}(n)|^2$$
+    \end{problem}
+
+    \begin{problem}{Lipschitz}
+        Sei $f$ periodische, integrierbar und lokal Lipschitz bei $x_0$, dann gilt
+        $$S_N(f)(x_0)\to f(x_0)$$
+        für $N\to\infty$
+    \end{problem}
+
+    \begin{problem}{Lokalisierungsprinzip von Riemann}
+        Seien $f,g$ periodisch, messbar und beschränkt. Nehmen wir an $f\equiv g$ auf einer Umgebung von
+        $x_0$. Dann $S_N(f)(x_0)\to f(x_0)$ genau dann wenn $S_N(g)(x_0)\to f(x_0)$
+    \end{problem}
+
+    \begin{problem}{Fourier-Transformation}
+        Sei $f\in L^1 (\R)$. Die Fourier-Transformation von $f$ ist
+        $$\hat{f}(\xi) = \int_\R f(x)e^{-2\pi i x\xi}dx,\qquad \xi \in\R$$
+        Die Abbildung $L^1(\R)\to L^{\infty}(\R), f\mapsto \hat{f}$ ist
+        stetig und linear.\\\\
+    \end{problem}
+
+    \begin{problem}{Schwartz-Funktionen}
+        Eine Funktion $f$ heißt Schwartz, wenn sie unendlich oft differenzierbar
+        ist und für alle $k,j\in\N$ auch
+        $$\sup_{x\in \R} (1+|x|)^k \left|\frac{d^j}{dx^j}f(x)\right|<\infty$$
+        Ist eine Funktion Schwartz so sind es auch alle Ableitungen
+        und alle Multiplikationen mit Polynomen. Wichtigstes Beispiel
+        ist die Gauß-Funktion $\Phi(x) = e^{-\pi x^2}$. \\\\
+        Weiter gilt für $f\in\mathcal{S}(\R)$ und $g\in L^1(\R)$ mit
+        $$\int_\R (1+|x|)^k|g(x)|dx <\infty$$
+        dann ist auch die Faltung $f*g\in \mathcal{S}(\R)$. \\\\
+        Sind $f,g\in\mathcal{S}(\R)$, dann gilt
+        $$\widehat{f*g}(\xi) = \hat{f}(\xi)\hat{g}(\xi),\qquad \xi\in \R$$
+    \end{problem}
+
+    \begin{problem}{Familie von guten Kerne}
+        Eine Familie $K_\varepsilon:\R\to\C$ heißt gut, wenn
+        \begin{enumerate}[label = (\roman{enumi})]
+            \item
+            $$\int_{\R} K_\varepsilon(x)dx=1$$
+            \item
+            $$\sup_{\varepsilon >0}\int_{\R} |K_\varepsilon(x)|dx<\infty$$
+            \item Für jedes $\delta>0$ gilt
+            $$\int_{\delta< |x|}|K_\varepsilon(x)|dx\to 0 $$
+            für $\varepsilon\to 0^+$.
+        \end{enumerate}
+        Aus einer Funktion $K\in L^1(\R)$ mit $\int_\R K(x)dx = 1$ gewinnt
+        man eine solche Familie durch $K_\varepsilon:= \frac{1}{\varepsilon}
+        K(x/\varepsilon)$.
+    \end{problem}
+
+    \begin{problem}{Eigenschaften der Fouriertransofrmation}
+        Für $f,g\in L^1(\R)$ gilt:
+        $$\int_{\R} f(x)\hat{g}(x) dx = \int_\R \hat{f}(y) g(y)dy$$
+        Für $f,\hat{f}\in L^1(\R)$ gilt damit
+        $$f(x) = \int_\R \hat{f}(\xi) e^{2\pi i x\xi} d\xi$$
+        für fast jedes $x\in \R$. Ist $f$ sogar Schwartz gilt
+        es für jedes $x$. \\\\
+        Nach Plancherel gilt für $f\in\mathcal{S}(\R)$
+        $$\int_{\R}|f(x)|^2 dx=\int_{\R}|\hat{f}(x)|^2 d\xi $$
+    \end{problem}
+
+    \begin{problem}
+        Je konzentrierter eine Funktion ist, desto breiter ist die
+        Fourier-Transformation. \\\\
+        Wir messen die Verbreitung mit:
+        $$V(f) = \frac{\int_\R x^2 |f(x)|^2 dx}{\int_\R}|f(x)|^2 dx$$
+        Anwendung davon ist die Heisenbergsche Unschärferelation. 
+    \end{problem}
+
+    Fehler Skript: Beweis Satz 4 vorletzte Zeile, zweimal a_n 
+\end{document}

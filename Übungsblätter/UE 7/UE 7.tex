@@ -1,0 +1,276 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Numerik 2022 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{arabicore}
+\usepackage{amsmath-2018-12-01}
+\usepackage{amsmath-2018-12-01}
+\usepackage{farsifnt}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\res}{\text{res}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+\newenvironment{problem}[2][Beispiel]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}] \itshape}{
+    \end{trivlist}\normalshape
+}
+
+\begin{document}
+    \begin{problem}{1}
+        Zeige: Falls $h: B_1(0) \rightarrow \mathbb{R}$ harmonisch ($\Delta h(x, y)=\frac{\partial^2 h}{\partial x^2}
+        +\frac{\partial^2 h}{\partial y^2}=0$ für $z=x+i y \in B_1(0)$) auf der Einheitskreisscheibe,
+        dann existiert eine holomorphe Funktion $f: B_1(0) \rightarrow \mathbb{C}$ so dass
+        $\operatorname{Re}(f(z))=h(x, y)$.
+        (Hinweis: Konstruiere zuerst die Ableitung von $f$.)
+        Gilt dies auch falls $B_1(0)$ durch $B_1(0) \backslash\{0\}$ ersetzt wird?
+    \end{problem}
+
+    \begin{proof}
+        Wir betrachten zuerst die Funktion:
+        $$g(z):= \left(\frac{\partial h}{\partial x} - i\frac{\partial h}{\partial y}\right)(z)$$
+        Diese Funktion ist holomorph, denn sie erfüllt die Cauchy-Riemann-Gleichungen:
+        $$\frac{\partial }{\partial x}\frac{\partial h}{\partial x}=\frac{\partial^2 h}{\partial^2 x}
+        =-\frac{\partial^2 h}{\partial^2 y}=\frac{\partial}{\partial y}\left(-\frac{\partial h}{\partial y}
+        \right)\qquad\qquad \frac{\partial }{\partial y}\frac{\partial h}{\partial x} =
+        -\frac{\partial }{\partial x}\left(-\frac{\partial h}{\partial y}\right)$$
+        Nun betrachten wir die Funktion:
+        $$f(z) := h(z_0) + \int_\gamma g(\xi)\,d\xi$$
+        wobei $\gamma$ ein Weg von $z_0$ bis $z$ ist. Weil auf dem Einheitskreis alle Wege
+        homotop sind, ist diese Definition eindeutig.  Diese Funktion ist wieder holomorph, weil sie differenzierbar ist
+        sei nun $u(z)$ der Realteil von $f$. Dann gilt zuerst einmal $u(z_0)=h(z_0)$ und weiter gilt:
+        $$\left(\frac{\partial h}{\partial x} - i\frac{\partial h}{\partial y}\right)(z)=f'(z) =
+        \left(\frac{\partial u}{\partial x}-i\frac{\partial u}{\partial y}\right)(z)$$
+        Wobei die letzte Gleichheit aus Cauchy-Riemann und $\frac{\partial}{\partial z}=\frac{1}{2}\left(
+        \frac{\partial}{\partial x}-i\frac{\partial}{\partial y}\right)$ folgt.\\
+        Damit sind die partiellen Ableitungen von $h$ und $u$ gleich und sie stimmen an $z_0$ überein, also sind sie
+        insgesamt gleich.
+        \\\\
+        Das gilt nur für einfachzusammenhängende Gebiete. Zum Beispiel ist $h(x,y)=\ln(\sqrt{x^2+y^2})
+        =\Re(\log(z))$ wobei $\log(z)$ in diesem Kontext für den Hauptzweig des Logarithmus steht.
+        Als Realteil einer auf der geschlitzen Einheitskreisscheibe ist die Funktion harmonisch.
+        Das kann man auch über die partiellen Ableitungen argumentieren, denn es gilt:
+        $$\frac{\partial^2 h}{\partial x^2} =\frac{\partial h}{\partial x} \frac{x}{x^2+y^2} =
+        \frac{-x^2+y^2}{(x^2+y^2)^2}$$
+        Da die Funktion symmetrisch in $x$ und $y$ ist folgt damit, dass die Funktion harmonisch ist.\\\\
+        Nehmen wir nun an es gäbe eine holomorphe Funktion mit $f(z) = h(z) + iv(z)$.
+        Nach Cauchy-Riemann gilt dann (mit den oben berechneten partiellen Ableitungen):
+        $$f'(x,y) = \left(\frac{\partial h}{\partial x}-i\frac{\partial h}{\partial y}\right)(x,y) =
+        \frac{x}{x^2+y^2}-i\frac{y}{x^2+y^2} = \frac{x-iy}{x^2+y^2}=\frac{\bar{z}}{|z|^2} = \frac{1}{z}$$
+        Nach dem Kommentar unter Korollar 3.3 in den Princeton Lectures Complex Analysis (S. 23) wissen
+        wir, dass $\frac{1}{z}$ auf der durchstochenen Einheitskreisscheibe keine Stammfunktion
+        hat. Also kann diese Funktion $f$ nicht auf der durchstochenen Einheitskreisscheibe
+        definiert sein.
+    \end{proof}
+
+    \begin{problem}{2}
+        Sei $\Omega \subset \mathbb{C}$ ein Gebiet. Zeige dass falls eine der folgenden Bedingungen
+        erfüllt ist, $\Omega$ einfach zusammenhängend ist:
+        \begin{enumerate}[label = (\alph*)]
+            \item $\Omega$ ist konvex (d.h. für je zwei Punkte in $\Omega$ liegt auch das sie verbindende
+        Geradensegment in $\Omega$ ).
+            \item Es gibt einen Punkt $z_0 \in \Omega$ so dass für alle $z \in \Omega$ das Geradensegment zwischen
+        $z$ und $z_0$ in $\Omega$ liegt. (Ein solches $\Omega$ heisst sternförmig.)
+        \end{enumerate}
+        Zeige: die geschlitzte Ebene $\mathbb{C} \backslash(-\infty, 0]$ ist einfach zusammenhängend.
+    \end{problem}
+
+    \begin{proof}
+        Seien im folgenden $\gamma_1$ und $\gamma_2$ beliebige Wege in $\Omega$ mit $\gamma_1(0)=\gamma_2(0)=
+        \alpha$ und $\gamma_1(1)=\gamma_2(1)=\beta$. Sowohl in a) als auch in b) finden wir solche Wege, weil
+        beide Mengen wegzusammenhängend sind.
+        \begin{enumerate}[label = (\alph*)]
+            \item Wir betrachten die Homotopie:
+            $$F(s,t) = s\gamma_2(t)+(1-s)\gamma_1(t)$$
+            Das ist eine stetige Funktion, die jeweils für alle $t$ die Kurven Segmente $\gamma_1(t)$ und
+            $\gamma_2(t)$ interpoliert. Diese "Zwischenkurven" liegen jeweils in der Menge, weil wir für jedes
+            $t$ die Konvexität der Menge nutzen. Weiter gilt $F(s,0)=\alpha$ und $F(s,1)=\beta$ sowie
+            $F(0,t)=\gamma_1(t)$ und $F(1,t)=\gamma_2(t)$. Also erfüllen die Funktionen genau unsere Definition
+            von homotop und somit ist $\Omega$ einfach zusammenhängend.
+            \item Sei
+            $$F(s,t):=
+            \begin{cases}
+                (1-3t)\alpha + 3t((1-s)\gamma_1(0)+sz_0)\qquad & t\in\left[0,\frac{1}{3}\right]\\
+                (1-s)\gamma_1(3t-1)+sz_0\qquad & t\in\left(\frac{1}{3},\frac{2}{3}\right)\\
+                (3-3t)((1-s)\gamma_1(1)+sz_0) + (3t-2)\beta\qquad & t\in\left[\frac{2}{3},1\right]
+            \end{cases}$$
+            Das ist genau die Kurve, die die ursprüngliche Kurve immer weiter zu $z_0$ zieht, die Anfangs- und
+            Endpunkt dabei aber konstant lässt und linear mit den zusammengezogenen Punkten verbindet.
+            Per Konstruktion ist die Funktion in $t$ stetig. In $s$ ist die
+            Funktion stetig, weil $s$ nur als Kontraktionsfaktor vorkommt. Somit ist jede Kurve zu der Funktion,
+            die von $\alpha$ bis $z_0$ eine Gerade ist und von $z_0$ bis $\beta$ homotop. Damit sind aber auch
+            $\gamma_1$ und $\gamma_2$ homotop, weil die Eigenschaft transitiv ist.
+        \end{enumerate}
+        Die geschlitzte Ebene ist einfach zusammenhängend, weil sie sternförmig ist. Denn wir betrachten
+        $z_0=1$. Für alle Zahlen auf der positiven $x$-Achse liegt die Verbindungslinie offensichtlich in
+        $\Omega = \mathbb{C} \backslash(-\infty, 0]$ für alle anderen $z$ ist der Imaginärteil ungleich
+        $0$ und somit auch entlang der Verbindungslinie ungleich $0$, also in $\Omega$.
+    \end{proof}
+
+    \begin{problem}{3}
+        Berechne fïr $a>0$ das Integral
+        $$
+        \int_0^{\infty} \frac{\log (x)}{x^2+a^2} d x
+        $$
+        (Hinweis: Wähle einen passenden Zweig des Logarithmus und eine Kontour, welche den Ursprung meidet.)
+    \end{problem}
+
+    \begin{proof}
+        Wir betrachten die Funktion $f(z)=\frac{\log(z)}{z^2+a^2}$, also $\theta\in[-\pi/2,3\pi/2)$.
+        Wir wählen den Logarithmus mit dem Schlitz entlang der negativen imaginären Achse. Wir werden
+        entlang eines Halbkreises mit Radius $R$ auf der oberen Halbebene integrieren und mit einem kleinen
+        Halbkreis mit Radius $r$ den Ursprung ausnehmen. Darin befindet sich das Residuum $ia$. Dafür finden
+        wir:
+        $$\res_{ia} f(z) = \lim_{z\to ia}\frac{\log(z)}{z+ia}=\frac{\log(ia)}{2ia} = \frac{\log(a)+i\frac{\pi}{2}}
+        {2ia}$$
+        Damit haben wir nach dem Residuensatz:
+        $$\int_r^R \frac{\log (x)}{x^2+a^2} d x+ \int_{-R}^{-r}\frac{\log(x)}{x^2+a^2} d x +
+        \int_{\gamma_R}f(z)\,dz+\int_{\gamma_r}f(z)\,dz = \pi\frac{\log(a)+i\frac{\pi}{2}}{a}$$
+        Nun berechnen wir die einzelnen Integrale:
+        $$\begin{aligned}
+              &\int_{-R}^{-r} \frac{\log(x)}{x^2+a^2} d x = \int_{-R}^{-r} \frac{\log|x|+i\pi}{x^2+a^2} d x
+              = \int_{-R}^{-r}  \frac{\log|x|}{x^2+a^2} d x+\int_{-R}^{-r} \frac{i\pi}{x^2+a^2} d x =\\
+              &\int_{r}^{R}\frac{\log|x|}{x^2+a^2} d x + \frac{i\pi}{a}\arctan\left(\frac{-r}{a}\right)
+              -\frac{i\pi}{a}\arctan\left(\frac{-R}{a}\right)\to \int_0^\infty \frac{\log (x)}{x^2+a^2} d x +
+              \frac{i\pi^2}{2a}
+        \end{aligned}$$
+        Weiter sehen wir:
+        $$\begin{aligned}
+              &\left|\int_{\gamma_R}f(z)\,dz\right|=\left|\int_0^{\pi}\frac{\log(Re^{it})iRe^{it}}{R^2e^{2it}+a^2}dt
+              \right|\leq \int_0^{\pi}\frac{|\log(R)+it|R}{R^2-a^2}dt\\&\leq
+              \int_0^{\pi}\frac{(\log(R)+\pi)R}{R^2-a^2}dt = \frac{\pi(\log(R)+\pi)R}{R^2-a^2}\to 0
+        \end{aligned}$$
+        Für das Integral über den kleinen Halbkreis gilt:
+        $$\left|\int_{\gamma_r}f(z)\,dz\right| = \left|\int_0^\pi\frac{\log(re^{it})ire^{it}}{r^2e^{2it}+a^2}
+        dt\right|\leq \int_0^\pi\frac{|\log(r)+\pi|r}{a^2-r^2}dt\leq \frac{\pi (\log(r)+\pi)r}{a^2-r^2}\to 0$$
+        Gesamt haben wir also:
+        $$\pi\frac{\log(a)+i\frac{\pi}{2}}{a} = 2 \int_0^\infty \frac{\log (x)}{x^2+a^2} d x +
+        \frac{i\pi^2}{2a}\Rightarrow \int_0^\infty \frac{\log (x)}{x^2+a^2} d x = \frac{\pi\log(a)}{2a}$$
+    \end{proof}
+
+    \begin{problem}{4}
+        \begin{enumerate}[label = (\alph*)]
+            \item Sei $f: \mathbb{R} \rightarrow \mathbb{C}$ stetig und $2 \pi$-periodisch (d.h., $f(x+2 \pi)=f(x)
+            , x \in \mathbb{R}$ ). Zeigen Sie folgendes:
+            $$
+            \int_{-\pi}^\pi f(x) d x=\int_{-\pi}^\pi f(x+a) d x=\int_{-\pi+a}^{\pi+a} f(x) d x, \quad a \in
+            \mathbb{R} .
+            $$
+            \item Angenommen, $\left\{a_n\right\}_{n-1}^N$ und $\left\{b_n\right\}_{n=1}^N$ seien zwei endliche
+            Folgen komplexer Zahlen. Sei
+            $$
+            B_n:=\sum_{k=1}^n b_k, \quad B_0=0
+            $$
+            die Reihe der Teilsummen. Beweisen Sie die Formel für die Summierung nach Teilen
+            $$
+            \sum_{n=M}^N a_n b_n=a_N B_N-a_M B_{M-1}-\sum_{n=M}^{N-1}\left(a_{n+1}-a_n\right) B_n .
+            $$
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        \begin{enumerate}[label = (\alph*)]
+            \item Aus der Substitution $u=x+a$ folgt die zweite Gleichheit mit:
+            $$\int_{-\pi}^\pi f(x+a) d x=\int_{-\pi+a}^{\pi+a}f(u)du$$
+            Weiter sehen wir:
+            $$\frac{d}{dx}\int_{x}^{x+2\pi}f(t)dt = f(x+2\pi)-f(x)=f(x)-f(x)=0$$
+            Damit folgt, dass es egal ist über welches Intervall wir integrieren, wenn es Länge $2\pi$ hat.
+            Damit ist der rechte und ganz linke Ausdruck gleich.
+            \item Wir beweisen per Induktion nach $N$ mit $(M\leq N)$ für $N=1$ sehen wir:
+            $$\sum_{n=1}^1 a_n b_n=a_1b_1-\underbrace{a_1 B_{0}-\sum_{n=1}^{0}\left(a_{n+1}-a_n\right) B_n}
+            _{=0}$$
+            Sei das Ganze für $N$ und beliebiges $M\leq N$ gezeigt, dann sehen wir:
+            $$\begin{aligned}
+                  \sum_{n=M}^{N+1} a_n b_n
+                  &= a_{N+1}b_{N+1} + a_N B_N-a_M B_{M-1}-\sum_{n=M}^{N-1}\left(a_{n+1}-a_n\right) B_n\\
+                  &= \underbrace{a_{N+1}b_{N+1}+a_{N+1}B_N}_{=a_{N+1}B_{N+1}}-\underbrace{a_{N+1}B_N +
+                  a_N B_N}_{(a_{N+1}-a_N)B_N}-a_M B_{M-1}-\sum_{n=M}^{N-1}\left(a_{n+1}-a_n\right) B_n\\
+                  &= a_{N+1} B_{N+1}-a_M B_{M-1}-\sum_{n=M}^{N}\left(a_{n+1}-a_n\right) B_n
+            \end{aligned}$$
+            Für $M=N$ gilt:
+            $$\sum_{n=N}^N a_n b_n=a_Nb_N = a_N B_N-a_N B_{N-1}-\underbrace{\sum_{n=N}^{N-1}\left(a_{n+1}-a_n\right)
+            B_n}_{=0}$$
+        \end{enumerate}
+    \end{proof}
+
+    \begin{problem}{5}
+        \begin{enumerate}[label = (\alph*)]
+            \item Sei $\left\{a_n: n \geq 0\right\} \subset \mathbb{C}$ eine Folge von komplexen Zahlen und
+            $$
+            b_n:=\frac{1}{n} \sum_{k=0}^{n-1} a_n, \quad n \geq 1 .
+            $$
+
+            Zeigen Sie, dass wenn $a_n \rightarrow a \in \mathbb{R}$, dann $b_n \rightarrow a$, für $n
+            \rightarrow \infty$.
+            \item Eine (formelle) Reihe von komplexen Zahlen $\sum_{n \geq 1} a_n$ heißt Cesàro konvergent,
+            wenn die Folge der Durchschnittswerte der Teilsummen
+            $$
+            C_n:=\frac{1}{n} \sum_{k=0}^{n-1} \sum_{j=1}^k a_j, \quad n \geq 1,
+            $$
+            konvergiert (mit Cesàro Limes $=\lim _n C_n$ ). Zeigen Sie, dass eine konvergente Reihe auch Cesàro
+            konvergent ist.
+            \item Zeigen Sie, dass die Reihe $\sum_{n \geq 1}(-1)^n$ nicht konvergent ist, aber sie Cesàro
+            konvergent ist. Was ist ihr Cesàro Limes?
+            \item Sei $\sum_{\mathrm{n} \geq 1} a_n$ eine Cesàro konvergente Reihe von komplexen Zahlen.
+            Zeigen Sie, dass $\frac{a_n}{n} \rightarrow 0$ für $n \rightarrow \infty$.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        \begin{enumerate}[label = (\alph*)]
+            \item Sei $\varepsilon>0$ beliebig, dann finden wir $N$ mit $|a_n-a|<\varepsilon$ für $n\geq N$.
+            Somit haben wir:
+            $$\begin{aligned}
+                  |b_{n}-a|&= \left|\frac{1}{n}\sum_{k=0}^{N-1}a_k+ \frac{1}{n}\sum_{k=N}^{n} a_k-a\right|
+                  \leq \frac{|\sum_{k=0}^{N-1}a_k|}{n} + \frac{\sum_{k=N}^{n}|a_k-a|}{n}\\&\leq
+                  \frac{|\sum_{k=0}^{N-1}a_k|}{n} + \frac{(n-N+1)\varepsilon}{n}\to\varepsilon
+            \end{aligned}$$
+            \item Die Aussage folgt aus (a) und der konvergenten Folge $\tilde{a}_k =\sum_{j=1}^k a_j$.
+            \item Offensichtlich ist die Reihe nicht konvergent, denn wir finden kein $N$ sodass die
+            Folgenglieder in einem Ball mit Radius $\frac{1}{3}$ liegen. Allerdings sehen wir:
+            $$\frac{1}{n}\sum_{k=0}^{n-1} \sum_{j=1}^k (-1)^j=\frac{1}{n}\sum_{k=1}^{\lceil\frac{n-1}{2}\rceil}(-1)
+            =\frac{1-\lceil\frac{n-1}{2}\rceil}{n}$$
+            Für $n$ ungerade haben wir:
+            $$\frac{1-\lceil\frac{n-1}{2}\rceil}{n}=\frac{1-\frac{n-1}{2}}{n}\to-\frac{1}{2}$$
+            und für $n$ gerade:
+            $$\frac{1-\lceil\frac{n-1}{2}\rceil}{n}=\frac{1-\frac{n}{2}}{n}\to-\frac{1}{2}$$
+            In beiden Fällen hat die Folge einen Grenzwert. Dieser stimmt überein, also ist der Grenzwert
+            $-\frac{1}{2}$.
+            \item Wir bezeichnen $S_m = \sum_{k=1}^m a_k$ und $C_n =\frac{1}{n}\sum_{k=1}^{n-1}S_k$.
+            Nach Voraussetzung gilt $C_n-C_{n-1}\to C-C=0$. Damit gilt:
+            $$\begin{aligned}
+                  C_n-C_{n-1} &= \frac{1}{n}\sum_{k=1}^{n-1}S_k - \frac{1}{n-1}\sum_{k=1}^{n-2}S_k\\
+                  &=\frac{1}{n}\sum_{k=1}^{n-1}S_k-\frac{1}{n}\sum_{k=1}^{n-2}S_k
+                  + \frac{1}{n}\sum_{k=1}^{n-2}S_k- \frac{1}{n-1}\sum_{k=1}^{n-2}S_k \\
+                  &= \frac{1}{n}S_{n-1} - \frac{1}{n}\frac{1}{n-1}\sum_{k=1}^{n-2}S_k\\
+                  &= \frac{1}{n}S_n - \frac{1}{n}C_{n-1}\to \frac{1}{n}S_n
+            \end{aligned}$$
+            Nun wissen wir, dass $\frac{1}{n}S_n$ auch gegen $0$ gehen muss. Es gilt aber auch:
+            $$\frac{S_{n-1}}{n} = \frac{S_{n-1}}{n-1}\cdot\frac{n-1}{n}\to 0\cdot 1$$
+            Also gilt auch:
+            $$\frac{a_n}{n}=\frac{S_n-S_{n-1}}{n}\to 0-0=0$$
+        \end{enumerate}
+    \end{proof}
+\end{document}

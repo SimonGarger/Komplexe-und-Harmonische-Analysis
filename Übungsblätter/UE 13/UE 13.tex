@@ -1,0 +1,183 @@
+\documentclass[11pt]{article}
+\title{Zusammenfassung Numerik 2022 WS}
+\author{Simon Garger}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{blkarray}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{mathtools}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsbooka}
+\usepackage{translit}
+\usepackage{arabicore}
+\usepackage{amsmath-2018-12-01}
+\usepackage{amsmath-2018-12-01}
+\usepackage{farsifnt}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\res}{\text{res}}
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+
+\newenvironment{problem}[2][Beispiel]{
+    \begin{trivlist}
+        \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}] \itshape}{
+    \end{trivlist}\normalshape
+}
+
+\begin{document}
+    Sie können das folgende Resultat verwenden, das wir gleich in der
+    Hauptvorlesung beweisen werden: Sei $\tilde{f}(\xi)=\int_{\mathbb{R}}
+    f(x) e^{2 \pi i \xi x} d x$. Dann gilt $\v{\hat{f}}=\hat{\v{f}}=f$
+    für alle $f \in \mathcal{S}(\mathbb{R})$.
+
+    \begin{problem}{1}
+        Seien
+        $$
+        f(x)=\left\{\begin{array}{ll}
+                        1 & \text { für }|x| \leq 1 \\
+                        0 & \text { für }|x|>1
+        \end{array} \quad g(x)=\left\{\begin{array}{ll}
+                                          1-|x| & \text { für }|x| \leq 1 \\
+                                          0 & \text { für }|x|>1
+        \end{array} .\right.\right.
+        $$
+
+        Zeigen Sie, dass
+        $$
+        \hat{f}(\xi)=\frac{\sin (2 \pi \xi)}{\pi \xi}, \quad \hat{g}(\xi)=
+        \left(\frac{\sin (\pi \xi)}{\pi \xi}\right)^2, \quad \xi \in \mathbb{R},
+        $$
+        wobei $\hat{f}(0)=2$ und $\hat{g}(0)=1$.\\\\
+        Die Faltung von $f$ mit sich selbst ist $g$ skaliert.
+    \end{problem}
+
+    \begin{proof}
+        Wir finden:
+        $$\begin{aligned}
+              \hat{f}(\xi) &= \int_{\R} f(x) e^{-2\pi x\xi} dx = \int_{-1}^1 e^{-2\pi ix\xi}dx \\
+              &= \frac{1}{-1\pi \xi}[e^{-2\pi ix\xi}]_{-1}^1 = \frac{e^{-2\pi i\xi}-e^{2\pi i\xi}}{-2
+              \pi i\xi} = \frac{\sin (2 \pi \xi)}{\pi \xi}
+        \end{aligned}$$
+        und
+        $$\hat{f}(0)= \int_{\R} f(x) e^{-2\pi x\cdot 0} dx = \int_{-1}^1 1dx=2$$
+        Für die zweite Funktion finden wir:
+        $$\begin{aligned}
+              \hat{g}(\xi) &= \int_{\R} g(x) e^{-2\pi x\xi} dx = \int_{-1}^1 (1-|x|) e^{-2\pi ix\xi}dx\\
+              &= \int_{-1}^1e^{-2\pi ix\xi}dx + \int_{-1}^0 xe^{-2\pi x\xi}dx -\int_0^1 xe^{-2\pi ix}dx \\
+              &= \frac{1}{-2\pi i\xi}(e^{-2\pi i\xi}-e^{2\pi i\xi}) +
+              \left[e^{-2\pi i\xi}\left(\frac{-x}{2\pi i\xi}+\frac{1}{4\pi^2 \xi^2}\right)\right]_{-1}^0-
+              \left[e^{-2\pi i\xi}\left(\frac{-x}{2\pi i\xi}+\frac{1}{4\pi^2 \xi^2}\right)\right]_0^1\\
+              &= \frac{1}{-2\pi i\xi}(e^{-2\pi i\xi}-e^{2\pi i\xi})+\frac{1}{4\pi^2 \xi^2} - 
+              \frac{1}{2\pi i\xi}e^{2\pi i\xi}-\frac{1}{4\pi^2\xi^2}e^{2\pi i\xi}+\frac{1}{2\pi i\xi}e^{-2\pi i\xi} -
+              \frac{1}{4\pi^2\xi^2}e^{-2\pi i\xi}+\frac{1}{4\pi^2 \xi^2}\\
+              &= \frac{1}{4\pi^2 \xi^2}\cdot\left(2-e^{2\pi i\xi}-e^{-2\pi i\xi}\right) = \\
+              &= \left(\frac{e^{2\pi i\xi}-e^{-2\pi i\xi}}{2i\pi\xi}\right) =
+              \left(\frac{\sin (\pi \xi)}{\pi \xi}\right)^2
+        \end{aligned}$$
+        und
+        $$\hat{g}(0)= \int_{-1}^1 (1-|x|)dx=\int_{-1}^1 1dx+\int_{-1}^0 x dx -\int_{0}^1 xdx
+        =2 -\frac{1}{2}-\frac{1}{2} = 1 $$
+    \end{proof}
+
+    \begin{problem}{2}
+        $\quad$
+        \begin{enumerate}[label = (\roman{enumi})]
+            \item Berechnen Sie die Fourier-Transformationen der folgenden Funktionen:
+            $$
+            f_1(x)=e^{-a x^{+}}, \quad f_2(x)=e^{-a|x|}, \quad f_3(x)=\left(x^2+a
+            \right)^{-2}, \quad x \in \mathbb{R},
+            $$
+            wobei $a \in(0, \infty)$. (Hier: $x^{+}=\max \{x, 0\}$ ).
+            \item Sei $g \in \mathcal{S}(\mathbb{R})$. Zeigen Sie, dass eine
+            Funktion $f \in \mathcal{S}(\mathbb{R})$ existiert mit
+            $$
+            f-f^{\prime \prime}=g \text {. }
+            $$
+            Können Sie eine Formel für $f$ in Bezug auf $g$ finden?
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        Ersten zwei sind straight forward, drittes Integral mit der Formel am
+        Anfang vom Blatt (gilt auch für $L^1$). Zusammenhang vom
+        Fourierkoeffizienten von $f_2$ mit $f_3$ vergleichen. Es geht auch
+        mit dem Residuensatz. \\\\
+        Teil 2: Fourierkoeffizienten berechnen (eh so wie ichs gemacht hab),
+        Frage ist $\frac{\hat{g}(\xi)}{1+4\pi^2 \xi^2}\in\mathcal{S}(\R)$.
+        Gilt weil
+        $$\frac{\hat{g}(\xi)}{1+4\pi^2 \xi^2} = \widehat{f * h}, \qquad
+        h(x) = \frac{e^{-|x|}}{2}$$
+        Kann man aber auch direkt sehen, weil der Quotient unendlich oft
+        differenzierbar ist und wenn man ableitet bekommt man Ableitung von
+        $\hat{g}$ und Ableitungen von $\frac{1}{1+4\pi^2 \xi^2}$ sind
+        beschränkt, damit ist der Quotient Schwartz.
+    \end{proof}
+
+    \begin{problem}{3}
+        (Bump-Funktionen und Dichte glatter, kompakt getragener Funktionen)
+        \begin{enumerate}[label = (\roman{enumi})]
+            \item Seien $a, b \in \mathbb{R}$ mit $a<b$ und $\varphi_{a, b}:
+            \mathbb{R} \rightarrow[0,+\infty)$ die "Bump-Funktion":
+            $$
+            \varphi_{a, b}(x)=\left\{\begin{array}{ll}
+                                         e^{-1 /(x-a)} e^{-1 /(b-x)} & \text { für } x
+                                         \in[a, b] \\
+                                         0 & \text { für } x \notin[a, b]
+            \end{array} .\right.
+            $$
+            Zeigen Sie, das $\varphi_{a, b}$ unendlich differenzierbar ist.
+            \item Sei $f \in C_c(\mathbb{R})$ und $a<b$. Zeigen Sie, dass $f *
+            \varphi_{a, b} \in C_c^{\infty}(\mathbb{R})$.
+            (Hier: $f \in C_c(\mathbb{R})$ bedeutet, dass $f$ stetig ist und einen
+            kompakten Träger hat, während $f \in C_c^{\infty}(\mathbb{R})$ bedeutet,
+            dass $f$ unendlich differenzierbar ist und einen kompakten Träger hat).
+            \item Sei $f \in L^1(\mathbb{R})$. Zeigen Sie, dass eine Folge
+            $\left\{f_n: n \geq 1\right\} \subset C_c^{\infty}(\mathbb{R})$ existiert
+            mit $f_n \rightarrow f$ in $L^1(\mathbb{R})$ für $n \rightarrow \infty$.
+        \end{enumerate}
+    \end{problem}
+
+    \begin{proof}
+        stetig klar, Ableitung für beliebiges $x$ ausrechnen und wieder
+        Grenzwert betrachten und dann per Induktion, die Ableitung am
+        Punkt $a$ oder Punkt $b$ existiert, weil irgendwie
+        Mittelwertsatz.\\\\
+        Faltung einsetzen schaun wo man ungleich $0$ ist. Dann weiß man,
+        dass diese kompakten Träger hat und $(\varphi_{a,b}*f)'=\varphi_{a,b}'*f$
+        gilt und damit die Funktion unendlich oft diffbar ist. \\\\
+        Für Teil 3 wissen wir, dass $C_c(\R)$ dicht in $L^1(\R)$ liegt, wählen
+        eine solche Folge $g_{n}\to f$ und nutzen
+        $K_n*g_n\to f$ mit $K = \frac{\varphi_{a,b}}{\|\varphi_{a,b}\|_1}$
+        und $K_n = \frac{1}{n}K(nx)$ (was eine Folge guter Kerne ist.).
+    \end{proof}
+
+    \begin{problem}{4}
+        Sei $f \in L^1(\mathbb{R})$. Zeigen Sie, dass $\hat{f}$ stetig ist.
+    \end{problem}
+
+    \begin{proof}
+        Sei $\xi_n \to\xi$ beliebig, dann wird die Funktionenfolge $f(x)\cdot e^{-2\pi ix\xi_n}$ von
+        der integrierbaren Funktion $|f(x)|$ dominiert und wir finden damit mit dem Satz der
+        dominierten Konvergenz:
+        $$\lim_{n\to\infty}\hat{f}(\xi_n)=\lim_{n\to\infty}\int_{\R} f(x) e^{-2\pi x\xi_n} dx =
+        \int_{\R} f(x) e^{-2\pi x\xi} dx= \hat{f}(\xi)$$
+        Ohne dominierte Konvergenz: Wenn $f_n\to f$, dann $\hat{f}_n\to\hat{f}$,
+        wobei die erste Konvergenz in $L^1$ ist und die zweite in $L^\infty$.
+        $f_n\in\mathcal{S}(\R)$.
+        Damit ist die Grenzfunktion stetig.
+    \end{proof}
+\end{document}
